@@ -1,11 +1,11 @@
 (ns tmhas.views
   (:require [re-frame.core :as re-frame]
             [re-com.core :as re-com]
-            [tmhas.components.common :as components]
             [tmhas.panels.home :refer [home-panel]]
             [tmhas.panels.about :refer [about-panel]]
             [tmhas.panels.people :refer [people-panel]]
-            [tmhas.panels.events :refer [events-panel]]))
+            [tmhas.panels.events :refer [events-panel]]
+            [tmhas.components.navigation :refer [navigation]]))
 
 
 (defn side-panel []
@@ -38,7 +38,7 @@
       [re-com/v-box
        :height "100%"
        :class "w-100 pa3 ph5-ns bg-white"
-       :children [[components/navigation]
+       :children [[navigation]
                   [re-com/h-box
                    :children [[side-panel]
                               [content-panel @active-panel]]]]])))
