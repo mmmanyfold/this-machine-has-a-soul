@@ -1,60 +1,44 @@
 (ns tmhas.views
   (:require [re-frame.core :as re-frame]
-            [re-com.core :as re-com]))
+            [re-com.core :as re-com]
+            [tmhas.panels.home :refer [home-panel]]
+            [tmhas.panels.about :refer [about-panel]]
+            [tmhas.panels.people :refer [people-panel]]
+            [tmhas.panels.events :refer [events-panel]]
+            [tmhas.components.navigation :refer [navigation]]))
 
 
-;; home
+(defn side-panel []
+  [re-com/h-box
+   :class "fl w-30 pa3 ph5-ns bg-white ba"
+   :children [[re-com/v-box
+               :children [[:h2 "_side-panel"]]]]])
 
-(defn home-title []
-  (let [name (re-frame/subscribe [:name])]
-    (fn []
-      [re-com/title
-       :label (str "Hello from " @name ". This is the Home Page.")
-       :level :level1])))
-
-(defn link-to-about-page []
-  [re-com/hyperlink-href
-   :label "go to About Page"
-   :href "#/about"])
-
-(defn home-panel []
-  [re-com/v-box
-   :gap "1em"
-   :children [[home-title] [link-to-about-page]]])
-
-
-;; about
-
-(defn about-title []
-  [re-com/title
-   :label "This is the About Page."
-   :level :level1])
-
-(defn link-to-home-page []
-  [re-com/hyperlink-href
-   :label "go to Home Page"
-   :href "#/"])
-
-(defn about-panel []
-  [re-com/v-box
-   :gap "1em"
-   :children [[about-title] [link-to-home-page]]])
-
-
-;; main
-
-(defn- panels [panel-name]
+(defn- show-panel [panel-name]
   (case panel-name
-    :home-panel [home-panel]
-    :about-panel [about-panel]
-    [:div]))
+        :home-panel [home-panel]
+        :about-panel [about-panel]
+        :people-panel [people-panel]
+        :events-panel [events-panel]
+        :404 [:div "404"]
+        [:div]))
 
-(defn show-panel [panel-name]
-  [panels panel-name])
+
+(defn- content-panel [panel-name]
+  [re-com/h-box
+   :class "fl w-70 pa3 ph5-ns bg-white ba"
+   :children [[re-com/v-box
+               :children [[:h2 "_content-panel"]
+                          [show-panel panel-name]]]]])
+
 
 (defn main-panel []
   (let [active-panel (re-frame/subscribe [:active-panel])]
     (fn []
       [re-com/v-box
        :height "100%"
-       :children [[panels @active-panel]]])))
+       :class "w-100 pa3 ph5-ns bg-white"
+       :children [[navigation]
+                  [re-com/h-box
+                   :children [[side-panel]
+                              [content-panel @active-panel]]]]])))
