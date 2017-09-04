@@ -5,3 +5,6 @@ body h2,
 body h3 {
   color: blue;
 }
+.nav ul li {
+  display: inline-block;
+}
