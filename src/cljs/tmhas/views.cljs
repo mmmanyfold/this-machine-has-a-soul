@@ -8,29 +8,28 @@
             [tmhas.panels.events :refer [events-panel]]))
 
 
-
 (defn side-panel []
   [re-com/h-box
-   :gap "1em"
+   :class "fl w-30 pa3 ph5-ns bg-white ba"
    :children [[re-com/v-box
                :children [[:h2 "_side-panel"]]]]])
 
-
-(defn content-panel []
-  [re-com/h-box
-   :gap "1em"
-   :children [[re-com/v-box
-               :children [[:h2 "_content-panel"]]]]])
-
-
-(defn- panels [panel-name]
+(defn- show-panel [panel-name]
   (case panel-name
-    :home-panel  [home-panel]
-    :about-panel [about-panel]
-    :people-panel [people-panel]
-    :events-panel [events-panel]
-    :404         [:div "404"]
-    [:div]))
+        :home-panel [home-panel]
+        :about-panel [about-panel]
+        :people-panel [people-panel]
+        :events-panel [events-panel]
+        :404 [:div "404"]
+        [:div]))
+
+
+(defn- content-panel [panel-name]
+  [re-com/h-box
+   :class "fl w-70 pa3 ph5-ns bg-white ba"
+   :children [[re-com/v-box
+               :children [[:h2 "_content-panel"]
+                          [show-panel panel-name]]]]])
 
 
 (defn main-panel []
@@ -40,6 +39,6 @@
        :height "100%"
        :class "w-100 pa3 ph5-ns bg-white"
        :children [[components/navigation]
-                  [side-panel]
-                  [content-panel]
-                  [panels @active-panel]]])))
+                  [re-com/h-box
+                   :children [[side-panel]
+                              [content-panel @active-panel]]]]])))
