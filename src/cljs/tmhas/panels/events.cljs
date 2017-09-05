@@ -5,4 +5,4 @@
 (defn events-panel []
       [re-com/v-box
        :children
-       [[:h1 "Calendar of Events"]]])
+       [[:h1 {:class "bb bw1"} "Calendar of Events"]]])

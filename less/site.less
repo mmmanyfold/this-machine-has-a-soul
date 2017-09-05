@@ -1,5 +1,6 @@
 @purple: #8e4f78;
 @yellow: #fcb733;
+@green: #739f3e;
 
 body {
     font-family: 'Roboto Condensed';
@@ -9,15 +10,24 @@ body {
     }
 }
 
+header {
+    font-size: 1.5em;
+}
+
 .people-panel {
     border-color: @purple;
 }
 
-.nav-link {
-    a {
-        color: black;
-    }
+a.nav-link {
+    color: black;
+    text-decoration: none;
     &:hover {
-        border: 2px solid @yellow;
+        border: .125rem solid @yellow;
     }
+}
+
+a.vote-link {
+    color: white;
+    text-decoration: none;
+    background-color: @green;
 }

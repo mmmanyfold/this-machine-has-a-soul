@@ -5,12 +5,21 @@ body {
 body h1 {
   color: #8e4f78;
 }
+header {
+  font-size: 1.5em;
+}
 .people-panel {
   border-color: #8e4f78;
 }
-.nav-link a {
+a.nav-link {
   color: black;
+  text-decoration: none;
 }
-.nav-link:hover {
-  border: 2px solid #fcb733;
+a.nav-link:hover {
+  border: 0.125rem solid #fcb733;
+}
+a.vote-link {
+  color: white;
+  text-decoration: none;
+  background-color: #739f3e;
 }
