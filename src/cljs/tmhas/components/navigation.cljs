@@ -3,14 +3,15 @@
             [tmhas.components.common :refer [link]]))
 
 (defn navigation []
-      [re-com/h-box
-       :gap "1em"
-       :children [[:header
-                   {:class "fl w-100 pa3 ph5-ns bg-white ba nav"}
-                   [:h1 "NAV"]
-                   [re-com/h-box
-                    :children [[:ul
-                                [:li.ph2 [:span [link "home" "/"]]]
-                                [:li.ph2 [:span [link "about" "about"]]]
-                                [:li.ph2 [:span [link "people" "people"]]]
-                                [:li.ph2 [:span [link "events" "events"]]]]]]]]])
+      [:header {:class "f2 w-100 pa3 bg-white"}
+       [re-com/h-box
+        :justify :around
+        :children [[:span {:class "nav-link ph4 pv2 ba b--white bw1"}
+                      [link "home" "/"]]
+                   [:span {:class "nav-link ph4 pv2 ba b--white bw1"}
+                      [link "about" "/about"]]
+                   [:span {:class "nav-link ph4 pv2 ba b--white bw1"}
+                      [link "people" "/people"]]
+                   [:span {:class "nav-link ph4 pv2 ba b--white bw1"}
+                      [link "events" "/events"]]
+                   [:span [link "vote" "/"]]]]])

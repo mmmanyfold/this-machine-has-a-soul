@@ -1,16 +1,23 @@
+@purple: #8e4f78;
+@yellow: #fcb733;
+
 body {
+    font-family: 'Roboto Condensed';
+    font-size: 1.2em;
     h1 {
-        color:red;
-    }
-    h2, h3 {
-        color: blue;
+        color: @purple;
     }
 }
 
-.nav {
-    ul {
-        li {
-            display: inline-block;
-        }
+.people-panel {
+    border-color: @purple;
+}
+
+.nav-link {
+    a {
+        color: black;
+    }
+    &:hover {
+        border: 2px solid @yellow;
     }
 }
