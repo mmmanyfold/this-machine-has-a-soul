@@ -4,4 +4,4 @@
 (defn link [label to]
       [re-com/hyperlink-href
        :label label
-       :href (str "#/" to)])
+       :href (str "#" to)])

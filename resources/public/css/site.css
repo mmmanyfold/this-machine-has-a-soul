@@ -1,10 +1,16 @@
+body {
+  font-family: 'Roboto Condensed';
+  font-size: 1.2em;
+}
 body h1 {
-  color: red;
+  color: #8e4f78;
 }
-body h2,
-body h3 {
-  color: blue;
+.people-panel {
+  border-color: #8e4f78;
 }
-.nav ul li {
-  display: inline-block;
+.nav-link a {
+  color: black;
+}
+.nav-link:hover {
+  border: 2px solid #fcb733;
 }
