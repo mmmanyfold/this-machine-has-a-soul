@@ -20,12 +20,8 @@
            (let [aboutSections (first (:aboutSections @(rf/subscribe [ref-key])))] ;; 3. react to retrieved data
                 [re-com/v-box
                  :children
-                 [[:h1 (:sectionTitle aboutSections)]
-
-                  [:p (:sectionText aboutSections)]]])
-
-        [:h1 {:class "bb bw1"} "Press Kit"]
-        [:p "Links"]
-
-        [:h1 "Contact"]
-        [:p "For more information, please contact Jenette Preciado at jenette@warmcookiesoftherevolution.net."]))
+                 [[:h1
+                   {:class "bb bw1"}
+                   (:sectionTitle aboutSections)]
+                  ;; TODO: needs markdown parser here
+                  [:p (:sectionText aboutSections)]]])))
