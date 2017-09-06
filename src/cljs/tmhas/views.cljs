@@ -43,7 +43,7 @@
     (fn []
       [re-com/v-box
        :height "100%"
-       :class "w-100 pa3 bg-white"
+       :class "w-100 pa3 bg-white mb5"
        :children [[navigation]
                   [re-com/h-box
                    :children [[side-panel]

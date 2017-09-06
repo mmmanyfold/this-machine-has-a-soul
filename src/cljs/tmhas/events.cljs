@@ -16,8 +16,8 @@
                     ;:headers         {:Authorization (str "Bearer " API_KEY)}
                     :format          (ajax/json-request-format)
                     :params          {:query query}
-                    ;:uri             "http://localhost:4000/graphql" ;; local dev server
-                    :uri             "https://node-project-starter-ngemfazjwo.now.sh/graphql" ;; stage dev server
+                    :uri             "http://localhost:4000/graphql" ;; local dev server
+                    ; :uri             "https://node-project-starter-hxumagngjh.now.sh/graphql" ;; stage dev server
                     :response-format (ajax/json-response-format {:keywords? true})
                     :on-success      [:get-contentful-data-success ref-key]}}))
 
