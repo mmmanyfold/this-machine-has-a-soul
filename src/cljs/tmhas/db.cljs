@@ -1,4 +1,5 @@
 (ns tmhas.db)
 
 (def default-db
-  {:name "re-frame"})
+  {:name "tmhas"
+   :active-panel nil})
