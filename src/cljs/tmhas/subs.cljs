@@ -1,13 +1,8 @@
 (ns tmhas.subs
   (:require-macros [reagent.ratom :refer [reaction]])
-  (:require [re-frame.core :as re-frame]))
+  (:require [re-frame.core :as rf]))
 
-(re-frame/reg-sub
- :name
- (fn [db]
-   (:name db)))
-
-(re-frame/reg-sub
+(rf/reg-sub
  :active-panel
  (fn [db _]
    (:active-panel db)))
