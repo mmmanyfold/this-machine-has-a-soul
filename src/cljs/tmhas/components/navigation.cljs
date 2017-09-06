@@ -1,17 +1,40 @@
 (ns tmhas.components.navigation
   (:require [re-com.core :as re-com]
-            [tmhas.components.common :refer [link]]))
+            [re-frame.core :as rf]
+            [reagent.core :as reagent]))
+
+(defn nav-link [label to panel-name]
+  (let [active? (rf/subscribe [:active-panel])
+        nav-classes "nav-link ph3 pb1 pt2 ba b--white bw1"
+        classes (if (= @active? panel-name)
+                    (str nav-classes " active")
+                    nav-classes)]
+      [re-com/hyperlink-href
+       :label label
+       :class classes
+       :href (str "#" to)]))
+
+(defn vote-link [label to]
+      [re-com/hyperlink-href
+       :label label
+       :class "vote-link ph3 pb1 pt2 ba b--white bw1"
+       :href (str "#" to)])
 
 (defn navigation []
-      [:header {:class "f2 w-100 pa3 bg-white"}
+  (let [showing? (reagent/atom false)]
+      [:header {:class "w-100 pt2 pb3 ph4 bg-white ttu tracked"}
        [re-com/h-box
-        :justify :around
-        :children [[:span {:class "nav-link ph4 pv2 ba b--white bw1"}
-                      [link "home" "/"]]
-                   [:span {:class "nav-link ph4 pv2 ba b--white bw1"}
-                      [link "about" "/about"]]
-                   [:span {:class "nav-link ph4 pv2 ba b--white bw1"}
-                      [link "people" "/people"]]
-                   [:span {:class "nav-link ph4 pv2 ba b--white bw1"}
-                      [link "events" "/events"]]
-                   [:span [link "vote" "/"]]]]])
+        :justify :between
+        :children [[:span [nav-link "latest" "/" :home-panel]]
+                   [:span [nav-link "about" "/about" :about-panel]]
+                   [:span [nav-link "people" "/people" :people-panel]]
+                   [:span [nav-link "events" "/events" :events-panel]]
+                   [re-com/popover-anchor-wrapper
+                      :showing? showing?
+                      :position :right-below
+                      :anchor   [:span {:on-mouse-over #(swap! showing? not)
+                                        :on-mouse-out  #(swap! showing? not)}
+                                    [vote-link "vote" "/"]]
+                      :popover  [re-com/popover-content-wrapper
+                                 :close-button? false
+                                 :body          "Coming Soon"]]]]]))
