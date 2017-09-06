@@ -1,6 +1,7 @@
 (ns tmhas.components.navigation
   (:require [re-com.core :as re-com]
-            [re-frame.core :as rf]))
+            [re-frame.core :as rf]
+            [reagent.core :as reagent]))
 
 (defn nav-link [label to panel-name]
   (let [active? (rf/subscribe [:active-panel])
@@ -20,6 +21,7 @@
        :href (str "#" to)])
 
 (defn navigation []
+  (let [showing? (reagent/atom false)]
       [:header {:class "w-100 pt2 pb3 ph4 bg-white ttu tracked"}
        [re-com/h-box
         :justify :between
@@ -27,4 +29,12 @@
                    [:span [nav-link "about" "/about" :about-panel]]
                    [:span [nav-link "people" "/people" :people-panel]]
                    [:span [nav-link "events" "/events" :events-panel]]
-                   [:span [vote-link "vote" "/"]]]]])
+                   [re-com/popover-anchor-wrapper
+                      :showing? showing?
+                      :position :right-below
+                      :anchor   [:span {:on-mouse-over #(swap! showing? not)
+                                        :on-mouse-out  #(swap! showing? not)}
+                                    [vote-link "vote" "/"]]
+                      :popover  [re-com/popover-content-wrapper
+                                 :close-button? false
+                                 :body          "Coming Soon"]]]]]))
