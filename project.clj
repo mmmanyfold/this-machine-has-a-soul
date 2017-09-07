@@ -12,7 +12,8 @@
                  [ring "1.4.0"]
                  [cljs-ajax "0.6.0"]
                  [day8.re-frame/http-fx "0.1.3"]
-                 [adzerk/env "0.4.0"]]
+                 [adzerk/env "0.4.0"]
+                 [cljsjs/showdown "1.4.2-0"]]
 
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-less "1.7.5"]]
@@ -76,4 +77,3 @@
   :uberjar-name "tmhas.jar"
 
   :prep-tasks [["cljsbuild" "once" "min"]["less" "once"] "compile"])
-

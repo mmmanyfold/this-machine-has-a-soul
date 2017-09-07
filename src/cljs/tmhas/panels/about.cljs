@@ -1,28 +1,28 @@
 (ns tmhas.panels.about
   (:require [re-frame.core :as rf]
-            [re-com.core :as re-com]))
+            [re-com.core :as re-com]
+            [tmhas.components.common :refer [showdown]]))
 
 (def query
   "{ aboutSections {
-			 sectionTitle, sectionText
+			 sectionTitle, sectionContent, sectionOrder
 		 }
 	}")
 
 (defn about-panel []
-      (let [ref-key :about-panel]                                ;; 0. declare unique ref-key
-           (rf/reg-sub ref-key #(ref-key %))                     ;; 1. register subscriber ref-key
-           (rf/dispatch [:get-contentful-data ref-key query])    ;; 2. retrieve contentful data & pass key for assoc in db
+      (let [rf-key :about-panel]                                ;; 0. declare unique rf-key
+           (rf/reg-sub rf-key #(rf-key %))                      ;; 1. register subscriber rf-key
+           (rf/dispatch [:get-contentful-data rf-key query])    ;; 2. retrieve contentful data & pass key for assoc in db
 
-           (let [aboutSections (:aboutSections @(rf/subscribe [ref-key]))] ;; 3. react to retrieved data
+           (let [about-sections (:aboutSections @(rf/subscribe [rf-key]))
+                 about-sections-sorted (sort-by :sectionOrder about-sections)]
                 [re-com/v-box
                  :children
-                 ;; TODO: needs markdown parser here
-                 [(for [section aboutSections
+                 [(for [section about-sections-sorted
                          :let [title (:sectionTitle section)
-                               text  (:sectionText section)]]
+                               content  (:sectionContent section)]]
                     ^{:key (gensym "aboutSection-")}
-                     [:div
-                      [:h1
-                       {:class "bb bw1"}
-                       title]
-                      [:p text]])]])))
+                     [:div.about-section
+                      [:h1 {:class "bb bw1"} title]
+                      [:div {"dangerouslySetInnerHTML"
+                              #js{:__html (.makeHtml showdown content)}}]])]])))

@@ -24,3 +24,7 @@ a.vote-link {
   text-decoration: none;
   background-color: #739f3e;
 }
+.about-section img {
+  width: 30%;
+  margin: 0 1%;
+}
