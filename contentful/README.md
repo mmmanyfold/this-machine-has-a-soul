@@ -1,6 +1,8 @@
 # Contentful <=> GraphQL Integration Server
 
-https://node-project-starter-ngemfazjwo.now.sh/
+https://node-project-starter-xfspeupimh.now.sh/about
+https://node-project-starter-xfspeupimh.now.sh/media
+https://node-project-starter-xfspeupimh.now.sh/people
 
 ### deving
 

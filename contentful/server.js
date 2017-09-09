@@ -1,24 +1,25 @@
 /* eslint-disable no-console */
 
-import path from 'path';
 import cfGraphql from 'cf-graphql';
 import express from 'express';
 import cors from 'cors';
 import graphqlHTTP from 'express-graphql';
 
 const port = process.env.PORT || 4000;
-const spaceId = process.env.TMHAS_CONTENTFUL_SPACE_ID || '1xeolmvll2k7'; // about space
+
+const aboutSpaceId = '1xeolmvll2k7';
+const mediaSpaceId = '970rl7t29lr8';
+const peopleSpaceId = 'jvc74n2b996o';
+
 const cdaToken = process.env.TMHAS_CONTENTFUL_CDA_TOKEN;
 const cmaToken = process.env.THMAS_CONTENTFUL_CMA_TOKEN;
 
-if (spaceId && cdaToken && cmaToken) {
-    console.log('Space ID, CDA token and CMA token provided');
-    console.log(`Fetching space (${spaceId}) content types to create a space graph`);
-    useProvidedSpace();
+if (aboutSpaceId && mediaSpaceId && peopleSpaceId && cdaToken && cmaToken) {
+    console.log('Space IDs, CDA token and CMA token provided');
+    console.log(`Fetching space (${[aboutSpaceId, mediaSpaceId, peopleSpaceId]}) content types to create a space graph`);
+    useProvidedSpaces([aboutSpaceId, mediaSpaceId, peopleSpaceId]);
 } else {
-    console.log('Using a demo space');
-    console.log('You can provide env vars (see README.md) to use your own space');
-    useDemoSpace();
+    fail('Error: No Space IDs, CDA token or CMA token provided, exiting...');
 }
 
 // this function implements a flow you could use in your application:
@@ -28,47 +29,92 @@ if (spaceId && cdaToken && cmaToken) {
 // 3. create a schema out of the space graph
 // 4. run a server
 
-function useProvidedSpace() {
-    const client = cfGraphql.createClient({spaceId, cdaToken, cmaToken});
-
-    client.getContentTypes()
-        .then(cfGraphql.prepareSpaceGraph)
-        .then(spaceGraph => {
-            const names = spaceGraph.map(ct => ct.names.type).join(', ');
-            console.log(`Contentful content types prepared: ${names}`);
-            return spaceGraph;
-        })
-        .then(cfGraphql.createSchema)
-        .then(schema => startServer(client, schema))
-        .catch(fail);
+function schemaBuilder(client) {
+    return new Promise((resolve, reject) => {
+        return client.getContentTypes()
+            .then(cfGraphql.prepareSpaceGraph)
+            .then(spaceGraph => {
+                const names = spaceGraph.map(ct => ct.names.type).join(', ');
+                console.log(`Contentful content types prepared: ${names}`);
+                return spaceGraph;
+            })
+            .then(cfGraphql.createSchema)
+            .then(schema => resolve([client, schema]))
+            .catch(reject);
+    });
 }
 
-// this function is being run if you don't provide credentials to your own space
-function useDemoSpace() {
-    const {spaceId, cdaToken, spaceGraph} = require('./demo-data.json');
-    const client = cfGraphql.createClient({spaceId, cdaToken});
-    const schema = cfGraphql.createSchema(spaceGraph);
-    startServer(client, schema);
+function useProvidedSpaces(spaceIds) {
+
+    const [ aboutSpaceId, mediaSpaceId , peopleSpaceId ] = spaceIds;
+    const [ aboutToken, mediaToken, peopleToken ] = cdaToken.split(' ');
+
+    const aboutClient = cfGraphql.createClient({ spaceId: aboutSpaceId, cdaToken: aboutToken, cmaToken });
+    const mediaClient = cfGraphql.createClient({ spaceId: mediaSpaceId, cdaToken: mediaToken, cmaToken });
+    const peopleClient = cfGraphql.createClient({ spaceId: peopleSpaceId, cdaToken: peopleToken, cmaToken });
+
+    Promise.all([
+        schemaBuilder(aboutClient),
+        schemaBuilder(mediaClient),
+        schemaBuilder(peopleClient),
+    ]).then(all => {
+        const clients = [];
+        const schemas = [];
+        all.map(([client, schema]) => {
+            clients.push(client);
+            schemas.push(schema);
+        });
+        startServer(clients, schemas);
+    }).catch(fail);
 }
 
-function startServer(client, schema) {
+function startServer(clients, schemas) {
+
+    const [ aboutClient, mediaClient, peopleClient ] = clients;
+    const [ aboutSchema, mediaSchema, peopleSchema ] = schemas;
+
     const app = express();
+
     app.use(cors());
 
-    app.use('/client', express.static(path.join(__dirname, 'dist')));
+    const aboutUI = cfGraphql.helpers.graphiql({
+        title: 'contentful<->graphql | about space',
+        url: '/graphql/about',
+    });
 
-    const ui = cfGraphql.helpers.graphiql({title: 'cf-graphql demo'});
-    app.get('/', (_, res) => res.set(ui.headers).status(ui.statusCode).end(ui.body));
+    const mediaUI = cfGraphql.helpers.graphiql({
+        title: 'contentful<->graphql | media space',
+        url: '/graphql/media',
+    });
 
-    const opts = {version: true, timeline: true, detailedErrors: false};
-    const ext = cfGraphql.helpers.expressGraphqlExtension(client, schema, opts);
-    app.use('/graphql', graphqlHTTP(ext));
+    const peopleUI = cfGraphql.helpers.graphiql({
+        title: 'contentful<->graphql | people space',
+        url: '/graphql/people',
+    });
+
+    app.get('/about', (_, res) => res.set(aboutUI.headers).status(aboutUI.statusCode).end(aboutUI.body));
+    app.get('/media', (_, res) => res.set(mediaUI.headers).status(mediaUI.statusCode).end(mediaUI.body));
+    app.get('/people', (_, res) => res.set(peopleUI.headers).status(peopleUI.statusCode).end(peopleUI.body));
+
+    const opts = {
+        version: true,
+        timeline: false,
+        detailedErrors: false,
+    };
+
+    const aboutExt = cfGraphql.helpers.expressGraphqlExtension(aboutClient , aboutSchema, opts);
+    const mediaExt = cfGraphql.helpers.expressGraphqlExtension(mediaClient, mediaSchema, opts);
+    const peopleExt = cfGraphql.helpers.expressGraphqlExtension(peopleClient, peopleSchema, opts);
+
+    app.use('/graphql/about', graphqlHTTP(aboutExt));
+    app.use('/graphql/media', graphqlHTTP(mediaExt));
+    app.use('/graphql/people', graphqlHTTP(peopleExt));
 
     app.listen(port);
+
     console.log('Running a GraphQL server!');
     console.log(`You can access GraphiQL at localhost:${port}`);
-    console.log(`You can use the GraphQL endpoint at localhost:${port}/graphql/`);
-    console.log(`You can have a look at a React Frontend at localhost:${port}/client/`);
+    console.log(`You can use the GraphQL endpoint at localhost:${port}/graphql/{about, media, people}`);
 }
 
 function fail(err) {
