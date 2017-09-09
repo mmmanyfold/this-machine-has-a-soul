@@ -1,10 +1,8 @@
 (ns tmhas.panels.home
-  (:require [re-com.core :as re-com]
-            [re-frame.core :as rf]))
+  (:require [re-frame.core :as re-frame]
+            [re-com.core :as re-com]))
 
 (defn home-panel []
       [re-com/v-box
-       :gap "1em"
-       :children [[re-com/title
-                   :label "This is the Home Page."
-                   :level :level1]]])
+       :children
+       [[:h1 {:class "bb bw1"} "Latest"]]])
