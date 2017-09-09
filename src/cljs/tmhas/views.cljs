@@ -9,14 +9,15 @@
 
 
 (defn side-panel []
-  [re-com/h-box
-   :class "side-panel fl w-30 pa4 bg-white"
+  [re-com/v-box
+   :class "side-panel fl w-100 w-30-l ph1 pv3 pa4-ns"
    :children [[re-com/v-box
-               :class "w-100"
+               :class "w-100 tc"
+               :align :center
                :children [[:img {:src "/img/TMHAS_Logo_600.jpg"
-                                 :width "100%"}]
-                          [:h1 {:class "f3 tc mv4"}
-                            "Participatory Budgeting Project"]]]]])
+                                 :class "w-50-m w-100-l mb2"}]
+                          [:h1 {:class "f4 f3-m mv3"}
+                            "Participatory Budgeting in Denver"]]]]])
                         ; [filtering component] for homepage
                         ; [sub navigation component] in about + people
 
@@ -32,7 +33,7 @@
 
 (defn- content-panel [panel-name]
   [re-com/h-box
-   :class "fl w-70 pv3 ph4 bg-white"
+   :class "content-panel fl w-100 w-70-l ph4-ns"
    :children [[re-com/v-box
                :class "w-100"
                :children [[show-panel panel-name]]]]])
@@ -42,9 +43,8 @@
   (let [active-panel (re-frame/subscribe [:active-panel])]
     (fn []
       [re-com/v-box
-       :height "100%"
-       :class "w-100 pa3 bg-white mb5"
+       :class "w-100 pv3 ph3 mb5"
        :children [[navigation]
-                  [re-com/h-box
-                   :children [[side-panel]
-                              [content-panel @active-panel]]]]])))
+                  [:div.w-100.ph1
+                      [side-panel]
+                      [content-panel @active-panel]]]])))
