@@ -24,5 +24,6 @@
                     ^{:key (gensym "aboutSection-")}
                      [:div.about-section
                       [:h1 {:class "bb bw1"} title]
-                      [:div {"dangerouslySetInnerHTML"
+                      [:div {:class "markdown"
+                             "dangerouslySetInnerHTML"
                               #js{:__html (.makeHtml showdown content)}}]])]])))

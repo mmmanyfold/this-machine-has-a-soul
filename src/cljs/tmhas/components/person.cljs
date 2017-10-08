@@ -1,5 +1,6 @@
 (ns tmhas.components.person
-  (:require [re-com.core :as re-com]))
+  (:require [re-com.core :as re-com]
+            [tmhas.components.common :refer [showdown]]))
 
 (defn person [data]
       [:div {:class "flexrow-wrap w-100 mv3"}
@@ -10,4 +11,6 @@
           :class "w-100 w-75-ns pl4-ns"
           :children [[:h2 {:class "mt0 f2 f3-ns"}
                          (:name data)]
-                     [:p (:bio data)]]]])
+                     [:div {:class "markdown"
+                            "dangerouslySetInnerHTML"
+                            #js{:__html (.makeHtml showdown (:bio data))}}]]]])
