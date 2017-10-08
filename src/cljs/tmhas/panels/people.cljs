@@ -40,7 +40,8 @@
                  :class "people-panel"
                  :children [[:h1 {:class "w-100 w-75-ns ml4-ns bb bw1"}
                              "Project VOYCE"]
-                            (for [datum personArtists]
+
+                            (for [datum personProjectVoyces]
                                  ^{:key (gensym "person-")}
                                  [person datum])
 
@@ -55,7 +56,7 @@
                             [:h1 {:class "w-100 w-75-ns ml4-ns bb bw1"}
                              "The Artists"]
 
-                            (for [datum personProjectVoyces]
+                            (for [datum personArtists]
                                  ^{:key (gensym "person-")}
                                  [person datum])
 
