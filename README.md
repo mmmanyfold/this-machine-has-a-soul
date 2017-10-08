@@ -18,25 +18,31 @@ Automatically recompile css file on change.
 lein less auto
 ```
 
-### Run application:
+### Run application
 
 ```
 lein clean
 lein figwheel dev
 ```
 
-### Run contentful-graphql server:
+### Run contentful-graphql server
 
 ```
 cd contentful
 npm start
 ```
 
+### Graphql playgrounds
+
+- [/people](http://localhost:4000/people)
+- [/about](http://localhost:4000/about)
+- [/media](http://localhost:4000/media)
+
 Figwheel will automatically push cljs changes to the browser.
 
 Wait a bit, then browse to [http://localhost:3449](http://localhost:3449).
 
-### Run tests:
+### Run tests
 
 ```
 lein clean
