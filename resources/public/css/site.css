@@ -21,6 +21,13 @@ header {
   -webkit-justify-content: space-between;
   justify-content: space-between;
 }
+.media-thumb {
+  width: 47%;
+}
+.media-thumb div.metadata span {
+  color: #959991;
+  margin: 0 0.25em;
+}
 .people-panel {
   border-color: #8e4f78;
 }
