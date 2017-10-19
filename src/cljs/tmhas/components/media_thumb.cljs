@@ -3,9 +3,10 @@
             [tmhas.components.common :refer [showdown]]))
 
 (defn tags-component [tags]
-  (for [tag tags]
-       ^{:key (gensym "tag-")}
-       [:span (str "#" tag)]))
+  [:section.tags
+   (for [tag tags]
+        ^{:key (gensym "tag-")}
+        [:span (str "#" tag)])])
 
 (defn image-gallery [data]
   (let [{:keys [postTitle
@@ -23,5 +24,6 @@
                    [:div {:class "metadata f5"}
                     (when postText
                           [:p.ma1 postText])
-                    [:span postDate] [:span "•"]]]]))
-                    ;[tags-component tags]]]]))
+                    [:span postDate]
+                    [:span "•"]
+                    [tags-component tags]]]]))

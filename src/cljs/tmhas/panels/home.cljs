@@ -13,6 +13,7 @@
 			postText
 			postDate
 			postTitle
+			tags
 			images { url }
 		 }
 	}")
