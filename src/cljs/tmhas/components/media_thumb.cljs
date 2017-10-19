@@ -15,7 +15,7 @@
                 images]}
         data]
        [re-com/v-box
-        :class "media-thumb"
+        :class "media-thumb mb2"
         :children [[:img {:class "mb1"
                           :src   (-> images first :url)}]
                    [:h2 {:class "mb0 mh1 mt2 f2 f3-ns"}

@@ -53,7 +53,7 @@
   (let [active-panel (re-frame/subscribe [:active-panel])]
     (fn []
       [re-com/v-box
-       :class "w-100 pv3 ph3 mb5"
+       :class "w-100 pv3 ph3 mb4"
        :children [[navigation]
                   [:div.w-100.ph1
                       [side-panel]
