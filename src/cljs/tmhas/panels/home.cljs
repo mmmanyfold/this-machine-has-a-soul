@@ -10,4 +10,6 @@
        [[:h1 {:class "bb bw1"} "Latest"]
         [:div {:class "flexrow-wrap w-100 mv3"}
               [media-thumb]
+              [media-thumb]
+              [media-thumb]
               [media-thumb]]]])
