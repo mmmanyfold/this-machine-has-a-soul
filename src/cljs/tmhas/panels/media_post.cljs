@@ -6,7 +6,7 @@
             [tmhas.components.common :refer [showdown]]))
 
 (defn media-post-panel []
-  (let [show? (reagent/atom true)]
+  (let [show? (reagent/atom false)]
     (fn []
       (when @show?
         [re-com/modal-panel
@@ -16,7 +16,7 @@
          :child [re-com/v-box
                  :class "w-100 pa5-ns"
                  :children [[:div.media-post
-                             [:i {:class "fa fa-times-circle f2"
+                             [:i {:class "fa fa-times-circle f2 pointer"
                                   :aria-hidden true
                                   :on-click #(reset! show? false)}]
                              [:img {:class "mb1"
