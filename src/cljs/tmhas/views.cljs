@@ -17,7 +17,10 @@
                :children [[:img {:src "/img/TMHAS_Logo_600.jpg"
                                  :class "w-50-m w-100-l mb2"}]
                           [:h1 {:class "f4 f3-m mv3"}
-                            "Participatory Budgeting in Denver"]]]]])
+                            "Participatory Budgeting in Denver"]
+                          [:div {:class "mail mail-ns bb bw1 pointer"
+                                 :on-click #(js/window.showMailingPopUp)}
+                              [:h4 "Join Mailing List >>"]]]]]])
                         ; [filtering component] for homepage
                         ; [sub navigation component] in about + people
 
@@ -36,7 +39,14 @@
    :class "content-panel fl w-100 w-70-l ph4-ns"
    :children [[re-com/v-box
                :class "w-100"
-               :children [[show-panel panel-name]]]]])
+               :children [[show-panel panel-name]
+                          [:div {:class "mail mail-s bb bw1 pointer"
+                                 :on-click #(js/window.showMailingPopUp)}
+                              [:h4 "Join Mailing List >>"]]
+                          [:div {:class "mail mail-xs bb bw1"}
+                              [:h4 [:a {:href "http://eepurl.com/c7-hYL"
+                                        :target "_blank"}
+                                    "Join Mailing List >>"]]]]]]])
 
 
 (defn main-panel []

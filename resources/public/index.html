@@ -15,5 +15,13 @@
     <div id="app"></div>
     <script src="js/compiled/app.js"></script>
     <script>tmhas.core.init();</script>
+    <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
+    <script type="text/javascript">
+      function showMailingPopUp() {
+        require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us5.list-manage.com","uuid":"9c30707ed95b6acd1acd82045","lid":"8e05321d1b"}) })
+        document.cookie = "MCPopupClosed=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+      };
+      window.showMailingPopUp = showMailingPopUp
+    </script>
   </body>
 </html>

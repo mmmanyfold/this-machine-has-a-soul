@@ -14,7 +14,7 @@
          :wrap-nicely? false
          :style {:overflow-y "scroll"}
          :child [re-com/v-box
-                 :class "w-100 pa4-ns"
+                 :class "w-100 pa5-ns"
                  :children [[:div.media-post
                              [:i {:class "fa fa-times-circle f2"
                                   :aria-hidden true
