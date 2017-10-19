@@ -25,9 +25,21 @@ header {
   width: 47%;
   margin-bottom: 1.75em;
 }
-.media-thumb div.metadata span {
+div.metadata span {
   color: #959991;
   margin: 0 0.25em;
+}
+.media-post {
+  background-color: white;
+  border-radius: 5px;
+  padding: 1em;
+  position: relative;
+}
+.media-post .fa-times-circle {
+  position: absolute;
+  right: 0.2em;
+  top: 0.13em;
+  z-index: 1;
 }
 .people-panel {
   border-color: #8e4f78;
