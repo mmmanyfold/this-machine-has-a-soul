@@ -10,7 +10,7 @@
 
 (rf/reg-event-fx
   :get-contentful-data
-  (fn [{db :db} [_ rf-key query space]]
+  (fn [{db :db} [_ db-key query space]]
       ;; TODO: add loading state...
       (let [endpoint (if config/debug? "http://localhost:4000/graphql/"
                                        "https://node-project-starter-xfspeupimh.now.sh/graphql/")]
@@ -20,12 +20,12 @@
                          :params          {:query query}
                          :uri             (str endpoint (name space))
                          :response-format (ajax/json-response-format {:keywords? true})
-                         :on-success      [:get-contentful-data-success rf-key]}})))
+                         :on-success      [:get-contentful-data-success db-key]}})))
 
 (rf/reg-event-db
   :get-contentful-data-success
-  (fn [db [_ rf-key & [{data :data}]]]
-      (assoc db rf-key data)))
+  (fn [db [_ db-key & [{data :data}]]]
+      (assoc db db-key data)))
 
 
 (rf/reg-event-db

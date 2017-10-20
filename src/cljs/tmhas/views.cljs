@@ -1,7 +1,7 @@
 (ns tmhas.views
   (:require [re-frame.core :as re-frame]
             [re-com.core :as re-com]
-            [tmhas.panels.home :refer [home-panel]]
+            [tmhas.panels.latest :refer [latest-panel]]
             [tmhas.panels.about :refer [about-panel]]
             [tmhas.panels.people :refer [people-panel]]
             [tmhas.panels.events :refer [events-panel]]
@@ -21,12 +21,12 @@
                           [:div {:class "mail mail-ns bb bw1 pointer"
                                  :on-click #(js/window.showMailingPopUp)}
                               [:h4 "Join Mailing List >>"]]]]]])
-                        ; [filtering component] for homepage
+                        ; [filtering component] for latest (home) page
                         ; [sub navigation component] in about + people
 
 (defn- show-panel [panel-name]
   (case panel-name
-        :home-panel [home-panel]
+        :latest-panel [latest-panel]
         :about-panel [about-panel]
         :people-panel [people-panel]
         :events-panel [events-panel]
