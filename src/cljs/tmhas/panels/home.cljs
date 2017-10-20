@@ -34,7 +34,3 @@
                            :let [entry-id (-> post :sys :id)]]
                           ^{:key entry-id}
                           [media-thumb/image-gallery post])]]]]])))
-
-
-
-

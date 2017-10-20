@@ -30,6 +30,14 @@ header {
 
 .media-thumb {
   width: 47%;
+  @media (max-width: 959px) {
+    width: 100%;
+  }
+  .gallery-icon {
+    right: 0.35em;
+    bottom: 0.6em;
+    z-index: 1;
+  }
 }
 
 div.metadata span {
@@ -93,13 +101,13 @@ a.vote-link {
   }
 }
 .mail-s {
-  @media (max-width: 568px), (min-width: 960px) {
+  @media (max-width: 768px), (min-width: 960px) {
     display: none;
   }
 }
 .mail-xs {
   a { color: black; text-decoration: none }
-  @media (min-width: 569px) {
+  @media (min-width: 769px) {
     display: none;
   }
 }
