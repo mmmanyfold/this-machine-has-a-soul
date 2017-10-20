@@ -16,9 +16,11 @@
                 imageFile]}
         data]
        [re-com/v-box
-        :class "media-thumb mb2"
-        :children [[:img {:class "mb1"
-                          :src   (imageFile :url)}]
+        :class "media-thumb"
+        :children [[:div.media-wrapper
+                    [:div {:class "mb1"
+                           :style {:background-image (str "url('" (imageFile :url) "')")
+                                   :background-size "cover"}}]]
                    [:h2 {:class "mb0 mh1 mt2 f2 f3-ns"}
                     postTitle]
                    [:div {:class "metadata f5"}
@@ -36,10 +38,12 @@
                 images]}
         data]
        [re-com/v-box
-        :class "media-thumb mb2"
+        :class "media-thumb"
         :children [[:div {:class "relative"}
-                    [:img {:class "mb1"
-                           :src   (-> images first :url)}]
+                    [:div.media-wrapper
+                     [:div {:class "mb1"
+                            :style {:background-image (str "url('" (-> images first :url) "')")
+                                    :background-size "cover"}}]]
                     [:div {:class "gallery-icon absolute ph2 pb1 pt2 bg-white o-50 br1"}
                      [:i {:class "fa fa-clone f3"
                           :aria-hidden true}]]]
@@ -69,8 +73,8 @@
                         (str "https://www.youtube.com/embed/" (second (re-find #"youtu.be/([\s\S]*)" videoUrl)) "?rel=0&amp;showinfo=0"))]
 
        [re-com/v-box
-        :class "media-thumb mb2"
-        :children [[:div.video-wrapper
+        :class "media-thumb"
+        :children [[:div.media-wrapper
                     [:iframe {:src video-src
                               :frameBorder "0"
                               :allowFullScreen true}]]

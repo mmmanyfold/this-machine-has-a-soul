@@ -44,12 +44,13 @@ a.vote-link {
 
 .media-thumb {
   width: 47%;
+  margin-bottom: 1.5em;
   @media (max-width: 959px) {
     width: 100%;
   }
   .gallery-icon {
     right: 0.35em;
-    bottom: 0.6em;
+    bottom: 0.35em;
     z-index: 1;
   }
 }
@@ -64,19 +65,19 @@ div.metadata section.tags {
   margin: 0;
 }
 
-.video-wrapper {
+.media-wrapper {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
-  overflow: hidden; }
-.video-wrapper iframe,
-.video-wrapper object,
-.video-wrapper embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%; }
+  overflow: hidden;
+  iframe, object, embed, div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
 
 .full-media-post {
   background-color: white;

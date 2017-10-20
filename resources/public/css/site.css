@@ -36,6 +36,7 @@ a.vote-link {
 }
 .media-thumb {
   width: 47%;
+  margin-bottom: 1.5em;
 }
 @media (max-width: 959px) {
   .media-thumb {
@@ -44,7 +45,7 @@ a.vote-link {
 }
 .media-thumb .gallery-icon {
   right: 0.35em;
-  bottom: 0.6em;
+  bottom: 0.35em;
   z-index: 1;
 }
 div.metadata span {
@@ -55,15 +56,16 @@ div.metadata section.tags {
   display: inline-block;
   margin: 0;
 }
-.video-wrapper {
+.media-wrapper {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
   overflow: hidden;
 }
-.video-wrapper iframe,
-.video-wrapper object,
-.video-wrapper embed {
+.media-wrapper iframe,
+.media-wrapper object,
+.media-wrapper embed,
+.media-wrapper div {
   position: absolute;
   top: 0;
   left: 0;
