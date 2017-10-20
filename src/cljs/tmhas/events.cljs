@@ -8,6 +8,34 @@
 
 (env/def API_KEY "EVENTUALLY")
 
+(def media-query
+  "{
+    imageGalleryPosts {
+      sys { id contentTypeId }
+			postText
+			postDate
+			postTitle
+			tags
+			images { url }
+		},
+    singleImageTextPosts {
+      sys { id contentTypeId }
+			postText
+			postDate
+			postTitle
+			tags
+			imageFile { url }
+		},
+    videoPosts {
+      sys { id contentTypeId }
+			postText
+			postDate
+			postTitle
+			tags
+			videoUrl
+		}
+	}")
+
 (rf/reg-event-fx
   :get-contentful-data
   (fn [{db :db} [_ db-key query space]]
@@ -25,8 +53,11 @@
 (rf/reg-event-db
   :get-contentful-data-success
   (fn [db [_ db-key & [{data :data}]]]
-      (assoc db db-key data)))
-
+    (if (= db-key :latest-panel)
+      (let [posts (apply concat (vals data))
+            sorted-posts (sort-by :postDate (comp - compare) posts)]
+        (assoc db db-key sorted-posts))
+      (assoc db db-key data))))
 
 (rf/reg-event-db
  :initialize-db
