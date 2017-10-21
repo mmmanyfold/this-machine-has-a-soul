@@ -28,12 +28,12 @@
 	}")
 
 (defn people-panel []
-      (let [rf-key :people-panel]                              ;; 0. declare unique rf-key
-           (rf/reg-sub rf-key #(rf-key %))                       ;; 1. register subscriber rf-key
-           (rf/dispatch [:get-contentful-data rf-key query :people]) ;; 2. retrieve contentful data & pass key for assoc in db
+      (let [db-key :people-panel]                              ;; 0. declare unique db-key
+           (rf/reg-sub db-key #(db-key %))                       ;; 1. register subscriber db-key
+           (rf/dispatch [:get-contentful-data db-key query :people]) ;; 2. retrieve contentful data & pass key for assoc in db
 
            (let [{:keys [personArtists personProjectBelays
-                         personProjectVoyces personWcors]} @(rf/subscribe [rf-key])]
+                         personProjectVoyces personWcors]} @(rf/subscribe [db-key])]
 
                 [re-com/v-box
                  :align :end

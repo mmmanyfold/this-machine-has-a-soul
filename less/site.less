@@ -1,6 +1,7 @@
 @purple: #8e4f78;
 @yellow: #fcb733;
 @green: #739f3e;
+@gray: #959991;
 
 body {
     font-family: 'Roboto Condensed';
@@ -27,10 +28,6 @@ header {
     justify-content: space-between;
 }
 
-.people-panel {
-    border-color: @purple;
-}
-
 a.nav-link {
     color: black;
     &:hover, &.active {
@@ -45,9 +42,87 @@ a.vote-link {
     background-color: @green;
 }
 
+.media-thumb {
+  width: 47%;
+  margin-bottom: 1.5em;
+  @media (max-width: 959px) {
+    width: 100%;
+  }
+  .gallery-icon {
+    right: 0.35em;
+    bottom: 0.35em;
+    z-index: 1;
+  }
+}
+
+.metadata span {
+  color: @gray;
+  margin: 0 0.25em;
+}
+
+.metadata section.tags {
+  display: inline-block;
+  margin: 0;
+}
+
+.media-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  iframe, object, embed, div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.full-media-post {
+  background-color: white;
+  border-radius: 5px;
+  padding: 1em;
+  position: relative;
+  .fa-times-circle {
+    position: absolute;
+    right: 0.2em;
+    top: 0.13em;
+    z-index: 1;
+  }
+}
+
+.people-panel {
+    border-color: @purple;
+}
+
 .about-section {
     img {
         width: 30%;
         margin: 0 1%;
     }
+}
+
+.mail {
+  align-self: flex-start;
+  bottom: 2em;
+  border-color: @yellow;
+  margin-top: 1.5em;
+}
+.mail-ns {
+  position: fixed;
+  @media (max-width: 959px) {
+    display: none;
+  }
+}
+.mail-s {
+  @media (max-width: 768px), (min-width: 960px) {
+    display: none;
+  }
+}
+.mail-xs {
+  a { color: black; text-decoration: none }
+  @media (min-width: 769px) {
+    display: none;
+  }
 }

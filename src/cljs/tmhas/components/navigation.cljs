@@ -25,7 +25,7 @@
     [:header {:class "w-100 f5-m pt2 pb3 pb4-ns ph4-ns bg-white ttu tracked"}
        [re-com/h-box
         :justify :between
-        :children [[:span [nav-link "latest" "/" :home-panel]]
+        :children [[:span [nav-link "latest" "/" :latest-panel]]
                    [:span [nav-link "about" "/about" :about-panel]]
                    [:span [nav-link "people" "/people" :people-panel]]
                    [:span [nav-link "events" "/events" :events-panel]]

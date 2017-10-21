@@ -8,9 +8,37 @@
 
 (env/def API_KEY "EVENTUALLY")
 
+(def media-query
+  "{
+    imageGalleryPosts {
+      sys { id contentTypeId }
+			postText
+			postDate
+			postTitle
+			tags
+			images { url }
+		},
+    singleImageTextPosts {
+      sys { id contentTypeId }
+			postText
+			postDate
+			postTitle
+			tags
+			imageFile { url }
+		},
+    videoPosts {
+      sys { id contentTypeId }
+			postText
+			postDate
+			postTitle
+			tags
+			videoUrl
+		}
+	}")
+
 (rf/reg-event-fx
   :get-contentful-data
-  (fn [{db :db} [_ rf-key query space]]
+  (fn [{db :db} [_ db-key query space]]
       ;; TODO: add loading state...
       (let [endpoint (if config/debug? "http://localhost:4000/graphql/"
                                        "https://this-machine-has-a-soul-jppxccuwtc.now.sh/graphql/")]
@@ -20,13 +48,16 @@
                          :params          {:query query}
                          :uri             (str endpoint (name space))
                          :response-format (ajax/json-response-format {:keywords? true})
-                         :on-success      [:get-contentful-data-success rf-key]}})))
+                         :on-success      [:get-contentful-data-success db-key]}})))
 
 (rf/reg-event-db
   :get-contentful-data-success
-  (fn [db [_ rf-key & [{data :data}]]]
-      (assoc db rf-key data)))
-
+  (fn [db [_ db-key & [{data :data}]]]
+    (if (= db-key :latest-panel)
+      (let [posts (apply concat (vals data))
+            sorted-posts (sort-by :postDate (comp - compare) posts)]
+        (assoc db db-key sorted-posts))
+      (assoc db db-key data))))
 
 (rf/reg-event-db
  :initialize-db

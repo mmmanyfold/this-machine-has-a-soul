@@ -21,9 +21,6 @@ header {
   -webkit-justify-content: space-between;
   justify-content: space-between;
 }
-.people-panel {
-  border-color: #8e4f78;
-}
 a.nav-link {
   color: black;
 }
@@ -37,7 +34,88 @@ a.vote-link {
   text-decoration: none;
   background-color: #739f3e;
 }
+.media-thumb {
+  width: 47%;
+  margin-bottom: 1.5em;
+}
+@media (max-width: 959px) {
+  .media-thumb {
+    width: 100%;
+  }
+}
+.media-thumb .gallery-icon {
+  right: 0.35em;
+  bottom: 0.35em;
+  z-index: 1;
+}
+.metadata span {
+  color: #959991;
+  margin: 0 0.25em;
+}
+.metadata section.tags {
+  display: inline-block;
+  margin: 0;
+}
+.media-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+.media-wrapper iframe,
+.media-wrapper object,
+.media-wrapper embed,
+.media-wrapper div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.full-media-post {
+  background-color: white;
+  border-radius: 5px;
+  padding: 1em;
+  position: relative;
+}
+.full-media-post .fa-times-circle {
+  position: absolute;
+  right: 0.2em;
+  top: 0.13em;
+  z-index: 1;
+}
+.people-panel {
+  border-color: #8e4f78;
+}
 .about-section img {
   width: 30%;
   margin: 0 1%;
+}
+.mail {
+  align-self: flex-start;
+  bottom: 2em;
+  border-color: #fcb733;
+  margin-top: 1.5em;
+}
+.mail-ns {
+  position: fixed;
+}
+@media (max-width: 959px) {
+  .mail-ns {
+    display: none;
+  }
+}
+@media (max-width: 768px), (min-width: 960px) {
+  .mail-s {
+    display: none;
+  }
+}
+.mail-xs a {
+  color: black;
+  text-decoration: none;
+}
+@media (min-width: 769px) {
+  .mail-xs {
+    display: none;
+  }
 }

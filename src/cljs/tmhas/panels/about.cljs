@@ -10,11 +10,11 @@
 	}")
 
 (defn about-panel []
-      (let [rf-key :about-panel]                            ;; 0. declare unique rf-key
-           (rf/reg-sub rf-key #(rf-key %))                  ;; 1. register subscriber rf-key
-           (rf/dispatch [:get-contentful-data rf-key query :about]) ;; 2. retrieve contentful data & pass key for assoc in db
+      (let [db-key :about-panel]                            ;; 0. declare unique db-key
+           (rf/reg-sub db-key #(db-key %))                  ;; 1. register subscriber db-key
+           (rf/dispatch [:get-contentful-data db-key query :about]) ;; 2. retrieve contentful data & pass key for assoc in db
 
-           (let [about-sections (:aboutSections @(rf/subscribe [rf-key]))
+           (let [about-sections (:aboutSections @(rf/subscribe [db-key]))
                  about-sections-sorted (sort-by :sectionOrder about-sections)]
                 [re-com/v-box
                  :children
