@@ -34,21 +34,21 @@
 	}")
 
 (defn latest-panel []
-  (let [db-key :latest-panel]                                ;; 0. declare unique db-key
+  (let [db-key :media-posts]                                 ;; 0. declare unique db-key
     (rf/reg-sub db-key #(db-key %))                          ;; 1. register subscriber db-key
     (rf/dispatch [:get-contentful-data db-key query :media]) ;; 2. retrieve contentful data & pass key for assoc in db
-    (let [posts @(rf/subscribe [db-key])]
-         [rc/v-box
-          :children
-          [[rc/v-box
-            :children
-            [[media-post-panel]
-             [:h1 {:class "bb bw1"} "Latest Posts"]
-             [:div {:class "flexrow-wrap w-100 mv3"}
-              (for [post posts
-                    :let [post-id (-> post :sys :id)
-                          type (-> post :sys :contentTypeId)]]
-                   (case type
-                     "manyImagePost" ^{:key post-id}[media-thumb/image-gallery post-id post]
-                     "singleImage" ^{:key post-id}[media-thumb/single-image post-id post]
-                     "video" ^{:key post-id}[media-thumb/video post-id post]))]]]]])))
+    (let [posts (rf/subscribe [db-key])]
+      [rc/v-box
+       :children
+       [[rc/v-box
+         :children
+         [[media-post-panel posts]
+          [:h1 {:class "bb bw1"} "Latest Posts"]
+          [:div {:class "flexrow-wrap w-100 mv3"}
+           (for [post @posts
+                 :let [post-id (-> post :sys :id)
+                       type (-> post :sys :contentTypeId)]]
+                (case type
+                  "manyImagePost" ^{:key post-id}[media-thumb/image-gallery post-id post]
+                  "singleImage" ^{:key post-id}[media-thumb/single-image post-id post]
+                  "video" ^{:key post-id}[media-thumb/video post-id post]))]]]]])))

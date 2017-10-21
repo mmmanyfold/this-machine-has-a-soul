@@ -64,6 +64,7 @@
                 postText
                 tags
                 videoUrl]} post
+        ;TODO: refactor this into its own function
         video-src (cond (re-find #"https://vimeo.com/" videoUrl)
                         (str "https://player.vimeo.com/video/" (re-find #"\d+" videoUrl) "?color=739f3e&title=0&byline=0&portrait=0&badge=0")
 

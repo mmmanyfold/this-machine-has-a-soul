@@ -25,7 +25,7 @@
 (rf/reg-event-db
   :get-contentful-data-success
   (fn [db [_ db-key & [{data :data}]]]
-    (if (= db-key :latest-panel)
+    (if (= db-key :media-posts)
       (let [posts (apply concat (vals data))
             sorted-posts (sort-by :postDate (comp - compare) posts)]
         (assoc db db-key sorted-posts))
@@ -40,8 +40,8 @@
  :set-active-panel
  (fn [db [_ active-panel & [post-id]]]
    (if post-id
-     (assoc db :active-post-id post-id
-               :active-panel active-panel
+     (assoc db :active-panel active-panel
+               :active-post-id post-id
                :show-media-post true)
      (assoc db :active-panel active-panel))))
 
