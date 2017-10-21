@@ -43,12 +43,12 @@
                  [[re-com/v-box
                    :children
                    [[full-media-post-panel]
-                    [:h1 {:class "bb bw1"} "Latest"]
+                    [:h1 {:class "bb bw1"} "Latest Posts"]
                     [:div {:class "flexrow-wrap w-100 mv3"}
                      (for [post posts
                            :let [entry-id (-> post :sys :id)
                                  type (-> post :sys :contentTypeId)]]
                           (case type
-                            "manyImagePost" ^{:key entry-id}[media-thumb/image-gallery post]
-                            "singleImage" ^{:key entry-id}[media-thumb/single-image post]
-                            "video" ^{:key entry-id}[media-thumb/video post]))]]]]])))
+                            "manyImagePost" ^{:key entry-id}[media-thumb/image-gallery entry-id post]
+                            "singleImage" ^{:key entry-id}[media-thumb/single-image entry-id post]
+                            "video" ^{:key entry-id}[media-thumb/video entry-id post]))]]]]])))

@@ -1,11 +1,11 @@
 (ns tmhas.components.media-thumb
   (:require [re-com.core :as re-com]
-            [tmhas.components.common :refer [showdown]]))
+            [tmhas.components.common :refer [link]]))
 
-(defn metadata [postTitle postText postDate tags]
+(defn metadata [id postTitle postText postDate tags]
   [:div
    [:h2 {:class "mb1 mh1 mt3 f2 f3-ns"}
-    postTitle]
+    [link (str postTitle " →") (str "/" id)]]
    [:div {:class "metadata f5"}
     (when postText
           [:p {:class "mh1 mv0 truncate"} postText])
@@ -17,46 +17,49 @@
            ^{:key (gensym "tag-")}
            [:span (str "#" tag)])]]]])
 
-(defn single-image [data]
+
+(defn single-image [id post]
   (let [{:keys [postTitle
                 postDate
                 postText
                 tags
-                imageFile]}
-        data]
+                imageFile]} post]
        [re-com/v-box
         :class "media-thumb"
         :children [[:div.media-wrapper
-                    [:div {:class "mb1"
-                           :style {:background-image (str "url('" (imageFile :url) "')")
-                                   :background-size "cover"}}]]
-                   [metadata postTitle postText postDate tags]]]))
+                    [link [:div {:class "mb1"
+                                 :style {:background-image (str "url('" (imageFile :url) "')")
+                                         :background-size "cover"}}]
+                          (str "/" id)]]
+                   [metadata id postTitle postText postDate tags]]]))
 
-(defn image-gallery [data]
+
+(defn image-gallery [id post]
   (let [{:keys [postTitle
                 postDate
                 postText
                 tags
-                images]}
-        data]
+                images]} post]
        [re-com/v-box
         :class "media-thumb"
         :children [[:div {:class "relative"}
                     [:div.media-wrapper
-                     [:div {:class "mb1"
-                            :style {:background-image (str "url('" (-> images first :url) "')")
-                                    :background-size "cover"}}]]
+                     [link [:div {:class "mb1"
+                                  :style {:background-image (str "url('" (-> images first :url) "')")
+                                          :background-size "cover"}}]
+                           (str "/" id)]]
                     [:div {:class "gallery-icon absolute ph2 pb1 pt2 bg-white o-50 br1"}
                      [:i {:class "fa fa-clone f3"
                           :aria-hidden true}]]]
-                   [metadata postTitle postText postDate tags]]]))
+                   [metadata id postTitle postText postDate tags]]]))
 
-(defn video [data]
+
+(defn video [id post]
   (let [{:keys [postTitle
                 postDate
                 postText
                 tags
-                videoUrl]} data
+                videoUrl]} post
         video-src (cond (re-find #"https://vimeo.com/" videoUrl)
                         (str "https://player.vimeo.com/video/" (re-find #"\d+" videoUrl) "?color=739f3e&title=0&byline=0&portrait=0&badge=0")
 
@@ -74,4 +77,4 @@
                     [:iframe {:src video-src
                               :frameBorder "0"
                               :allowFullScreen true}]]
-                   [metadata postTitle postText postDate tags]]]))
+                   [metadata id postTitle postText postDate tags]]]))
