@@ -17,6 +17,7 @@
            (let [about-sections (:aboutSections @(rf/subscribe [db-key]))
                  about-sections-sorted (sort-by :sectionOrder about-sections)]
                 [re-com/v-box
+                 :class "mb4"
                  :children
                  [(for [section about-sections-sorted
                          :let [title (:sectionTitle section)

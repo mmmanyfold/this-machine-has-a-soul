@@ -5,14 +5,6 @@ body {
 h1 {
   color: #8e4f78;
 }
-header {
-  font-size: 1.5em;
-}
-@media screen and (max-width: 479px) {
-  header {
-    font-size: 0.8rem;
-  }
-}
 .flexrow-wrap {
   display: -webkit-flex;
   display: flex;
@@ -20,6 +12,26 @@ header {
   flex-flow: row wrap;
   -webkit-justify-content: space-between;
   justify-content: space-between;
+}
+@media screen and (min-width: 1199px) {
+  header {
+    font-size: 1.5em;
+  }
+}
+@media screen and (max-width: 1198px) {
+  header {
+    font-size: 1.45rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  header {
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 479px) {
+  header {
+    font-size: 0.8rem;
+  }
 }
 a.nav-link {
   color: black;
@@ -34,11 +46,16 @@ a.vote-link {
   text-decoration: none;
   background-color: #739f3e;
 }
+@media screen and (max-width: 960px) {
+  .content-panel {
+    overflow-y: visible;
+  }
+}
 .media-thumb {
   width: 47%;
   margin-bottom: 1.5em;
 }
-@media (max-width: 959px) {
+@media (max-width: 768px) {
   .media-thumb {
     width: 100%;
   }

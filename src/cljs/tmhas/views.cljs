@@ -36,7 +36,7 @@
 
 (defn- content-panel [panel-name]
   [re-com/h-box
-   :class "content-panel fl w-100 w-70-l ph4-ns"
+   :class "content-panel fl w-100 h-100 w-70-l ph4-ns overflow-y-scroll"
    :children [[re-com/v-box
                :class "w-100"
                :children [[show-panel panel-name]
@@ -53,8 +53,8 @@
   (let [active-panel (re-frame/subscribe [:active-panel])]
     (fn []
       [re-com/v-box
-       :class "w-100 pv3 ph3 mb4"
+       :class "w-100 h-100 pv3 ph3 mb0"
        :children [[navigation]
-                  [:div.w-100.ph1
+                  [:div {:class "w-100 h-100 ph1"}
                       [side-panel]
                       [content-panel @active-panel]]]])))

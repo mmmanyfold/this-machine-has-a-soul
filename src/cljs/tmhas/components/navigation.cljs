@@ -22,7 +22,7 @@
 
 (defn navigation []
   (let [showing? (reagent/atom false)]
-    [:header {:class "w-100 f5-m pt2 pb3 pb4-ns ph4-ns bg-white ttu tracked"}
+    [:header {:class "w-100 pt2 pb3 pb4-ns ph4-ns bg-white ttu tracked"}
        [re-com/h-box
         :justify :between
         :children [[:span [nav-link "latest" "/" :latest-panel]]
