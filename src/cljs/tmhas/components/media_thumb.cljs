@@ -2,7 +2,7 @@
   (:require [re-com.core :as re-com]
             [tmhas.components.common :refer [showdown]]))
 
-(defn metadata-component [postTitle postText postDate tags]
+(defn metadata [postTitle postText postDate tags]
   [:div
    [:h2 {:class "mb1 mh1 mt3 f2 f3-ns"}
     postTitle]
@@ -30,7 +30,7 @@
                     [:div {:class "mb1"
                            :style {:background-image (str "url('" (imageFile :url) "')")
                                    :background-size "cover"}}]]
-                   [metadata-component postTitle postText postDate tags]]]))
+                   [metadata postTitle postText postDate tags]]]))
 
 (defn image-gallery [data]
   (let [{:keys [postTitle
@@ -49,7 +49,7 @@
                     [:div {:class "gallery-icon absolute ph2 pb1 pt2 bg-white o-50 br1"}
                      [:i {:class "fa fa-clone f3"
                           :aria-hidden true}]]]
-                   [metadata-component postTitle postText postDate tags]]]))
+                   [metadata postTitle postText postDate tags]]]))
 
 (defn video [data]
   (let [{:keys [postTitle
@@ -74,4 +74,4 @@
                     [:iframe {:src video-src
                               :frameBorder "0"
                               :allowFullScreen true}]]
-                   [metadata-component postTitle postText postDate tags]]]))
+                   [metadata postTitle postText postDate tags]]]))
