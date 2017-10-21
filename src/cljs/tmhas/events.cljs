@@ -13,7 +13,7 @@
   (fn [{db :db} [_ db-key query space]]
       ;; TODO: add loading state...
       (let [endpoint (if config/debug? "http://localhost:4000/graphql/"
-                                       "http://45.55.175.107:4000/graphql")]
+                                       "http://45.55.175.107:4000/graphql/")]
            {:db         db
             :http-xhrio {:method          :get
                          :format          (ajax/json-request-format)
