@@ -12,13 +12,6 @@ h1 {
     color: @purple;
 }
 
-header {
-    font-size: 1.5em;
-    @media screen and (max-width: 479px) {
-        font-size: 0.8rem;
-    }
-}
-
 .flexrow-wrap {
     display: -webkit-flex;
     display: flex;
@@ -26,6 +19,21 @@ header {
     flex-flow: row wrap;
     -webkit-justify-content: space-between;
     justify-content: space-between;
+}
+
+header {
+    @media screen and (min-width: 1199px) {
+        font-size: 1.5em;
+    }
+    @media screen and (max-width: 1198px) {
+        font-size: 1.45rem;
+    }
+    @media screen and (max-width: 768px) {
+        font-size: 1rem;
+    }
+    @media screen and (max-width: 479px) {
+        font-size: 0.8rem;
+    }
 }
 
 a.nav-link {
@@ -42,16 +50,25 @@ a.vote-link {
     background-color: @green;
 }
 
+.content-panel {
+  @media screen and (max-width: 960px) {
+    overflow-y: visible;
+  }
+}
+
 .media-thumb {
   width: 47%;
   margin-bottom: 1.5em;
-  @media (max-width: 959px) {
+  @media (max-width: 768px) {
     width: 100%;
   }
   .gallery-icon {
     right: 0.35em;
     bottom: 0.35em;
     z-index: 1;
+  }
+  a {
+    color: @yellow;
   }
 }
 
@@ -79,7 +96,7 @@ a.vote-link {
   }
 }
 
-.full-media-post {
+.media-post {
   background-color: white;
   border-radius: 5px;
   padding: 1em;

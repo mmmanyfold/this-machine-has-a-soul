@@ -6,3 +6,13 @@
  :active-panel
  (fn [db _]
    (:active-panel db)))
+
+(rf/reg-sub
+ :active-post-id
+ (fn [db _]
+   (:active-post-id db)))
+
+(rf/reg-sub
+ :show-media-post
+ (fn [db _]
+   (:show-media-post db)))

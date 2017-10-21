@@ -1,9 +1,9 @@
 (ns tmhas.components.common
-  (:require [re-com.core :as re-com]
+  (:require [re-com.core :as rc]
             [cljsjs.showdown]))
 
 (defn link [label to]
-      [re-com/hyperlink-href
+      [rc/hyperlink-href
        :label label
        :href (str "#" to)])
 
