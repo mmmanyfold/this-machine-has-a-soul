@@ -1,5 +1,5 @@
 (ns tmhas.panels.people
-  (:require [re-com.core :as re-com]
+  (:require [re-com.core :as rc]
             [re-frame.core :as rf]
             [tmhas.components.person :refer [person]]))
 
@@ -35,7 +35,7 @@
            (let [{:keys [personArtists personProjectBelays
                          personProjectVoyces personWcors]} @(rf/subscribe [db-key])]
 
-                [re-com/v-box
+                [rc/v-box
                  :align :end
                  :class "people-panel"
                  :children [[:h1 {:class "w-100 w-75-ns ml4-ns bb bw1"}
@@ -66,4 +66,3 @@
                             (for [datum personWcors]
                                  ^{:key (gensym "person-")}
                                  [person datum])]])))
-

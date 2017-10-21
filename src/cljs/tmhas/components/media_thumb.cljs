@@ -1,11 +1,13 @@
 (ns tmhas.components.media-thumb
-  (:require [re-com.core :as re-com]
-            [tmhas.components.common :refer [link]]))
+  (:require [re-com.core :as rc]
+            [re-frame.core :as rf]))
 
 (defn metadata [id postTitle postText postDate tags]
   [:div
    [:h2 {:class "mb1 mh1 mt3 f2 f3-ns"}
-    [link (str postTitle " →") (str "/" id)]]
+    [:a {:href (str "/#/post/" id)
+         :on-click #(rf/dispatch [:set-show-media-post true])}
+      (str postTitle " →")]]
    [:div {:class "metadata f5"}
     (when postText
           [:p {:class "mh1 mv0 truncate"} postText])
@@ -24,13 +26,14 @@
                 postText
                 tags
                 imageFile]} post]
-       [re-com/v-box
+       [rc/v-box
         :class "media-thumb"
         :children [[:div.media-wrapper
-                    [link [:div {:class "mb1"
-                                 :style {:background-image (str "url('" (imageFile :url) "')")
-                                         :background-size "cover"}}]
-                          (str "/" id)]]
+                    [:a {:href (str "/#/post/" id)
+                         :on-click #(rf/dispatch [:set-show-media-post true])}
+                     [:div {:class "mb1"
+                            :style {:background-image (str "url('" (imageFile :url) "')")
+                                    :background-size "cover"}}]]]
                    [metadata id postTitle postText postDate tags]]]))
 
 
@@ -40,14 +43,15 @@
                 postText
                 tags
                 images]} post]
-       [re-com/v-box
+       [rc/v-box
         :class "media-thumb"
         :children [[:div {:class "relative"}
                     [:div.media-wrapper
-                     [link [:div {:class "mb1"
-                                  :style {:background-image (str "url('" (-> images first :url) "')")
-                                          :background-size "cover"}}]
-                           (str "/" id)]]
+                     [:a {:href (str "/#/post/" id)
+                          :on-click #(rf/dispatch [:set-show-media-post true])}
+                      [:div {:class "mb1"
+                             :style {:background-image (str "url('" (-> images first :url) "')")
+                                     :background-size "cover"}}]]]
                     [:div {:class "gallery-icon absolute ph2 pb1 pt2 bg-white o-50 br1"}
                      [:i {:class "fa fa-clone f3"
                           :aria-hidden true}]]]
@@ -71,7 +75,7 @@
                         (re-find #"https://youtu.be/" videoUrl)
                         (str "https://www.youtube.com/embed/" (second (re-find #"youtu.be/([\s\S]*)" videoUrl)) "?rel=0&amp;showinfo=0"))]
 
-       [re-com/v-box
+       [rc/v-box
         :class "media-thumb"
         :children [[:div.media-wrapper
                     [:iframe {:src video-src

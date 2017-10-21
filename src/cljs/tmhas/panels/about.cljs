@@ -1,6 +1,6 @@
 (ns tmhas.panels.about
   (:require [re-frame.core :as rf]
-            [re-com.core :as re-com]
+            [re-com.core :as rc]
             [tmhas.components.common :refer [showdown]]))
 
 (def query
@@ -16,7 +16,7 @@
 
            (let [about-sections (:aboutSections @(rf/subscribe [db-key]))
                  about-sections-sorted (sort-by :sectionOrder about-sections)]
-                [re-com/v-box
+                [rc/v-box
                  :class "mb4"
                  :children
                  [(for [section about-sections-sorted

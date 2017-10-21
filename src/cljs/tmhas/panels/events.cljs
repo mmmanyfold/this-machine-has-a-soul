@@ -1,8 +1,8 @@
 (ns tmhas.panels.events
   (:require [re-frame.core :as re-frame]
-            [re-com.core :as re-com]))
+            [re-com.core :as rc]))
 
 (defn events-panel []
-      [re-com/v-box
+      [rc/v-box
        :children
        [[:h1 {:class "bb bw1"} "Calendar of Events"]]])

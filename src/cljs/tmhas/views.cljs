@@ -1,6 +1,6 @@
 (ns tmhas.views
-  (:require [re-frame.core :as re-frame]
-            [re-com.core :as re-com]
+  (:require [re-frame.core :as rf]
+            [re-com.core :as rc]
             [tmhas.panels.latest :refer [latest-panel]]
             [tmhas.panels.about :refer [about-panel]]
             [tmhas.panels.people :refer [people-panel]]
@@ -9,9 +9,9 @@
 
 
 (defn side-panel []
-  [re-com/v-box
+  [rc/v-box
    :class "side-panel fl w-100 w-30-l ph1 pv3 pa4-ns"
-   :children [[re-com/v-box
+   :children [[rc/v-box
                :class "w-100 tc"
                :align :center
                :children [[:img {:src "/img/TMHAS_Logo_600.jpg"
@@ -35,9 +35,9 @@
 
 
 (defn- content-panel [panel-name]
-  [re-com/h-box
+  [rc/h-box
    :class "content-panel fl w-100 h-100 w-70-l ph4-ns overflow-y-scroll"
-   :children [[re-com/v-box
+   :children [[rc/v-box
                :class "w-100"
                :children [[show-panel panel-name]
                           [:div {:class "mail mail-s bb bw1 pointer"
@@ -50,9 +50,9 @@
 
 
 (defn main-panel []
-  (let [active-panel (re-frame/subscribe [:active-panel])]
+  (let [active-panel (rf/subscribe [:active-panel])]
     (fn []
-      [re-com/v-box
+      [rc/v-box
        :class "w-100 h-100 pv3 ph3 mb0"
        :children [[navigation]
                   [:div {:class "w-100 h-100 ph1"}

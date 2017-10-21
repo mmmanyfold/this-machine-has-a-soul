@@ -92,13 +92,13 @@ a.vote-link {
   width: 100%;
   height: 100%;
 }
-.full-media-post {
+.media-post {
   background-color: white;
   border-radius: 5px;
   padding: 1em;
   position: relative;
 }
-.full-media-post .fa-times-circle {
+.media-post .fa-times-circle {
   position: absolute;
   right: 0.2em;
   top: 0.13em;

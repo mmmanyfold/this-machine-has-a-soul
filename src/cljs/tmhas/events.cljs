@@ -38,5 +38,14 @@
 
 (rf/reg-event-db
  :set-active-panel
- (fn [db [_ active-panel]]
-   (assoc db :active-panel active-panel)))
+ (fn [db [_ active-panel & [post-id]]]
+   (if post-id
+     (assoc db :active-post-id post-id
+               :active-panel active-panel
+               :show-media-post true)
+     (assoc db :active-panel active-panel))))
+
+(rf/reg-event-db
+ :set-show-media-post
+ (fn [db [_ state]]
+   (assoc db :show-media-post state)))
