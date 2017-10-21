@@ -1,10 +1,10 @@
 # Contentful <=> GraphQL Integration Server
 
-https://this-machine-has-a-soul-jppxccuwtc.now.sh/about
+http://45.55.175.107:4000/graphql/about
 
-https://this-machine-has-a-soul-jppxccuwtc.now.sh/media
+http://45.55.175.107:4000/graphql/media
 
-https://this-machine-has-a-soul-jppxccuwtc.now.sh/people
+http://45.55.175.107:4000/graphql/people
 
 ### deving
 
