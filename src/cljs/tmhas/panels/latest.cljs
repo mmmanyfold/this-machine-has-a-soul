@@ -13,7 +13,7 @@
 			postDate
 			postTitle
 			tags
-			images { url }
+			images { url description }
 		},
     singleImageTextPosts {
       sys { id contentTypeId }
@@ -21,7 +21,7 @@
 			postDate
 			postTitle
 			tags
-			imageFile { url }
+			imageFile { url description }
 		},
     videoPosts {
       sys { id contentTypeId }

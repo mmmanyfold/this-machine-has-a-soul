@@ -1,6 +1,7 @@
 (ns tmhas.components.media-thumb
   (:require [re-com.core :as rc]
-            [re-frame.core :as rf]))
+            [re-frame.core :as rf]
+            [tmhas.components.common :refer [embed-video]]))
 
 (defn metadata [id postTitle postText postDate tags]
   [:div
@@ -64,18 +65,7 @@
                 postText
                 tags
                 videoUrl]} post
-        ;TODO: refactor this into its own function
-        video-src (cond (re-find #"https://vimeo.com/" videoUrl)
-                        (str "https://player.vimeo.com/video/" (re-find #"\d+" videoUrl) "?color=739f3e&title=0&byline=0&portrait=0&badge=0")
-
-                        (re-find #"https://www.youtube.com/watch?v=" videoUrl)
-                        (if (re-find #"=(.*)&" videoUrl)
-                            (str "https://www.youtube.com/embed/" (second (re-find #"=(.*)&" videoUrl)) "?rel=0&amp;showinfo=0")
-                            (str "https://www.youtube.com/embed/" (second (re-find #"=(.*)" videoUrl)) "?rel=0&amp;showinfo=0"))
-
-                        (re-find #"https://youtu.be/" videoUrl)
-                        (str "https://www.youtube.com/embed/" (second (re-find #"youtu.be/([\s\S]*)" videoUrl)) "?rel=0&amp;showinfo=0"))]
-
+        video-src (embed-video videoUrl)]
        [rc/v-box
         :class "media-thumb"
         :children [[:div.media-wrapper
