@@ -118,7 +118,7 @@ a.vote-link {
   right: auto;
   color: #959991;
   text-shadow: none;
-  margin-top: 0.5em;
+  margin: 0.5em 0;
 }
 .media-post .carousel-inner > .item > a > img,
 .media-post .carousel-inner > .item > img,
@@ -129,8 +129,8 @@ a.vote-link {
 }
 .media-post .carousel-control {
   color: #8e4f78;
-  background: none
-    top: auto;
+  background: none;
+  top: auto;
   bottom: 40px;
   opacity: 1;
 }
@@ -150,6 +150,11 @@ a.vote-link {
 }
 .rc-modal-panel div {
   width: 100%;
+}
+@media screen and (min-width: 1200px) {
+  .rc-modal-panel .ph-5-m.ph7-l {
+    padding: 0 30em;
+  }
 }
 .people-panel {
   border-color: #8e4f78;

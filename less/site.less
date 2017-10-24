@@ -121,14 +121,14 @@ a.vote-link {
     right: auto;
     color: @gray;
     text-shadow: none;
-    margin-top: 0.5em;
+    margin: 0.5em 0;
   }
   .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
     width: 100%;
   }
   .carousel-control {
     color: @purple;
-    background: none
+    background: none;
     top: auto;
     bottom: 40px;
     opacity: 1;
@@ -143,8 +143,15 @@ a.vote-link {
   .carousel-indicators li { border: 1px solid @purple; }
 }
 
-.rc-modal-panel div {
-  width: 100%;
+.rc-modal-panel {
+  div {
+    width: 100%;
+  }
+  .ph-5-m.ph7-l {
+    @media screen and (min-width: 1200px) {
+      padding: 0 30em;
+    }
+  }
 }
 
 .people-panel {

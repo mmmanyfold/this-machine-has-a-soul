@@ -14,28 +14,31 @@
       [:img {:class "mb1 w-100"
              :src (-> active-post :imageFile :url)}]
       "manyImagePost"
-      [:div {:id "image-gallery", :class "carousel slide", :data-ride "carousel" :data-interval false}
-        ; indicators
-        [:ol {:class "carousel-indicators"}
-         [:li {:data-target "#image-gallery", :data-slide-to "0", :class "active"}]
-         [:li {:data-target "#image-gallery", :data-slide-to "1"}]]
-        ; wrapper for slides
-        [:div {:class "carousel-inner"}
-         [:div {:class "item active"}
-          [:img {:src (-> active-post :images first :url), :alt "Chania"}]
-          [:div {:class "carousel-caption f5 f5-m f4-l"}
-           [:p (-> active-post :images first :description)]]]
-         [:div {:class "item"}
-          [:img {:src (-> active-post :images second :url), :alt "Chicago"}]
-          [:div {:class "carousel-caption f5 f5-m f4-l"}
-           [:p (-> active-post :images second :description)]]]]
-        ; left and right controls
-        [:a {:class "left carousel-control", :href "#image-gallery", :data-slide "prev"}
-         [:span {:class "glyphicon glyphicon-chevron-left"}]
-         [:span {:class "sr-only"} "Previous"]]
-        [:a {:class "right carousel-control", :href "#image-gallery", :data-slide "next"}
-         [:span {:class "glyphicon glyphicon-chevron-right"}]
-         [:span {:class "sr-only"} "Next"]]]
+      (let [images (active-post :images)]
+        [:div {:id "image-gallery", :class "carousel slide", :data-ride "carousel" :data-interval false}
+          ; indicators
+          [:ol {:class "carousel-indicators"}
+           (map (fn [image]
+                  (let [i (.indexOf images image)]
+                    ^{:key (gensym "indicator-")}
+                    [:li {:data-target "#image-gallery", :data-slide-to "0", :class (when (= i 0) "active")}]))
+              images)]
+          ; wrapper for slides
+          [:div {:class "carousel-inner"}
+           (for [image images
+                 :let [i (.indexOf images image)]]
+             ^{:key (gensym "image-")}
+             [:div {:class (str "item" (when (= i 0) " active"))}
+              [:img {:src (image :url), :alt (image :description)}]
+              [:div {:class "carousel-caption f5 f5-m f4-l"}
+               [:p (image :description)]]])]
+          ; left and right controls
+          [:a {:class "left carousel-control", :href "#image-gallery", :data-slide "prev"}
+           [:span {:class "glyphicon glyphicon-chevron-left"}]
+           [:span {:class "sr-only"} "Previous"]]
+          [:a {:class "right carousel-control", :href "#image-gallery", :data-slide "next"}
+           [:span {:class "glyphicon glyphicon-chevron-right"}]
+           [:span {:class "sr-only"} "Next"]]])
       "video"
       (let [videoUrl (active-post :videoUrl)
             video-src (embed-video videoUrl)]
@@ -57,7 +60,7 @@
          :wrap-nicely? false
          :style {:overflow-y "scroll"}
          :child [rc/v-box
-                 :class "pa5-m pa6-l"
+                 :class "ph5-m ph7-l"
                  :children [[:div.media-post
                              [:i {:class "fa fa-times-circle f3 f2-ns pointer"
                                   :aria-hidden true
