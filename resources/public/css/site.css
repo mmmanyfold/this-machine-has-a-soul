@@ -104,6 +104,58 @@ a.vote-link {
   top: 0.13em;
   z-index: 1;
 }
+.media-post .fa-times-circle:before {
+  background: white;
+  border-radius: 0% 0% 0% 100%;
+}
+.media-post .fa-times-circle:hover {
+  color: #959991;
+}
+.media-post .carousel-caption {
+  width: initial;
+  position: relative;
+  left: auto;
+  right: auto;
+  color: #959991;
+  text-shadow: none;
+  margin: 0.5em 0;
+}
+.media-post .carousel-inner > .item > a > img,
+.media-post .carousel-inner > .item > img,
+.media-post .img-responsive,
+.media-post .thumbnail a > img,
+.media-post .thumbnail > img {
+  width: 100%;
+}
+.media-post .carousel-control {
+  color: #8e4f78;
+  background: none;
+  top: auto;
+  bottom: 40px;
+  opacity: 1;
+}
+.media-post .carousel-control:hover {
+  opacity: .5;
+}
+@media screen and (max-width: 768px) {
+  .media-post .carousel-control {
+    bottom: 30px;
+  }
+}
+.media-post .carousel-indicators .active {
+  background-color: #8e4f78;
+}
+.media-post .carousel-indicators li {
+  border: 1px solid #8e4f78;
+}
+.rc-modal-panel div {
+  width: 100%;
+}
+@media screen and (min-width: 1200px) {
+  .rc-modal-panel .ph-5-m.ph7-l {
+    padding: 0 30em;
+  }
+}
 .people-panel {
   border-color: #8e4f78;
 }
