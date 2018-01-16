@@ -11,16 +11,22 @@
 (rf/reg-event-fx
   :get-contentful-data
   (fn [{db :db} [_ db-key query space]]
-      ;; TODO: add loading state...
-      (let [endpoint (if config/debug? "http://localhost:4000/graphql/"
-                                       "http://45.55.175.107:4000/graphql/")]
-           {:db         db
-            :http-xhrio {:method          :get
-                         :format          (ajax/json-request-format)
-                         :params          {:query query}
-                         :uri             (str endpoint (name space))
-                         :response-format (ajax/json-response-format {:keywords? true})
-                         :on-success      [:get-contentful-data-success db-key]}})))
+      (when-not (db-key db)
+        (let [endpoint (if config/debug? "http://localhost:4000/graphql/"
+                                         "http://45.55.175.107:4000/graphql/")]
+             {:db         db
+              :http-xhrio {:method          :get
+                           :format          (ajax/json-request-format)
+                           :params          {:query query}
+                           :uri             (str endpoint (name space))
+                           :response-format (ajax/json-response-format {:keywords? true})
+                           :on-failure      [:get-contentful-data-failed]
+                           :on-success      [:get-contentful-data-success db-key]}}))))
+(rf/reg-event-db
+  :get-contentful-data-failed
+  (fn [db _]
+      (js/console.error ":get-contentful-data event failed, is the graph server running ?")
+      db))
 
 (rf/reg-event-db
   :get-contentful-data-success
