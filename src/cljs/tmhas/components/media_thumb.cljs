@@ -1,7 +1,8 @@
 (ns tmhas.components.media-thumb
   (:require [re-com.core :as rc]
             [re-frame.core :as rf]
-            [tmhas.components.common :refer [embed-video]]))
+            [tmhas.components.common :refer [embed-video]]
+            [reagent.core :as reagent]))
 
 (defn metadata [id postTitle postText postDate tags]
   [:div
@@ -60,16 +61,22 @@
 
 
 (defn video [id post]
-  (let [{:keys [postTitle
-                postDate
-                postText
-                tags
-                videoUrl]} post
-        video-src (embed-video videoUrl)]
-       [rc/v-box
-        :class "media-thumb"
-        :children [[:div.media-wrapper
-                    [:iframe {:src video-src
-                              :frameBorder "0"
-                              :allowFullScreen true}]]
-                   [metadata id postTitle postText postDate tags]]]))
+  (reagent/create-class
+    {:component-did-mount
+      (fn []
+        (.fitVids (js/$ ".video-wrapper")))
+     :reagent-render
+      (fn []
+        (let [{:keys [postTitle
+                      postDate
+                      postText
+                      tags
+                      videoUrl]} post
+              video-src (embed-video videoUrl)]
+             [rc/v-box
+              :class "media-thumb"
+              :children [[:div.video-wrapper
+                          [:iframe {:src video-src
+                                    :frameBorder "0"
+                                    :allowFullScreen true}]]
+                         [metadata id postTitle postText postDate tags]]]))}))

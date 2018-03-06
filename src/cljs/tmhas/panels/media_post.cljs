@@ -8,44 +8,51 @@
             [cljsjs.bootstrap]))
 
 (defn media-component [active-post]
-  (let [type (-> active-post :sys :contentTypeId)]
-    (case type
-      "singleImage"
-      [:img {:class "mb1 w-100"
-             :src (-> active-post :imageFile :url)}]
-      "manyImagePost"
-      (let [images (active-post :images)]
-        [:div {:id "image-gallery", :class "carousel slide", :data-ride "carousel" :data-interval false}
-          ; indicators
-          [:ol {:class "carousel-indicators"}
-           (map (fn [image]
-                  (let [i (.indexOf images image)]
-                    ^{:key (gensym "indicator-")}
-                    [:li {:data-target "#image-gallery", :data-slide-to "0", :class (when (= i 0) "active")}]))
-              images)]
-          ; wrapper for slides
-          [:div {:class "carousel-inner"}
-           (for [image images
-                 :let [i (.indexOf images image)]]
-             ^{:key (gensym "image-")}
-             [:div {:class (str "item" (when (= i 0) " active"))}
-              [:img {:src (image :url), :alt (image :description)}]
-              [:div {:class "carousel-caption f5 f5-m f4-l"}
-               [:p (image :description)]]])]
-          ; left and right controls
-          [:a {:class "left carousel-control", :href "#image-gallery", :data-slide "prev"}
-           [:span {:class "glyphicon glyphicon-chevron-left"}]
-           [:span {:class "sr-only"} "Previous"]]
-          [:a {:class "right carousel-control", :href "#image-gallery", :data-slide "next"}
-           [:span {:class "glyphicon glyphicon-chevron-right"}]
-           [:span {:class "sr-only"} "Next"]]])
-      "video"
-      (let [videoUrl (active-post :videoUrl)
-            video-src (embed-video videoUrl)]
-        [:div {:class "media-wrapper"}
-         [:iframe {:src video-src
-                   :frameBorder "0"
-                   :allowFullScreen true}]]))))
+  (reagent/create-class
+    {:component-did-mount
+      (fn []
+        (when (= (-> active-post :sys :contentTypeId) "video")
+          (.fitVids (js/$ ".video-wrapper"))))
+     :reagent-render
+      (fn []
+        (let [type (-> active-post :sys :contentTypeId)]
+          (case type
+            "singleImage"
+            [:img {:class "mb1 w-100"
+                   :src (-> active-post :imageFile :url)}]
+            "manyImagePost"
+            (let [images (active-post :images)]
+              [:div {:id "image-gallery", :class "carousel slide", :data-ride "carousel" :data-interval false}
+                ; indicators
+                [:ol {:class "carousel-indicators"}
+                 (map (fn [image]
+                        (let [i (.indexOf images image)]
+                          ^{:key (gensym "indicator-")}
+                          [:li {:data-target "#image-gallery", :data-slide-to "0", :class (when (= i 0) "active")}]))
+                    images)]
+                ; wrapper for slides
+                [:div {:class "carousel-inner"}
+                 (for [image images
+                       :let [i (.indexOf images image)]]
+                   ^{:key (gensym "image-")}
+                   [:div {:class (str "item" (when (= i 0) " active"))}
+                    [:img {:src (image :url), :alt (image :description)}]
+                    [:div {:class "carousel-caption f5 f5-m f4-l"}
+                     [:p (image :description)]]])]
+                ; left and right controls
+                [:a {:class "left carousel-control", :href "#image-gallery", :data-slide "prev"}
+                 [:span {:class "glyphicon glyphicon-chevron-left"}]
+                 [:span {:class "sr-only"} "Previous"]]
+                [:a {:class "right carousel-control", :href "#image-gallery", :data-slide "next"}
+                 [:span {:class "glyphicon glyphicon-chevron-right"}]
+                 [:span {:class "sr-only"} "Next"]]])
+            "video"
+            (let [videoUrl (active-post :videoUrl)
+                  video-src (embed-video videoUrl)]
+              [:div {:class "video-wrapper"}
+               [:iframe {:src video-src
+                         :frameBorder "0"
+                         :allowFullScreen true}]]))))}))
 
 (defn media-post-panel [posts]
   (let [active-post-id (rf/subscribe [:active-post-id])]
