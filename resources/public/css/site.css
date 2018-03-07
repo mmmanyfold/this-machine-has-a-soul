@@ -76,6 +76,11 @@ a.vote-link {
   display: inline-block;
   margin: 0;
 }
+.metadata p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .video-wrapper {
   background: #000;
 }

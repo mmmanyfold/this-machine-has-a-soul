@@ -14,7 +14,7 @@
         #(when (= (-> active-post :sys :contentTypeId) "video")
            (.fitVids (js/$ ".video-wrapper")))
        :reagent-render
-        (fn []
+        (fn [active-post]
           (let [type (-> active-post :sys :contentTypeId)]
             (case type
               "singleImage"
@@ -77,5 +77,7 @@
                              [:div {:class "metadata f5"}
                                [:span postDate][:span "•"]
                                [:span "#Cole"] [:span "#Art"] [:span "#Process"]
-                               [:p {:class "f4 mh1 mt2"} postText]]
+                               [:div {:class "f4 mh1 mt2"
+                                      "dangerouslySetInnerHTML"
+                                      #js{:__html (.makeHtml showdown postText)}}]]
                              [media-component active-post]]]]]))))
