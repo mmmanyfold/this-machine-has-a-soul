@@ -7,6 +7,10 @@
             [goog.string :refer [format]]
             [cljsjs.bootstrap]))
 
+(defn close-modal []
+  (rf/dispatch [:set-show-media-post false])
+  (set! js/window.location.hash ""))
+
 (defn media-component [active-post]
   (fn []
     (reagent/create-class
@@ -63,7 +67,7 @@
                     postDate
                     tags]} active-post]
         [rc/modal-panel
-         :backdrop-on-click #(rf/dispatch [:set-show-media-post false])
+         :backdrop-on-click #(close-modal)
          :wrap-nicely? false
          :style {:overflow-y "scroll"}
          :child [rc/v-box
@@ -71,7 +75,7 @@
                  :children [[:div.media-post
                              [:i {:class "fa fa-times-circle f3 f2-ns pointer"
                                   :aria-hidden true
-                                  :on-click #(rf/dispatch [:set-show-media-post false])}]
+                                  :on-click #(close-modal)}]
                              [:h2 {:class "mt3 mb1 mh1 f3 f2-ns"}
                                   postTitle]
                              [:div {:class "metadata f5"}
