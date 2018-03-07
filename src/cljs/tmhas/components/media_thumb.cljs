@@ -59,24 +59,23 @@
                           :aria-hidden true}]]]
                    [metadata id postTitle postText postDate tags]]]))
 
-
 (defn video [id post]
-  (reagent/create-class
-    {:component-did-mount
-      (fn []
-        (.fitVids (js/$ ".video-wrapper")))
-     :reagent-render
-      (fn []
-        (let [{:keys [postTitle
-                      postDate
-                      postText
-                      tags
-                      videoUrl]} post
-              video-src (embed-video videoUrl)]
-             [rc/v-box
-              :class "media-thumb"
-              :children [[:div.video-wrapper
-                          [:iframe {:src video-src
-                                    :frameBorder "0"
-                                    :allowFullScreen true}]]
-                         [metadata id postTitle postText postDate tags]]]))}))
+  (fn []
+    (reagent/create-class
+      {:component-did-mount
+        #(.fitVids (js/$ ".video-wrapper"))
+       :reagent-render
+        (fn []
+          (let [{:keys [postTitle
+                        postDate
+                        postText
+                        tags
+                        videoUrl]} post
+                video-src (embed-video videoUrl)]
+               [rc/v-box
+                :class "media-thumb"
+                :children [[:div.video-wrapper
+                            [:iframe {:src video-src
+                                      :frameBorder "0"
+                                      :allowFullScreen true}]]
+                           [metadata id postTitle postText postDate tags]]]))})))
