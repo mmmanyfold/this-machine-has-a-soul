@@ -2,17 +2,19 @@
   (:require [re-com.core :as rc]
             [re-frame.core :as rf]
             [tmhas.components.common :refer [embed-video]]
-            [reagent.core :as reagent]))
+            [reagent.core :as reagent]
+            [tmhas.components.common :refer [showdown]]))
 
 (defn metadata [id postTitle postText postDate tags]
   [:div
    [:h2 {:class "mb1 mh1 mt3 f2 f3-ns"}
-    [:a {:href (str "/#/post/" id)
-         :on-click #(rf/dispatch [:set-show-media-post true])}
+    [:a {:href (str "/#/post/" id)}
       (str postTitle " →")]]
    [:div {:class "metadata f5"}
     (when postText
-          [:p {:class "mh1 mv0 truncate"} postText])
+          [:div {:class "mh1 mv0"
+                 "dangerouslySetInnerHTML"
+                 #js{:__html (.makeHtml showdown postText)}}])
     [:div.mv1
      [:span postDate]
      [:span "•"]
