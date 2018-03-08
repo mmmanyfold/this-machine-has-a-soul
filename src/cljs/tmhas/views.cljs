@@ -5,6 +5,7 @@
             [tmhas.panels.about :refer [about-panel]]
             [tmhas.panels.people :refer [people-panel]]
             [tmhas.panels.events :refer [events-panel]]
+            [tmhas.components.tags :refer [tags]]
             [tmhas.components.navigation :refer [navigation]]))
 
 
@@ -18,6 +19,7 @@
                                  :class "w-50-m w-100-l mb2"}]
                           [:h1 {:class "f4 f3-m mv3"}
                             "Participatory Budgeting in Denver"]
+                          [tags]
                           [:div {:class "mail mail-ns bb bw1 pointer"
                                  :on-click #(js/window.showMailingPopUp)}
                               [:h4 "Join Mailing List >>"]]]]]])
