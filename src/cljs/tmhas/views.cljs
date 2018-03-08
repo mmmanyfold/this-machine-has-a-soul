@@ -12,7 +12,7 @@
   [rc/v-box
    :class "side-panel fl w-100 w-30-l ph1 pv3 pa4-ns"
    :children [[rc/v-box
-               :class "w-100 tc"
+               :class "w-100 tc pt5"
                :align :center
                :children [[:img {:src "/img/TMHAS_Logo_600.jpg"
                                  :class "w-50-m w-100-l mb2"}]
@@ -38,7 +38,7 @@
   [rc/h-box
    :class "content-panel fl w-100 h-100 w-70-l ph4-ns overflow-y-scroll"
    :children [[rc/v-box
-               :class "w-100"
+               :class "w-100 pt5"
                :children [[show-panel panel-name]
                           [:div {:class "mail mail-s bb bw1 pointer"
                                  :on-click #(js/window.showMailingPopUp)}

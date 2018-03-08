@@ -80,7 +80,10 @@
                                   postTitle]
                              [:div {:class "metadata f5"}
                                [:span postDate][:span "•"]
-                               [:span "#Cole"] [:span "#Art"] [:span "#Process"]
+                               [:section.tags
+                                (for [tag tags]
+                                     ^{:key (gensym "tag-")}
+                                     [:span (str "#" tag)])]
                                [:div {:class "f4 mh1 mt2"
                                       "dangerouslySetInnerHTML"
                                       #js{:__html (.makeHtml showdown postText)}}]]

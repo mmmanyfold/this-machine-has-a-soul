@@ -13,6 +13,9 @@ h1 {
   -webkit-justify-content: space-between;
   justify-content: space-between;
 }
+header {
+  z-index: 100;
+}
 @media screen and (min-width: 1199px) {
   header {
     font-size: 1.5em;
@@ -33,8 +36,14 @@ h1 {
     font-size: 0.8rem;
   }
 }
+.nav {
+  background-image: url('../img/white-fade.png');
+  background-size: cover;
+  background-position: bottom;
+}
 a.nav-link {
   color: black;
+  border-color: rgba(0, 0, 0, 0);
 }
 a.nav-link:hover,
 a.nav-link.active {
@@ -43,6 +52,7 @@ a.nav-link.active {
 }
 a.vote-link {
   color: white;
+  border-color: rgba(0, 0, 0, 0);
   text-decoration: none;
   background-color: #739f3e;
 }
@@ -76,7 +86,7 @@ a.vote-link {
   display: inline-block;
   margin: 0;
 }
-.metadata p {
+.media-thumb .metadata p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
