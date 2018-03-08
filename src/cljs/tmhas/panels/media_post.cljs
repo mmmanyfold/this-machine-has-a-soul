@@ -5,7 +5,8 @@
             [reagent.core :as reagent]
             [tmhas.components.common :refer [embed-video showdown]]
             [goog.string :refer [format]]
-            [cljsjs.bootstrap]))
+            cljsjs.bootstrap
+            cljsjs.moment))
 
 (defn close-modal []
   (rf/dispatch [:set-show-media-post false])
@@ -79,7 +80,7 @@
                              [:h2 {:class "mt3 mb1 mh1 f3 f2-ns"}
                                   postTitle]
                              [:div {:class "metadata f5"}
-                               [:span postDate]
+                               [:span (.format (js/moment postDate) "MMM D, YYYY")]
                                (when tags
                                  [:section.tags
                                   [:span "•"]

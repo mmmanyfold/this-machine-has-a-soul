@@ -14,7 +14,8 @@
                  [day8.re-frame/http-fx "0.1.3"]
                  [adzerk/env "0.4.0"]
                  [cljsjs/showdown "1.4.2-0"]
-                 [cljsjs/bootstrap "3.3.6-1"]]
+                 [cljsjs/bootstrap "3.3.6-1"]
+                 [cljsjs/moment "2.17.1-1"]]
 
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-less "1.7.5"]]

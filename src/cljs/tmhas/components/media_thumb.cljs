@@ -3,7 +3,8 @@
             [re-frame.core :as rf]
             [tmhas.components.common :refer [embed-video]]
             [reagent.core :as reagent]
-            [tmhas.components.common :refer [showdown]]))
+            [tmhas.components.common :refer [showdown]]
+            cljsjs.moment))
 
 (defn metadata [id postTitle postText postDate tags]
   [:div
@@ -16,10 +17,10 @@
                  "dangerouslySetInnerHTML"
                  #js{:__html (.makeHtml showdown postText)}}])
     [:div.mv1
-     [:span postDate]
+     [:span (.format (js/moment postDate) "MMM D, YYYY")]
      (when tags
-       [:span "•"]
        [:section.tags
+        [:span "•"]
         (for [tag tags]
              ^{:key (gensym "tag-")}
              [:span (str "#" tag)])])]]])
