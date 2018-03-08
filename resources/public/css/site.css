@@ -1,6 +1,7 @@
 body {
   font-family: 'Roboto Condensed';
   font-size: 1.2em;
+  width: 100%;
 }
 h1 {
   color: #8e4f78;
@@ -12,6 +13,9 @@ h1 {
   flex-flow: row wrap;
   -webkit-justify-content: space-between;
   justify-content: space-between;
+}
+header {
+  z-index: 100;
 }
 @media screen and (min-width: 1199px) {
   header {
@@ -33,8 +37,14 @@ h1 {
     font-size: 0.8rem;
   }
 }
+.nav {
+  background-image: url('../img/white-fade.png');
+  background-size: cover;
+  background-position: bottom;
+}
 a.nav-link {
   color: black;
+  border-color: rgba(0, 0, 0, 0);
 }
 a.nav-link:hover,
 a.nav-link.active {
@@ -43,6 +53,7 @@ a.nav-link.active {
 }
 a.vote-link {
   color: white;
+  border-color: rgba(0, 0, 0, 0);
   text-decoration: none;
   background-color: #739f3e;
 }
@@ -76,7 +87,7 @@ a.vote-link {
   display: inline-block;
   margin: 0;
 }
-.metadata p {
+.media-thumb .metadata p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -159,6 +170,18 @@ a.vote-link {
 }
 .people-panel {
   border-color: #8e4f78;
+}
+.people-panel .photo-container {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+}
+.people-panel .photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 .about-section img {
   width: 30%;

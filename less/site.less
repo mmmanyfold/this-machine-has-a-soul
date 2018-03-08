@@ -6,6 +6,7 @@
 body {
     font-family: 'Roboto Condensed';
     font-size: 1.2em;
+    width: 100%;
 }
 
 h1 {
@@ -22,6 +23,7 @@ h1 {
 }
 
 header {
+    z-index:100;
     @media screen and (min-width: 1199px) {
         font-size: 1.5em;
     }
@@ -36,8 +38,15 @@ header {
     }
 }
 
+.nav {
+    background-image: url('../img/white-fade.png');
+    background-size: cover;
+    background-position: bottom;
+}
+
 a.nav-link {
     color: black;
+    border-color: rgba(0,0,0,0);
     &:hover, &.active {
         border-color: @yellow;
         text-decoration: none;
@@ -46,6 +55,7 @@ a.nav-link {
 
 a.vote-link {
     color: white;
+    border-color: rgba(0,0,0,0);
     text-decoration: none;
     background-color: @green;
 }
@@ -82,7 +92,7 @@ a.vote-link {
   margin: 0;
 }
 
-.metadata p {
+.media-thumb .metadata p {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -162,6 +172,18 @@ a.vote-link {
 
 .people-panel {
     border-color: @purple;
+    .photo-container {
+        width: 100%;
+        padding-top: 100%;
+        position: relative;
+    }
+    .photo {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
 }
 
 .about-section {
