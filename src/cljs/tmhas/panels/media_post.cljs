@@ -79,11 +79,13 @@
                              [:h2 {:class "mt3 mb1 mh1 f3 f2-ns"}
                                   postTitle]
                              [:div {:class "metadata f5"}
-                               [:span postDate][:span "•"]
-                               [:section.tags
-                                (for [tag tags]
-                                     ^{:key (gensym "tag-")}
-                                     [:span (str "#" tag)])]
+                               [:span postDate]
+                               (when tags
+                                 [:section.tags
+                                  [:span "•"]
+                                  (for [tag tags]
+                                       ^{:key (gensym "tag-")}
+                                       [:span (str "#" tag)])])
                                [:div {:class "f4 mh1 mt2"
                                       "dangerouslySetInnerHTML"
                                       #js{:__html (.makeHtml showdown postText)}}]]

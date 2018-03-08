@@ -17,11 +17,12 @@
                  #js{:__html (.makeHtml showdown postText)}}])
     [:div.mv1
      [:span postDate]
-     [:span "•"]
-     [:section.tags
-      (for [tag tags]
-           ^{:key (gensym "tag-")}
-           [:span (str "#" tag)])]]]])
+     (when tags
+       [:span "•"]
+       [:section.tags
+        (for [tag tags]
+             ^{:key (gensym "tag-")}
+             [:span (str "#" tag)])])]]])
 
 
 (defn single-image [id post]

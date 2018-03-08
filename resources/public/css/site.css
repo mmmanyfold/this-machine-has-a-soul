@@ -1,6 +1,7 @@
 body {
   font-family: 'Roboto Condensed';
   font-size: 1.2em;
+  width: 100%;
 }
 h1 {
   color: #8e4f78;
@@ -169,6 +170,18 @@ a.vote-link {
 }
 .people-panel {
   border-color: #8e4f78;
+}
+.people-panel .photo-container {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+}
+.people-panel .photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 .about-section img {
   width: 30%;

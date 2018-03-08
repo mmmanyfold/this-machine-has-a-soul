@@ -10,7 +10,7 @@
 
 (defn side-panel []
   [rc/v-box
-   :class "side-panel fl w-100 w-30-l ph1 pv3 pa4-ns"
+   :class "side-panel fl w-100 w-30-l ph3 pv3 pa4-ns"
    :children [[rc/v-box
                :class "w-100 tc pt5"
                :align :center
@@ -36,9 +36,9 @@
 
 (defn- content-panel [panel-name]
   [rc/h-box
-   :class "content-panel fl w-100 h-100 w-70-l ph4-ns overflow-y-scroll"
+   :class "content-panel fl w-100 h-100 w-70-l ph3 ph4-ns overflow-y-scroll"
    :children [[rc/v-box
-               :class "w-100 pt5"
+               :class "w-100 pt5-ns"
                :children [[show-panel panel-name]
                           [:div {:class "mail mail-s bb bw1 pointer"
                                  :on-click #(js/window.showMailingPopUp)}
@@ -53,8 +53,8 @@
   (let [active-panel (rf/subscribe [:active-panel])]
     (fn []
       [rc/v-box
-       :class "w-100 h-100 pv3 ph3 mb0"
+       :class "w-100 h-100 pv3 mb0"
        :children [[navigation]
-                  [:div {:class "w-100 h-100 ph1"}
+                  [:div {:class "w-100 h-100 ph1 pr2-ns"}
                       [side-panel]
                       [content-panel @active-panel]]]])))
