@@ -88,6 +88,11 @@ a.vote-link {
   margin: 0;
 }
 .media-thumb .metadata p {
+  display: none;
+}
+.media-thumb .metadata p:first-of-type {
+  display: block;
+  margin-bottom: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

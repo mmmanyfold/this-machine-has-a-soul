@@ -93,9 +93,14 @@ a.vote-link {
 }
 
 .media-thumb .metadata p {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: none;
+  &:first-of-type {
+    display: block;
+    margin-bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .video-wrapper {

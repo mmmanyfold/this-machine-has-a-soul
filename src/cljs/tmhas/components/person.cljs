@@ -5,8 +5,8 @@
 (defn person [data]
       [:div {:class "flexrow-wrap w-100 mv3"}
          [:div {:class "w-100 w-25-ns tc"}
-            [:div {:class "photo-container"}
-               [:div {:class "photo br-100 mb3"
+            [:div {:class "photo-container mb3"}
+               [:div {:class "photo br-100"
                       :style {:background-image (str "url('" (-> data :image :url) "')")
                               :background-size "cover"}}]]]
          [rc/v-box
