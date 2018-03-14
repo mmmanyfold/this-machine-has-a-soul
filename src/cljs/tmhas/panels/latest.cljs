@@ -33,6 +33,8 @@
 		}
 	}")
 
+(def filter-tag (rf/subscribe [:filter-tag]))
+
 (defn latest-panel []
   (let [db-key :media-posts]                                 ;; 0. declare unique db-key
     (rf/reg-sub db-key #(db-key %))                          ;; 1. register subscriber db-key
@@ -45,10 +47,14 @@
          [[media-post-panel posts]
           [:h1 {:class "bb bw1"} "Latest Posts"]
           [:div {:class "flexrow-wrap w-100 mv3"}
-           (for [post @posts
-                 :let [post-id (-> post :sys :id)
-                       type (-> post :sys :contentTypeId)]]
-                (case type
-                  "manyImagePost" ^{:key post-id}[media-thumb/image-gallery post-id post]
-                  "singleImage" ^{:key post-id}[media-thumb/single-image post-id post]
-                  "video" ^{:key post-id}[media-thumb/video post-id post]))]]]]])))
+           (doall
+             (for [post @posts
+                   :let [post-id (-> post :sys :id)
+                         tags (set (-> post :tags))
+                         type (-> post :sys :contentTypeId)]
+                   :when (or (nil? @filter-tag)
+                             (contains? tags @filter-tag))]
+               (case type
+                 "manyImagePost" ^{:key post-id}[media-thumb/image-gallery post-id post]
+                 "singleImage" ^{:key post-id}[media-thumb/single-image post-id post]
+                 "video" ^{:key post-id}[media-thumb/video post-id post])))]]]]])))

@@ -16,3 +16,8 @@
  :show-media-post
  (fn [db _]
    (:show-media-post db)))
+
+(rf/reg-sub
+  :filter-tag
+  (fn [db _]
+    (:filter-tag db)))
