@@ -4,7 +4,7 @@
                  [reagent "0.7.0"]
                  [re-frame "0.10.1"]
                  [re-frisk "0.4.5"]
-                 [org.clojure/core.async "0.2.391"]
+                 [org.clojure/core.async "0.4.474"]
                  [re-com "2.1.0"]
                  [secretary "1.2.3"]
                  [compojure "1.5.0"]

@@ -13,12 +13,13 @@
   (fn [_ _]
     db/default-db))
 
-(rf/reg-event-db
+(rf/reg-event-fx
   :set-filter-tag
-  (fn [db [_ tag]]
-    (if (= (:filter-tag db) tag)
-      (assoc db :filter-tag nil) ;; deselect if already selected
-      (assoc db :filter-tag tag))))
+  (fn [{db :db} [_ tag]]
+    {:db (if (= (:filter-tag db) tag)
+           ;; deselect if already selected
+           (assoc db :filter-tag nil)
+           (assoc db :filter-tag tag))}))
 
 (rf/reg-event-fx
   :get-contentful-data
