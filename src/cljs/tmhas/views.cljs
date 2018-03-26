@@ -1,34 +1,32 @@
 (ns tmhas.views
   (:require [re-frame.core :as rf]
             [re-com.core :as rc]
-            [tmhas.panels.latest :refer [latest-panel]]
+            [tmhas.panels.media :refer [media-panel]]
             [tmhas.panels.about :refer [about-panel]]
             [tmhas.panels.people :refer [people-panel]]
             [tmhas.panels.events :refer [events-panel]]
             [tmhas.components.tags :refer [tags]]
-            [tmhas.components.navigation :refer [navigation]]))
+            [tmhas.components.navigation :refer [navigation]]
+            [tmhas.components.footer :refer [footer]]))
 
 
 (defn side-panel []
   [rc/v-box
-   :class "side-panel fl w-100 w-30-l ph3 pv3 pa4-ns mt1"
+   :class "side-panel fixed fl w-100 w-25-l pv3 pa3 pa4-ns mt4"
    :children [[rc/v-box
-               :class "w-100 tc mt5"
+               :class "w-100 tc mt4"
                :align :center
                :children [[:img {:src "/img/TMHAS_Logo_600.jpg"
-                                 :class "w-50-m w-100-l mb2"}]
-                          [:h1 {:class "f4 f3-m mv3"}
+                                 :class "w-50-m w-100-l mt3"}]
+                          [:h1 {:class "f5 f3-m fw7 mv3"}
                             "Participatory Budgeting in Denver"]
-                          [tags]
-                          [:div {:class "mail mail-ns bb bw1 pointer"
-                                 :on-click #(js/window.showMailingPopUp)}
-                              [:h4 "Join Mailing List >>"]]]]]])
-                        ; [filtering component] for latest (home) page
+                          [tags]]]]])
+                        ; [filtering component] for media (home) page
                         ; [sub navigation component] in about + people
 
 (defn- show-panel [panel-name]
   (case panel-name
-        :latest-panel [latest-panel]
+        :media-panel [media-panel]
         :about-panel [about-panel]
         :people-panel [people-panel]
         :events-panel [events-panel]
@@ -38,25 +36,19 @@
 
 (defn- content-panel [panel-name]
   [rc/h-box
-   :class "content-panel fl w-100 h-100 w-70-l ph3 ph4-ns mt1 overflow-y-scroll"
-   :children [[rc/v-box
-               :class "w-100 mt5-ns"
-               :children [[show-panel panel-name]
-                          [:div {:class "mail mail-s bb bw1 pointer"
-                                 :on-click #(js/window.showMailingPopUp)}
-                              [:h4 "Join Mailing List >>"]]
-                          [:div {:class "mail mail-xs bb bw1"}
-                              [:h4 [:a {:href "http://eepurl.com/c7-hYL"
-                                        :target "_blank"}
-                                    "Join Mailing List >>"]]]]]]])
-
+   :class "content-panel w-100 h-100 mr3 mr4-ns mt5 pt3"
+   :children [[:div {:class "w-0 w-25-ns"}]
+              [:div {:class "w-100 w-75-ns ph4 bl-ns bw1-ns"
+                     :style {:margin "1.25em 0"}}
+                [show-panel panel-name]]]])
 
 (defn main-panel []
   (let [active-panel (rf/subscribe [:active-panel])]
     (fn []
-      [rc/v-box
-       :class "w-100 h-100 pv3 mb0"
-       :children [[navigation]
-                  [:div {:class "w-100 h-100 ph1 pr2-ns"}
-                      [side-panel]
-                      [content-panel @active-panel]]]])))
+      [:div
+       [rc/v-box
+        :class "w-100 h-100 mb0"
+        :children [[navigation]
+                   [side-panel]
+                   [content-panel @active-panel]]]
+       [footer]])))

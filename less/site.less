@@ -204,31 +204,15 @@ a.vote-link {
 }
 
 .mail {
-  align-self: flex-start;
-  bottom: 2em;
+  float: right;
   border-color: @yellow;
-  margin-top: 1.5em;
-}
-.mail-ns {
-  position: fixed;
-  @media (max-width: 959px) {
-    display: none;
-  }
-}
-.mail-s {
-  @media (max-width: 768px), (min-width: 960px) {
-    display: none;
-  }
-}
-.mail-xs {
-  a { color: black; text-decoration: none }
-  @media (min-width: 769px) {
-    display: none;
-  }
 }
 
 #tags {
   span.tag {
     margin: 0 5px;
+    a {
+      color: @gray;
+    }
   }
 }

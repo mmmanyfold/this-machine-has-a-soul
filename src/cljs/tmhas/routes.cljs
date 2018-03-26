@@ -21,10 +21,10 @@
   ;; define routes here
 
   (defroute "/" []
-            (rf/dispatch [:set-active-panel :latest-panel]))
+            (rf/dispatch [:set-active-panel :media-panel]))
 
   (defroute "/post/:post" {:as params}
-            (rf/dispatch [:set-active-panel :latest-panel (:post params)]))
+            (rf/dispatch [:set-active-panel :media-panel (:post params)]))
 
   (defroute "/about" []
             (rf/dispatch [:set-active-panel :about-panel]))

@@ -45,6 +45,7 @@
      :reagent-render
      (fn []
        [:div#tags
+        [:h4 "FILTER POSTS:"]
         (if-not (empty? @tags-&-meta)
           (doall
             (for [c (keys @tags-&-meta)
@@ -60,9 +61,8 @@
               (map (fn [t]
                      ^{:key (gensym "--tag")}
                      [:span.tag
-                      [:a {:style    {:font-size (str (* 15 (get r-freq t)) "rem")}
+                      [:a {:style    {:font-size (str (* 5 (get r-freq t)) "rem")}
                            :on-click #(rf/dispatch [:set-filter-tag t])}
                        (str "#" t)]])
                    tag-set)))
           [:p "loading.."])])}))
-

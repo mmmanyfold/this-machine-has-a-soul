@@ -7,23 +7,23 @@
   "{
 		personArtists {
 			name, image {
-				url
-			}, bio
+        url
+      }, bio
 		},
 		personProjectBelays {
-			name, image {
-				url
-			}, bio
+      name, image {
+        url
+      }, bio
 		},
 		personProjectVoyces {
-			name, image {
-				url
-			}, bio
+      name, image {
+        url
+      }, bio
 		},
 		personWcors {
-			name, image {
-				url
-			}, bio
+      name, image {
+        url
+      }, bio
 		}
 	}")
 

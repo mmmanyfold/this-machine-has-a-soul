@@ -17,15 +17,16 @@
 (defn vote-link [label to]
       [rc/hyperlink-href
        :label label
-       :class "vote-link ph3 pb1 pt2 ba bw1 mr2-ns"
+       :class "vote-link ph3 pb1 pt2 ba bw1"
        :href (str "#" to)])
 
 (defn navigation []
   (let [showing? (reagent/atom false)]
-    [:header {:class "nav absolute w-100 pt2 pb4 pb4-ns ph3 ph4-ns ttu tracked"}
+    [:header {:class "nav fixed w-100 pt3 ttu tracked bg-white"}
        [rc/h-box
+        :class "mh3 mh4-ns bb bw1 pb4 pb3-ns"
         :justify :between
-        :children [[:span [nav-link "latest" "/" :latest-panel]]
+        :children [[:span [nav-link "media" "/" :media-panel]]
                    [:span [nav-link "about" "/about" :about-panel]]
                    [:span [nav-link "people" "/people" :people-panel]]
                    [:span [nav-link "events" "/events" :events-panel]]

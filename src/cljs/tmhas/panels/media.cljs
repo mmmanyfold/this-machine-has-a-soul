@@ -1,4 +1,4 @@
-(ns tmhas.panels.latest
+(ns tmhas.panels.media
   (:require [re-frame.core :as rf]
             [re-com.core :as rc]
             [tmhas.components.media-thumb :as media-thumb]
@@ -35,7 +35,7 @@
 
 (def filter-tag (rf/subscribe [:filter-tag]))
 
-(defn latest-panel []
+(defn media-panel []
   (let [db-key :media-posts]                                 ;; 0. declare unique db-key
     (rf/reg-sub db-key #(db-key %))                          ;; 1. register subscriber db-key
     (rf/dispatch [:get-contentful-data db-key query :media]) ;; 2. retrieve contentful data & pass key for assoc in db
@@ -45,8 +45,7 @@
        [[rc/v-box
          :children
          [[media-post-panel posts]
-          [:h1 {:class "bb bw1"} "Latest Posts"]
-          [:div {:class "flexrow-wrap w-100 mv3"}
+          [:div {:class "flexrow-wrap w-100 mt1"}
            (doall
              (for [post @posts
                    :let [post-id (-> post :sys :id)
