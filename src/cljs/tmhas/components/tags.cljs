@@ -58,7 +58,7 @@
          [:div "!!!!"]
          :events-panel
          [:div "!!!!"]
-         :latest-panel
+         :media-panel
          [:div#tags
           (if-not (empty? @tags-&-meta)
             (doall
