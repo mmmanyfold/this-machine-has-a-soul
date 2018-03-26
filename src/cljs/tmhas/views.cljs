@@ -15,8 +15,9 @@
    :children [[rc/v-box
                :class "w-100 tc mt5"
                :align :center
-               :children [[:img {:src "/img/TMHAS_Logo_600.jpg"
-                                 :class "w-50-m w-100-l mb2"}]
+               :children [[:a {:href "/#"}
+                           [:img {:src "/img/TMHAS_Logo_600.jpg"
+                                  :class "w-50-m w-100-l mb2"}]]
                           [:h1 {:class "f4 f3-m mv3"}
                             "Participatory Budgeting in Denver"]
                           [tags]
