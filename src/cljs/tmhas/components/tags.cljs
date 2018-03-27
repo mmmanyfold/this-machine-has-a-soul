@@ -77,8 +77,8 @@
                  (map (fn [t]
                         ^{:key (gensym "-tag-item")}
                         [:li
-                         [:san.tags
-                          [:a {:style    {:font-size (str (* 15 (get r-freq t)) "rem")}
+                         [:span.tags
+                          [:a {:style    {:font-size (str (* 8 (get r-freq t)) "rem")}
                                :on-click #(rf/dispatch [:set-filter-tag t])}
                            (str "#" t)]]])
                       tag-set)]))

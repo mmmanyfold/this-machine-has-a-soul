@@ -24,7 +24,7 @@
   (let [showing? (reagent/atom false)]
     [:header {:class "nav fixed w-100 pt3 ttu tracked bg-white"}
        [rc/h-box
-        :class "mh3 mh4-ns bb bw1 pb4 pb3-ns"
+        :class "mh3 bb bw1 pb3"
         :justify :between
         :children [[:span [nav-link "media" "/" :media-panel]]
                    [:span [nav-link "about" "/about" :about-panel]]

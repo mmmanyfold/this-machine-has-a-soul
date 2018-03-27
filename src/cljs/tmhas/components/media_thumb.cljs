@@ -8,7 +8,7 @@
 
 (defn metadata [id postTitle postText postDate tags]
   [:div
-   [:h2 {:class "mb1 mh1 mt3 f2 f3-ns"}
+   [:h2 {:class "mb1 mh1 mt3 f3"}
     [:a {:href (str "/#/post/" id)}
       (str postTitle " →")]]
    [:div {:class "metadata f5"}
@@ -26,7 +26,7 @@
              [:span (str "#" tag)])])]]])
 
 
-(defn single-image [id post]
+(defn single-image [id post index]
   (let [{:keys [postTitle
                 postDate
                 postText
@@ -43,7 +43,7 @@
                    [metadata id postTitle postText postDate tags]]]))
 
 
-(defn image-gallery [id post]
+(defn image-gallery [id post index]
   (let [{:keys [postTitle
                 postDate
                 postText
@@ -63,7 +63,7 @@
                           :aria-hidden true}]]]
                    [metadata id postTitle postText postDate tags]]]))
 
-(defn video [id post]
+(defn video [id post index]
   (fn []
     (reagent/create-class
       {:component-did-mount
@@ -78,6 +78,8 @@
                 video-src (embed-video videoUrl)]
                [rc/v-box
                 :class "media-thumb"
+                :style (when (= index 0)
+                             {:width "100%"})
                 :children [[:div.video-wrapper
                             [:iframe {:src video-src
                                       :frameBorder "0"

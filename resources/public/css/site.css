@@ -18,19 +18,14 @@ h1 {
   justify-content: space-between;
 }
 header {
-  z-index: 100;
+  z-index: 20;
 }
 @media screen and (min-width: 1199px) {
-  header {
-    font-size: 1.5em;
-  }
-}
-@media screen and (max-width: 1198px) {
   header {
     font-size: 1.45rem;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 830px) {
   header {
     font-size: 1rem;
   }
@@ -46,12 +41,12 @@ header {
   background-position: bottom;
 }
 a.nav-link {
-  color: black;
+  color: #739f3e;
   border-color: rgba(0, 0, 0, 0);
 }
 a.nav-link:hover,
 a.nav-link.active {
-  border-color: #fcb733;
+  border-color: #739f3e;
   text-decoration: none;
 }
 a.vote-link {
@@ -60,9 +55,35 @@ a.vote-link {
   text-decoration: none;
   background-color: #739f3e;
 }
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 830px) {
   .content-panel {
-    overflow-y: visible;
+    margin-top: 0;
+  }
+  .content-panel .main {
+    width: 100%;
+    border: none;
+  }
+  .content-panel .push {
+    display: none;
+  }
+}
+@media screen and (min-width: 1199px) {
+  .side-panel h1 {
+    font-size: 0.95em;
+  }
+}
+@media screen and (max-width: 830px) {
+  .side-panel {
+    position: relative;
+    width: 100%;
+  }
+  .side-panel h1 {
+    font-size: 1em;
+  }
+}
+@media screen and (min-width: 500px) and (max-width: 830px) {
+  .side-panel img {
+    width: 60%;
   }
 }
 .media-thumb {
@@ -202,6 +223,14 @@ a.vote-link {
 #tags span.tag {
   margin: 0 5px;
 }
-#tags span.tag a {
+#tags a {
   color: #959991;
+  cursor: pointer;
+}
+@media screen and (max-width: 960px) {
+  #tags ul,
+  #tags li {
+    display: inline-block;
+    margin: 0 0.5em;
+  }
 }

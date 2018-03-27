@@ -45,15 +45,16 @@
        [[rc/v-box
          :children
          [[media-post-panel posts]
-          [:div {:class "flexrow-wrap w-100 mt1"}
+          [:div {:class "flexrow-wrap w-100 mt1 mb7"}
            (doall
              (for [post @posts
                    :let [post-id (-> post :sys :id)
                          tags (set (-> post :tags))
-                         type (-> post :sys :contentTypeId)]
+                         type (-> post :sys :contentTypeId)
+                         index (.indexOf @posts post)]
                    :when (or (nil? @filter-tag)
                              (contains? tags @filter-tag))]
                (case type
-                 "manyImagePost" ^{:key post-id}[media-thumb/image-gallery post-id post]
-                 "singleImage" ^{:key post-id}[media-thumb/single-image post-id post]
-                 "video" ^{:key post-id}[media-thumb/video post-id post])))]]]]])))
+                 "manyImagePost" ^{:key post-id}[media-thumb/image-gallery post-id post index]
+                 "singleImage" ^{:key post-id}[media-thumb/single-image post-id post index]
+                 "video" ^{:key post-id}[media-thumb/video post-id post index])))]]]]])))

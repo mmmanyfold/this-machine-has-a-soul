@@ -13,7 +13,7 @@
 ;; for embedding vimeo or yt videos from video url
 (defn embed-video [url]
   (cond (re-find #"https://vimeo.com/" url)
-        (str "https://player.vimeo.com/video/" (re-find #"\d+" url) "?color=739f3e&title=0&byline=0&portrait=0&badge=0")
+        (str "https://player.vimeo.com/video/" (re-find #"\d+" url) "?color=8e4f78&title=0&byline=0&portrait=0&badge=0")
 
         (re-find #"https://www.youtube.com/watch?v=" url)
         (if (re-find #"=(.*)&" url)
