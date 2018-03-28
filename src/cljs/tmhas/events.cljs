@@ -15,8 +15,8 @@
 
 (rf/reg-event-fx
   :set-filter-tag
-  (fn [{db :db} [_ tag]]
-    {:db (if (= (:filter-tag db) tag)
+  (fn [{db :db} [_ tag reset?]]
+    {:db (if (or (= reset? true) (= (:filter-tag db) tag))
            ;; deselect if already selected
            (assoc db :filter-tag nil)
            (assoc db :filter-tag tag))}))

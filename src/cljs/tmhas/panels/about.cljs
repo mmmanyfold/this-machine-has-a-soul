@@ -1,7 +1,9 @@
 (ns tmhas.panels.about
   (:require [re-frame.core :as rf]
             [re-com.core :as rc]
-            [tmhas.components.common :refer [showdown]]))
+            [tmhas.components.common :refer [showdown]]
+            [camel-snake-kebab.core :refer [->kebab-case]]
+            [clojure.string :refer [lower-case]]))
 
 (def query
   "{ aboutSections {
@@ -24,7 +26,7 @@
                                content  (:sectionContent section)]]
                     ^{:key (gensym "aboutSection-")}
                      [:div.about-section
-                      [:h1 {:class "bb bw1"} title]
+                      [:h1 {:id (str (->kebab-case (lower-case title)) "-section")} title]
                       [:div {:class "markdown"
                              "dangerouslySetInnerHTML"
                               #js{:__html (.makeHtml showdown content)}}]])]])))

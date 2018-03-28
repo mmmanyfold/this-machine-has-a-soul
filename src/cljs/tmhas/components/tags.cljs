@@ -1,6 +1,7 @@
 (ns tmhas.components.tags
-  (:require [re-frame.core :as rf]
-            [cljs.core.async :as async :refer [<! >! chan close! put!]]
+  (:require-macros [purnam.core :refer [!>]])
+  (:require cljsjs.jquery
+            [re-frame.core :as rf]
             [reagent.core :as reagent]))
 
 (def query
@@ -41,6 +42,25 @@
   [m keys f & args]
   (reduce #(apply update-in %1 [%2] f args) m keys))
 
+(def default-props {:class "section-anchor"
+                    :on-click (fn [e]
+                                (when-let [hash (-> e .-target .-hash)]
+                                  (when-let [top (some-> (js/$ hash) (.offset) .-top)]
+                                    (-> (js/$ "html, body")
+                                        (.animate #js {:scrollTop (- top 100)})))))})
+
+(defn about-section-nav []
+  [:ul.list.pl0
+   [:li.tl [:a (assoc default-props :href "#about-tmhas-section") "About TMHAS"]]
+   [:li.tl [:a (assoc default-props :href "#contact-section") "Contact"]]])
+
+(defn people-section-nav []
+  [:ul.list.pl0
+   [:li.tl [:a (assoc default-props :href "#project-voyce-section") "Project VOYCE"]]
+   [:li.tl [:a (assoc default-props :href "#project-belay-section") "Project Belay"]]
+   [:li.tl [:a (assoc default-props :href "#the-artists-section") "The Artists"]]
+   [:li.tl [:a (assoc default-props :href "#wcr-section") "Warm Cookies of the Revolution"]]])
+
 (defn tags
   "multi purpose tag filter component"
   []
@@ -50,14 +70,14 @@
      :reagent-render
      (fn []
        (case @active-panel?
-         nil
-         [:div "!!!!"]
+         nil ;; default
+         [:div "loading..."]
          :about-panel
-         [:div "!!!!"]
+         [about-section-nav]
          :people-panel
-         [:div "!!!!"]
+         [people-section-nav]
          :events-panel
-         [:div "!!!!"]
+         [:div]
          :media-panel
          [:div#tags
           (if-not (empty? @tags-&-meta)

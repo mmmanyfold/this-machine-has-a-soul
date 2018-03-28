@@ -5,4 +5,5 @@
 (defn events-panel []
       [rc/v-box
        :children
-       [[:h1 {:class "bb bw1"} "Calendar of Events"]]])
+       [[:h1 "Calendar of Events"]
+        [:p "COMING SOON"]]])

@@ -15,7 +15,10 @@
                  [adzerk/env "0.4.0"]
                  [cljsjs/showdown "1.4.2-0"]
                  [cljsjs/bootstrap "3.3.6-1"]
-                 [cljsjs/moment "2.17.1-1"]]
+                 [cljsjs/moment "2.17.1-1"]
+                 [cljsjs/jquery "2.2.4-0"]
+                 [im.chit/purnam "0.5.2"]
+                 [camel-snake-kebab "0.4.0"]]
 
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-less "1.7.5"]]

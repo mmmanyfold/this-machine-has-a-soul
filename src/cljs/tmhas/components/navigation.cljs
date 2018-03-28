@@ -5,7 +5,7 @@
 
 (defn nav-link [label to panel-name]
   (let [active? (rf/subscribe [:active-panel])
-        nav-classes "nav-link ph2 ph3-ns pb1 pt2 ba bw1"
+        nav-classes "nav-link ph2 ph3-ns pb1 pt2 ba"
         classes (if (= @active? panel-name)
                     (str nav-classes " active")
                     nav-classes)]
@@ -17,14 +17,14 @@
 (defn vote-link [label to]
       [rc/hyperlink-href
        :label label
-       :class "vote-link ph3 pb1 pt2 ba bw1"
+       :class "vote-link ph3 pb1 pt2 ba"
        :href (str "#" to)])
 
 (defn navigation []
   (let [showing? (reagent/atom false)]
     [:header {:class "nav fixed w-100 pt3 ttu tracked bg-white"}
        [rc/h-box
-        :class "mh3 bb bw1 pb3"
+        :class "mh3 bb pb3"
         :justify :between
         :children [[:span [nav-link "media" "/" :media-panel]]
                    [:span [nav-link "about" "/about" :about-panel]]
