@@ -1,4 +1,5 @@
 (ns tmhas.components.tags
+  (:require-macros [purnam.core :refer [?]])
   (:require cljsjs.jquery
             [re-frame.core :as rf]
             [reagent.core :as reagent]))
@@ -27,6 +28,8 @@
 
 (def active-panel? (rf/subscribe [:active-panel]))
 
+(def active-section (reagent/atom nil))
+
 (defn re-map
   "A la Processing: https://processing.org/reference/map_.html
   -- Re-maps a number from one range to another"
@@ -41,30 +44,39 @@
   [m keys f & args]
   (reduce #(apply update-in %1 [%2] f args) m keys))
 
-(def default-props {:class "section-anchor"
-                    :on-click (fn [e]
-                                (when-let [hash (-> e .-target .-hash)]
-                                  (when-let [top (some-> (js/$ hash) (.offset) .-top)]
-                                    (-> (js/$ "html, body")
-                                        (.animate #js {:scrollTop (- top 100)})))))})
+(defn scroll-top [px]
+  (-> (js/$ "html, body")
+      (.animate #js {:scrollTop px})))
+
+(defn default-props [href]
+  {:href href
+   :class "section-anchor"
+   :style {:font-weight (when (= @active-section href) "bolder")}
+   :on-click (fn [e]
+               (let [prev-hash (? js/window.location.hash)]
+                 (when-let [hash (-> e .-target .-hash)]
+                   (when-let [top (some-> (js/$ hash) (.offset) .-top)]
+                     (reset! active-section hash)
+                     (js/setTimeout #(set! js/window.location.hash prev-hash) 500)
+                     (scroll-top (- top 100))))))})
 
 (defn about-section-nav []
   [:div.sub-navigation
    [:ul.list.pl0
-    [:li.tl [:a (assoc default-props :href "#about-tmhas-section") "About TMHAS"]]
+    [:li.tl [:a (default-props "#about-tmhas-section") "About TMHAS"]]
     [:li.divider "/"]
-    [:li.tl [:a (assoc default-props :href "#contact-section") "Contact"]]]])
+    [:li.tl [:a (default-props "#contact-section") "Contact"]]]])
 
 (defn people-section-nav []
   [:div.sub-navigation
    [:ul.list.pl0
-    [:li.tl [:a (assoc default-props :href "#project-voyce-section") "Project VOYCE"]]
+    [:li.tl [:a (default-props "#project-voyce-section") "Project VOYCE"]]
     [:li.divider "/"]
-    [:li.tl [:a (assoc default-props :href "#project-belay-section") "Project Belay"]]
+    [:li.tl [:a (default-props "#project-belay-section") "Project Belay"]]
     [:li.divider "/"]
-    [:li.tl [:a (assoc default-props :href "#the-artists-section") "The Artists"]]
+    [:li.tl [:a (default-props "#the-artists-section") "The Artists"]]
     [:li.divider.last "/"]
-    [:li.tl.last [:a (assoc default-props :href "#wcr-section") "Warm Cookies of the Revolution"]]]])
+    [:li.tl.last [:a (default-props "#wcr-section") "Warm Cookies of the Revolution"]]]])
 
 (defn tags
   "multi purpose tag filter component"

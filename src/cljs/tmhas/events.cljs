@@ -13,13 +13,13 @@
   (fn [_ _]
     db/default-db))
 
-(rf/reg-event-fx
+(rf/reg-event-db
   :set-filter-tag
-  (fn [{db :db} [_ tag reset?]]
-    {:db (if (or (= reset? true) (= (:filter-tag db) tag))
-           ;; deselect if already selected
-           (assoc db :filter-tag nil)
-           (assoc db :filter-tag tag))}))
+  (fn [db [_ tag reset?]]
+    (if (or (= reset? true) (= (:filter-tag db) tag))
+      ;; deselect if already selected
+      (assoc db :filter-tag nil)
+      (assoc db :filter-tag tag))))
 
 (rf/reg-event-fx
   :get-contentful-data
@@ -38,7 +38,7 @@
 (rf/reg-event-db
   :get-contentful-data-failed
   (fn [db _]
-    (js/console.error ":get-contentful-data event failed, is the graph server running ?")
+    (js/console.error ":get-contentful-data event failed, is the GraphQL server running ?")
     db))
 
 (rf/reg-event-db
