@@ -98,7 +98,7 @@
           [:div]
           :media-panel
           [:div#tags
-           [:h5 {:class "ttu fw7 tracked"} "Media Filters"]
+           [:h5 {:class "ttu fw7 tracked"} "Filter By:"]
            (if-not (empty? @tags-&-meta)
              (doall
                (for [c (keys @tags-&-meta)

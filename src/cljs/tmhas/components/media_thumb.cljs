@@ -7,16 +7,16 @@
             cljsjs.moment))
 
 (defn metadata [id postTitle postText postDate tags]
-  [:div
-   [:h2 {:class "mb1 mh1 mt3 f3"}
+  [:div.w-50.pa3
+   [:h2 {:class "mb2 mh1 mt1 f3"}
     [:a {:href (str "/#/post/" id)}
       (str postTitle " →")]]
-   [:div {:class "metadata f5"}
+   [:div {:class "metadata"}
     (when postText
           [:div {:class "mh1 mv0"
                  "dangerouslySetInnerHTML"
                  #js{:__html (.makeHtml showdown postText)}}])
-    [:div.mv1
+    [:div.mv1.f5
      [:span (.format (js/moment postDate) "MMM D, YYYY")]
      (when tags
        [:section.tags
@@ -76,12 +76,11 @@
                         tags
                         videoUrl]} post
                 video-src (embed-video videoUrl)]
-               [rc/v-box
-                :class "media-thumb"
-                :style (when (= index 0)
-                             {:width "100%"})
-                :children [[:div.video-wrapper
-                            [:iframe {:src video-src
-                                      :frameBorder "0"
-                                      :allowFullScreen true}]]
+               [rc/h-box
+                :class "media-thumb w-100"
+                :children [[:div.video-outer-wrapper.w-50
+                            [:div.video-wrapper
+                             [:iframe {:src video-src
+                                       :frameBorder "0"
+                                       :allowFullScreen true}]]]
                            [metadata id postTitle postText postDate tags]]]))})))

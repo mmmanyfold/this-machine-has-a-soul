@@ -27,12 +27,33 @@ h1 {
 header {
   z-index: 20;
 }
-header .nav-left .vote-link {
+header .nav-wrapper {
+  border-color: #fcb733;
+}
+header .nav-left a.vote-link {
   display: none;
   outline: none;
 }
-header .nav-right .vote-link {
+header .nav-right a.vote-link {
   display: block;
+}
+header a.nav-link,
+header a.vote-link {
+  padding-top: 0.3em;
+  border-color: rgba(0, 0, 0, 0);
+  text-decoration: none;
+}
+header a.nav-link {
+  color: black;
+}
+header a.nav-link:hover,
+header a.nav-link.active {
+  border-color: #fcb733;
+}
+header a.vote-link {
+  opacity: 0.5;
+  color: white;
+  background-color: #739f3e;
 }
 @media screen and (min-width: 1199px) {
   header {
@@ -60,24 +81,6 @@ header .nav-right .vote-link {
   header {
     font-size: 0.8rem;
   }
-}
-a.nav-link,
-a.vote-link {
-  padding-top: 0.3em;
-  border-color: rgba(0, 0, 0, 0);
-  text-decoration: none;
-}
-a.nav-link {
-  color: black;
-}
-a.nav-link:hover,
-a.nav-link.active {
-  border-color: #739f3e;
-}
-a.vote-link {
-  opacity: 0.5;
-  color: white;
-  background-color: #739f3e;
 }
 @media screen and (max-width: 830px) {
   .content-panel {
@@ -111,13 +114,9 @@ a.vote-link {
   }
 }
 .media-thumb {
-  width: 47%;
+  border: 1px solid #fcb733;
+  border-radius: 0 3px 3px 0;
   margin-bottom: 1.5em;
-}
-@media (max-width: 768px) {
-  .media-thumb {
-    width: 100%;
-  }
 }
 .media-thumb .gallery-icon {
   right: 0.35em;
@@ -125,7 +124,8 @@ a.vote-link {
   z-index: 1;
 }
 .media-thumb a {
-  color: #fcb733;
+  color: #8e4f78;
+  font-weight: 700;
 }
 .metadata span {
   color: #959991;
@@ -134,16 +134,6 @@ a.vote-link {
 .metadata section.tags {
   display: inline-block;
   margin: 0;
-}
-.media-thumb .metadata p {
-  display: none;
-}
-.media-thumb .metadata p:first-of-type {
-  display: block;
-  margin-bottom: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .video-wrapper {
   background: #000;
@@ -259,13 +249,13 @@ a.vote-link {
   margin: 0 5px;
 }
 #tags a {
-  color: #8e4f78;
+  color: #739f3e;
 }
 .sub-navigation a {
   color: #739f3e;
-  font-size: 0.8em;
+  font-size: 0.9em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 1px;
 }
 @media screen and (max-width: 445px) {
   .sub-navigation {
@@ -300,8 +290,6 @@ a.vote-link {
   line-height: 0.9em;
   text-decoration: none;
 }
-#tags a:hover,
-.sub-navigation a:hover,
 #tags a.active-tag,
 .sub-navigation a.active-tag {
   font-weight: 800;
@@ -331,4 +319,5 @@ a.vote-link {
 .footer {
   margin-top: auto;
   margin-bottom: 2.5em;
+  border-color: #fcb733;
 }

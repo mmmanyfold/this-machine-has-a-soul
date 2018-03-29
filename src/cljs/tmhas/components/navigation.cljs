@@ -21,10 +21,11 @@
        :href (str "#" to)])
 
 (defn navigation []
-  (let [showing? (reagent/atom false)]
-    [:header {:class "nav fixed w-100 pt3 ttu tracked bg-white"}
+  (let [showing?a (reagent/atom false)
+        showing?b (reagent/atom false)]
+    [:header {:class "fixed w-100 pt3 ttu tracked bg-white"}
        [rc/h-box
-        :class "mh3 mh4-ns bb bw1 pb3"
+        :class "nav-wrapper mh3 mh4-ns bb bw1 pb3"
         :justify :between
         :children [[:div {:class "nav-left flex"}
                     [nav-link "media" "/" :media-panel]
@@ -32,10 +33,10 @@
                     [nav-link "people" "/people" :people-panel]
                     [nav-link "events" "/events" :events-panel]
                     [rc/popover-anchor-wrapper
-                       :showing? showing?
+                       :showing? showing?a
                        :position :below-center
-                       :anchor   [:span {:on-mouse-over #(swap! showing? not)
-                                         :on-mouse-out  #(swap! showing? not)}
+                       :anchor   [:span {:on-mouse-over #(swap! showing?a not)
+                                         :on-mouse-out  #(swap! showing?a not)}
                                      [vote-link "vote" "/"]]
                        :popover  [rc/popover-content-wrapper
                                   :close-button? false
@@ -44,10 +45,10 @@
                     [:div {:class "subtitle f7 tr mr3"} "Participatory Budgeting"
                      [:br] "Denver, CO"]
                     [rc/popover-anchor-wrapper
-                       :showing? showing?
+                       :showing? showing?b
                        :position :below-center
-                       :anchor   [:span {:on-mouse-over #(swap! showing? not)
-                                         :on-mouse-out  #(swap! showing? not)}
+                       :anchor   [:span {:on-mouse-over #(swap! showing?b not)
+                                         :on-mouse-out  #(swap! showing?b not)}
                                      [vote-link "vote" "/"]]
                        :popover  [rc/popover-content-wrapper
                                   :close-button? false
