@@ -12,7 +12,7 @@
 
 (defn side-panel []
   [rc/v-box
-   :class "side-panel fixed fl w-100 w-25-l w-30-m ph3 ph4-ns pt3 pb0-m pv4-ns mt4"
+   :class "side-panel fixed fl w-100 w-25-l w-30-m ph3 ph4-ns pb0-m mt4 mt5-ns pt3"
    :children [[rc/v-box
                :class "w-100 tc mt4"
                :align :center
@@ -20,9 +20,7 @@
                                ;; reset tag filter
                                :on-click #(rf/dispatch [:set-filter-tag nil true])}
                            [:img {:src "/img/TMHAS_Logo_600.jpg"
-                                  :class "w-100 mt3"}]]
-                          [:h1 {:class "f5-m f6-l fw7 mv3"}
-                            "Participatory Budgeting in Denver"]
+                                  :class "w-100"}]]
                           [tags]]]]])
                         ; [filtering component] for media (home) page
                         ; [sub navigation component] in about + people
@@ -41,7 +39,7 @@
   [rc/h-box
    :class "content-panel w-100 h-100 mr3 mr4-ns mt5-ns pt3-ns"
    :children [[:div {:class "push w-0 w-25-l w-30-m"}]
-              [:div {:class "main w-100 w-75-l w-70-m ph4 bl-ns"
+              [:div {:class "main w-100 w-75-l w-70-m ph4 pl3-l pt1"
                      :style {:margin "1.25em 0"}}
                 [show-panel panel-name]]]])
 

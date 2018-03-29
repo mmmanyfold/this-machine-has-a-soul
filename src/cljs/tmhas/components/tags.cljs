@@ -28,6 +28,8 @@
 
 (def active-panel? (rf/subscribe [:active-panel]))
 
+(def class (reagent/atom ""))
+
 (defn re-map
   "A la Processing: https://processing.org/reference/map_.html
   -- Re-maps a number from one range to another"
@@ -50,16 +52,22 @@
                                         (.animate #js {:scrollTop (- top 100)})))))})
 
 (defn about-section-nav []
-  [:ul.list.pl0
-   [:li.tl [:a (assoc default-props :href "#about-tmhas-section") "About TMHAS"]]
-   [:li.tl [:a (assoc default-props :href "#contact-section") "Contact"]]])
+  [:div.sub-navigation
+   [:ul.list.pl0
+    [:li.tl [:a (assoc default-props :href "#about-tmhas-section") "About TMHAS"]]
+    [:li.divider "|"]
+    [:li.tl [:a (assoc default-props :href "#contact-section") "Contact"]]]])
 
 (defn people-section-nav []
-  [:ul.list.pl0
-   [:li.tl [:a (assoc default-props :href "#project-voyce-section") "Project VOYCE"]]
-   [:li.tl [:a (assoc default-props :href "#project-belay-section") "Project Belay"]]
-   [:li.tl [:a (assoc default-props :href "#the-artists-section") "The Artists"]]
-   [:li.tl [:a (assoc default-props :href "#wcr-section") "Warm Cookies of the Revolution"]]])
+  [:div.sub-navigation
+   [:ul.list.pl0
+    [:li.tl [:a (assoc default-props :href "#project-voyce-section") "Project VOYCE"]]
+    [:li.divider "|"]
+    [:li.tl [:a (assoc default-props :href "#project-belay-section") "Project Belay"]]
+    [:li.divider "|"]
+    [:li.tl [:a (assoc default-props :href "#the-artists-section") "The Artists"]]
+    [:li.divider.last "|"]
+    [:li.tl.last [:a (assoc default-props :href "#wcr-section") "Warm Cookies of the Revolution"]]]])
 
 (defn tags
   "multi purpose tag filter component"
@@ -69,37 +77,44 @@
      #(rf/dispatch [:get-contentful-data db-key query :media])
      :reagent-render
      (fn []
-       (case @active-panel?
-         nil ;; default
-         [:div "loading..."]
-         :about-panel
-         [about-section-nav]
-         :people-panel
-         [people-section-nav]
-         :events-panel
-         [:div]
-         :media-panel
-         [:div#tags
-          (if-not (empty? @tags-&-meta)
-            (doall
-              (for [c (keys @tags-&-meta)
-                    :let [coll (c @tags-&-meta)
-                          tags (->> (map #(:tags %) coll)
-                                    (remove nil?)
-                                    flatten)
-                          freq (frequencies tags)
-                          ks (apply vector (keys freq))
-                          r-freq (map-values freq ks #(re-map % 1 100 1 10))
-                          tag-set (set tags)]
-                    :when (seq (c @tags-&-meta))]
-                ^{:key (gensym "-tag-list")}
-                [:ul.list.pl0
-                 (map (fn [t]
-                        ^{:key (gensym "-tag-item")}
-                        [:li
-                         [:span.tags
-                          [:a {:style    {:font-size (str (* 8 (get r-freq t)) "rem")}
-                               :on-click #(rf/dispatch [:set-filter-tag t])}
-                           (str "#" t)]]])
-                      tag-set)]))
-            [:p "loading.."])]))}))
+       [:div.sub-navigation-wrapper.mt4
+        (case @active-panel?
+          nil ;; default
+          [:div "loading..."]
+          :about-panel
+          [about-section-nav]
+          :people-panel
+          [people-section-nav]
+          :events-panel
+          [:div]
+          :media-panel
+          [:div#tags
+           [:h5 {:class "ttu fw7 tracked"} "Media Filters"]
+           (if-not (empty? @tags-&-meta)
+             (doall
+               (for [c (keys @tags-&-meta)
+                     :let [coll (c @tags-&-meta)
+                           tags (->> (map #(:tags %) coll)
+                                     (remove nil?)
+                                     flatten)
+                           freq (frequencies tags)
+                           ks (apply vector (keys freq))
+                           r-freq (map-values freq ks #(re-map % 1 100 1 10))
+                           tag-set (set tags)]
+                     :when (seq (c @tags-&-meta))]
+                 ^{:key (gensym "-tag-list")}
+                 [:ul.list.pl0
+                  (doall
+                    (for [t tag-set]
+                      ^{:key (gensym "-tag-item")}
+                      [:li
+                       [:span.tag
+                        [:a {:class @class
+                             :style {:font-size (str (* 7 (get r-freq t)) "em")}
+                             :on-click (fn []
+                                         (rf/dispatch [:set-filter-tag t])
+                                         (if (= @class "")
+                                           (reset! class "active-tag")
+                                           (reset! class "")))}
+                         (str "#" t)]]]))]))
+             [:p "loading.."])])])}))

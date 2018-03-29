@@ -16,6 +16,7 @@ body {
 
 h1 {
     color: @purple;
+    margin-top: 0;
 }
 
 .flexrow-wrap {
@@ -29,36 +30,51 @@ h1 {
 
 header {
     z-index: 20;
+    .nav-left .vote-link {
+        display: none;
+    }
+    .nav-right .vote-link {
+        display: block;
+    }
     @media screen and (min-width: 1199px) {
-        font-size: 1.45rem;
+        font-size: 1.4rem;
     }
     @media screen and (max-width: 830px) {
         font-size: 1rem;
+    }
+    @media screen and (max-width: 700px) {
+        .nav-left {
+            width: 100%;
+            justify-content: space-between;
+            .vote-link {
+                display: block;
+            }
+        }
+        .nav-right {
+            display: none;
+        }
     }
     @media screen and (max-width: 479px) {
         font-size: 0.8rem;
     }
 }
 
-.nav {
-    background-image: url('../img/white-fade.png');
-    background-size: cover;
-    background-position: bottom;
+a.nav-link, a.vote-link {
+    padding-top: 0.3em;
+    border-color: rgba(0,0,0,0);
+    text-decoration: none;
 }
 
 a.nav-link {
-    color: @green;
-    border-color: rgba(0,0,0,0);
+    color: black;
     &:hover, &.active {
         border-color: @green;
-        text-decoration: none;
     }
 }
 
 a.vote-link {
+    opacity: 0.5;
     color: white;
-    border-color: rgba(0,0,0,0);
-    text-decoration: none;
     background-color: @green;
 }
 
@@ -221,10 +237,11 @@ a.vote-link {
 }
 
 .about-section {
-    img {
-        width: 30%;
-        margin: 0 1%;
-    }
+  margin-bottom: 2em;
+  img {
+      width: 30%;
+      margin: 0 1%;
+  }
 }
 
 .mail {
@@ -232,18 +249,65 @@ a.vote-link {
   border-color: @yellow;
 }
 
+.sub-navigation-wrapper {
+  width: 100%;
+}
+
 #tags {
+  text-align: center;
+  li {
+    margin-left: -5px;
+  }
   span.tag {
     margin: 0 5px;
   }
   a {
-    color: @gray;
-    cursor: pointer;
+    color: @purple;
   }
-  @media screen and (max-width: 960px) {
+}
+
+.sub-navigation {
+  a {
+    color: @green;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+}
+
+#tags, .sub-navigation {
+  a {
+    cursor: pointer;
+    line-height: 0.9em;
+    text-decoration: none;
+    &:hover, &.active-tag {
+      font-weight: 800;
+    }
+  }
+  li {
+    line-height: 0.9em;
+    margin-bottom: 0.7em;
+  }
+  .divider {
+    color: black;
+    font-weight: bold;
+  }
+  @media screen and (min-width: 831px) {
+    .divider {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 830px) {
     ul, li {
       display: inline-block;
       margin: 0 0.5em;
+    }
+    li.last {
+      display: block;
+      text-align: center;
+    }
+    li.divider.last {
+      display: none;
     }
   }
 }
