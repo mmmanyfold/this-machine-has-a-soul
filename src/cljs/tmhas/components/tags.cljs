@@ -51,7 +51,7 @@
 (defn default-props [href]
   {:href href
    :class "section-anchor"
-   :style {:font-weight (when (= @active-section href) "bolder")}
+   :style {:font-weight (when (= @active-section href) "700")}
    :on-click (fn [e]
                (let [prev-hash (? js/window.location.hash)]
                  (when-let [hash (-> e .-target .-hash)]
@@ -98,7 +98,7 @@
           [:div]
           :media-panel
           [:div#tags
-           [:h5 {:class "ttu fw7 tracked"} "Filter By:"]
+           [:h5 {:class "fw7 tracked"} "Filter By:"]
            (if-not (empty? @tags-&-meta)
              (doall
                (for [c (keys @tags-&-meta)

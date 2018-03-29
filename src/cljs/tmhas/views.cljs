@@ -12,7 +12,7 @@
 
 (defn side-panel []
   [rc/v-box
-   :class "side-panel fixed fl w-100 w-25-l w-30-m ph3 ph4-ns pb0-m mt4 mt5-ns pt3"
+   :class "side-panel fixed fl w-100 w-25-l w-30-m ph3 ph4-ns pb0-m pr0-m pt3 mt4 mt5-ns"
    :children [[rc/v-box
                :class "w-100 tc mt4"
                :align :center

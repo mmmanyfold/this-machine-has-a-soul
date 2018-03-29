@@ -70,7 +70,7 @@ header {
     .nav-left {
       width: 100%;
       justify-content: space-between;
-      .vote-link {
+      a.vote-link {
         display: block;
       }
     }
@@ -248,12 +248,11 @@ header {
   }
 }
 
-.mail {
-  border-color: @yellow;
-}
-
 .sub-navigation-wrapper {
   width: 100%;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 #tags {
@@ -272,9 +271,8 @@ header {
 .sub-navigation {
   a {
     color: @green;
-    font-size: 0.9em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 1em;
+    font-weight: 300;
   }
   @media screen and (max-width: 445px) {
     text-align: center;
@@ -313,7 +311,7 @@ header {
   }
   li {
     line-height: 0.9em;
-    margin-bottom: 0.7em;
+    margin-bottom: 0.9em;
   }
   .divider {
     color: black;
