@@ -5,7 +5,7 @@
 
 (defn nav-link [label to panel-name]
   (let [active? (rf/subscribe [:active-panel])
-        nav-classes "nav-link ph2 ph3-ns pb1 ba bw1 mr3 mr5-l"
+        nav-classes "nav-link ph2 ph3-ns pb1 ba bw1 mr3-m mr5-l"
         classes (if (= @active? panel-name)
                     (str nav-classes " active")
                     nav-classes)]

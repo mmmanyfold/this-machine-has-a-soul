@@ -37,19 +37,18 @@
 
 (defn- content-panel [panel-name]
   [rc/h-box
-   :class "content-panel w-100 h-100 mr3 mr4-ns mt5-ns pt3-ns"
+   :class "content-panel w-100 mr3 mr4-ns mt5-ns pt3-l"
    :children [[:div {:class "push w-0 w-25-l w-30-m"}]
-              [:div {:class "main w-100 w-75-l w-70-m ph4 pl3-l pt1"
+              [:div {:class "main w-100 w-75-l w-70-m ph3 ph4-ns pl3-l"
                      :style {:margin "1.25em 0"}}
                 [show-panel panel-name]]]])
 
 (defn main-panel []
   (let [active-panel (rf/subscribe [:active-panel])]
     (fn []
-      [:div
-       [rc/v-box
-        :class "w-100 h-100 mb0"
-        :children [[navigation]
-                   [side-panel]
-                   [content-panel @active-panel]]]
-       [footer]])))
+      [rc/v-box
+       :class "w-100 h-100 mb0"
+       :children [[navigation]
+                  [side-panel]
+                  [content-panel @active-panel]
+                  [footer]]])))

@@ -6,9 +6,15 @@ body {
   font-size: 1.2em;
   width: 100%;
 }
+@media screen and (max-width: 469px) {
+  body {
+    text-align: center;
+  }
+}
 h1 {
   color: #8e4f78;
-  margin-top: 0;
+  margin-top: 0.5em;
+  font-weight: 700;
 }
 .flexrow-wrap {
   display: -webkit-flex;
@@ -23,6 +29,7 @@ header {
 }
 header .nav-left .vote-link {
   display: none;
+  outline: none;
 }
 header .nav-right .vote-link {
   display: block;
@@ -237,7 +244,6 @@ a.vote-link {
   margin: 0 1%;
 }
 .mail {
-  float: right;
   border-color: #fcb733;
 }
 .sub-navigation-wrapper {
@@ -261,6 +267,33 @@ a.vote-link {
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
+@media screen and (max-width: 445px) {
+  .sub-navigation {
+    text-align: center;
+  }
+}
+@media screen and (min-width: 831px) {
+  .sub-navigation .divider {
+    display: none;
+  }
+}
+@media screen and (min-width: 446px) and (max-width: 830px) {
+  .sub-navigation ul,
+  .sub-navigation li {
+    display: inline-block;
+    margin: 0 0.5em;
+  }
+  .sub-navigation li {
+    margin-bottom: 0.4em;
+  }
+  .sub-navigation li.last {
+    display: block;
+    text-align: center;
+  }
+  .sub-navigation li.divider.last {
+    display: none;
+  }
+}
 #tags a,
 .sub-navigation a {
   cursor: pointer;
@@ -281,13 +314,6 @@ a.vote-link {
 #tags .divider,
 .sub-navigation .divider {
   color: black;
-  font-weight: bold;
-}
-@media screen and (min-width: 831px) {
-  #tags .divider,
-  .sub-navigation .divider {
-    display: none;
-  }
 }
 @media screen and (max-width: 830px) {
   #tags ul,
@@ -297,13 +323,12 @@ a.vote-link {
     display: inline-block;
     margin: 0 0.5em;
   }
-  #tags li.last,
-  .sub-navigation li.last {
-    display: block;
-    text-align: center;
+  #tags li,
+  .sub-navigation li {
+    margin-bottom: 0.4em;
   }
-  #tags li.divider.last,
-  .sub-navigation li.divider.last {
-    display: none;
-  }
+}
+.footer {
+  margin-top: auto;
+  margin-bottom: 2.5em;
 }

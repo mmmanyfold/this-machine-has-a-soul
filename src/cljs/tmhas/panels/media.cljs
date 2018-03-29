@@ -45,7 +45,7 @@
        [[rc/v-box
          :children
          [[media-post-panel posts]
-          [:div {:class "flexrow-wrap w-100 mt1 mb7"}
+          [:div {:class "flexrow-wrap w-100 mt1"}
            (doall
              (for [post @posts
                    :let [post-id (-> post :sys :id)

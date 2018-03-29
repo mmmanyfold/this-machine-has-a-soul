@@ -6,4 +6,4 @@
       [rc/v-box
        :children
        [[:h1 "Calendar of Events"]
-        [:p "COMING SOON"]]])
+        [:h2.ml4.mt0.i.b.tracked "Coming soon !"]]])

@@ -55,18 +55,18 @@
   [:div.sub-navigation
    [:ul.list.pl0
     [:li.tl [:a (assoc default-props :href "#about-tmhas-section") "About TMHAS"]]
-    [:li.divider "|"]
+    [:li.divider "/"]
     [:li.tl [:a (assoc default-props :href "#contact-section") "Contact"]]]])
 
 (defn people-section-nav []
   [:div.sub-navigation
    [:ul.list.pl0
     [:li.tl [:a (assoc default-props :href "#project-voyce-section") "Project VOYCE"]]
-    [:li.divider "|"]
+    [:li.divider "/"]
     [:li.tl [:a (assoc default-props :href "#project-belay-section") "Project Belay"]]
-    [:li.divider "|"]
+    [:li.divider "/"]
     [:li.tl [:a (assoc default-props :href "#the-artists-section") "The Artists"]]
-    [:li.divider.last "|"]
+    [:li.divider.last "/"]
     [:li.tl.last [:a (assoc default-props :href "#wcr-section") "Warm Cookies of the Revolution"]]]])
 
 (defn tags
@@ -77,7 +77,7 @@
      #(rf/dispatch [:get-contentful-data db-key query :media])
      :reagent-render
      (fn []
-       [:div.sub-navigation-wrapper.mt4
+       [:div.sub-navigation-wrapper.mt3.mt4-ns
         (case @active-panel?
           nil ;; default
           [:div "loading..."]

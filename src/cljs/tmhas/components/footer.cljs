@@ -3,8 +3,7 @@
             [re-frame.core :as rf]))
 
 (defn footer []
-  [:div {:class "bt bw1 mh3 mh4-ns pv3 ph1"
-         :style {:margin-top "-0.3em"}}
-   [:div {:on-click #(js/window.showMailingPopUp)}
-     [:span {:class "mail f3 bb bw1 pointer mt1 mb4"}
-        "Join Mailing List >>"]]])
+  [:div {:class "footer bt bw1 mh3 mh4-ns ph1 pv3 tr"}
+   [:span {:on-click #(js/window.showMailingPopUp)
+           :class "mail f3 bb bw1 pointer pb1"}
+      "Join Mailing List >>"]])
