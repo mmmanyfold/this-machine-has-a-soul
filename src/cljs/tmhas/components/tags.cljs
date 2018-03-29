@@ -1,5 +1,4 @@
 (ns tmhas.components.tags
-  (:require-macros [purnam.core :refer [!>]])
   (:require cljsjs.jquery
             [re-frame.core :as rf]
             [reagent.core :as reagent]))
@@ -27,8 +26,6 @@
 (def tags-&-meta (rf/subscribe [db-key]))
 
 (def active-panel? (rf/subscribe [:active-panel]))
-
-(def class (reagent/atom ""))
 
 (defn re-map
   "A la Processing: https://processing.org/reference/map_.html
@@ -109,12 +106,8 @@
                       ^{:key (gensym "-tag-item")}
                       [:li
                        [:span.tag
-                        [:a {:class @class
+                        [:a {:class (when (= t @(rf/subscribe [:filter-tag])) "active-tag")
                              :style {:font-size (str (* 7 (get r-freq t)) "em")}
-                             :on-click (fn []
-                                         (rf/dispatch [:set-filter-tag t])
-                                         (if (= @class "")
-                                           (reset! class "active-tag")
-                                           (reset! class "")))}
+                             :on-click #(rf/dispatch [:set-filter-tag t])}
                          (str "#" t)]]]))]))
              [:p "loading.."])])])}))
