@@ -7,23 +7,23 @@
   "{
 		personArtists {
 			name, image {
-				url
-			}, bio
+        url
+      }, bio
 		},
 		personProjectBelays {
-			name, image {
-				url
-			}, bio
+      name, image {
+        url
+      }, bio
 		},
 		personProjectVoyces {
-			name, image {
-				url
-			}, bio
+      name, image {
+        url
+      }, bio
 		},
 		personWcors {
-			name, image {
-				url
-			}, bio
+      name, image {
+        url
+      }, bio
 		}
 	}")
 
@@ -38,7 +38,8 @@
                 [rc/v-box
                  :align :end
                  :class "people-panel"
-                 :children [[:h1 {:class "w-100 w-75-ns ml4-ns bb bw1"}
+                 :children [[:h1 {:id "project-voyce-section"
+                                  :class "w-100 w-75-ns ml4-ns"}
                              "Project VOYCE"]
 
                             (for [datum personProjectVoyces]
@@ -46,21 +47,24 @@
                                  [person datum])
 
 
-                            [:h1 {:class "w-100 w-75-ns ml4-ns bb bw1"}
+                            [:h1 {:id "project-belay-section"
+                                  :class "w-100 w-75-ns ml4-ns"}
                              "Project Belay"]
 
                             (for [datum personProjectBelays]
                                  ^{:key (gensym "person-")}
                                  [person datum])
 
-                            [:h1 {:class "w-100 w-75-ns ml4-ns bb bw1"}
+                            [:h1 {:id "the-artists-section"
+                                  :class "w-100 w-75-ns ml4-ns"}
                              "The Artists"]
 
                             (for [datum personArtists]
                                  ^{:key (gensym "person-")}
                                  [person datum])
 
-                            [:h1 {:class "w-100 w-75-ns ml4-ns bb bw1"}
+                            [:h1 {:id "wcr-section"
+                                  :class "w-100 w-75-ns ml4-ns"}
                              "Warm Cookies of the Revolution"]
 
                             (for [datum personWcors]

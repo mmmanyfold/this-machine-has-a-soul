@@ -3,4 +3,5 @@
 (def default-db
   {:name "tmhas"
    :active-panel nil
-   :active-post-id nil})
+   :active-post-id nil
+   :filter-tag nil})

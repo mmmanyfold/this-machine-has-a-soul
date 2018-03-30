@@ -1,4 +1,4 @@
-(ns tmhas.panels.latest
+(ns tmhas.panels.media
   (:require [re-frame.core :as rf]
             [re-com.core :as rc]
             [tmhas.components.media-thumb :as media-thumb]
@@ -33,7 +33,9 @@
 		}
 	}")
 
-(defn latest-panel []
+(def filter-tag (rf/subscribe [:filter-tag]))
+
+(defn media-panel []
   (let [db-key :media-posts]                                 ;; 0. declare unique db-key
     (rf/reg-sub db-key #(db-key %))                          ;; 1. register subscriber db-key
     (rf/dispatch [:get-contentful-data db-key query :media]) ;; 2. retrieve contentful data & pass key for assoc in db
@@ -43,12 +45,16 @@
        [[rc/v-box
          :children
          [[media-post-panel posts]
-          [:h1 {:class "bb bw1"} "Latest Posts"]
-          [:div {:class "flexrow-wrap w-100 mv3"}
-           (for [post @posts
-                 :let [post-id (-> post :sys :id)
-                       type (-> post :sys :contentTypeId)]]
-                (case type
-                  "manyImagePost" ^{:key post-id}[media-thumb/image-gallery post-id post]
-                  "singleImage" ^{:key post-id}[media-thumb/single-image post-id post]
-                  "video" ^{:key post-id}[media-thumb/video post-id post]))]]]]])))
+          [:div {:class "flexrow-wrap w-100 mt1"}
+           (doall
+             (for [post @posts
+                   :let [post-id (-> post :sys :id)
+                         tags (set (-> post :tags))
+                         type (-> post :sys :contentTypeId)
+                         index (.indexOf @posts post)]
+                   :when (or (nil? @filter-tag)
+                             (contains? tags @filter-tag))]
+               (case type
+                 "manyImagePost" ^{:key post-id}[media-thumb/image-gallery post-id post index]
+                 "singleImage" ^{:key post-id}[media-thumb/single-image post-id post index]
+                 "video" ^{:key post-id}[media-thumb/video post-id post index])))]]]]])))

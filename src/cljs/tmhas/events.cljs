@@ -8,25 +8,38 @@
 
 (env/def API_KEY "EVENTUALLY")
 
+(rf/reg-event-db
+  :initialize-db
+  (fn [_ _]
+    db/default-db))
+
+(rf/reg-event-db
+  :set-filter-tag
+  (fn [db [_ tag reset?]]
+    (if (or (= reset? true) (= (:filter-tag db) tag))
+      ;; deselect if already selected
+      (assoc db :filter-tag nil)
+      (assoc db :filter-tag tag))))
+
 (rf/reg-event-fx
   :get-contentful-data
   (fn [{db :db} [_ db-key query space]]
-      (when-not (db-key db)
-        (let [endpoint (if config/debug? "http://localhost:4000/graphql/"
-                                         "http://45.55.175.107:4000/graphql/")]
-             {:db         db
-              :http-xhrio {:method          :get
-                           :format          (ajax/json-request-format)
-                           :params          {:query query}
-                           :uri             (str endpoint (name space))
-                           :response-format (ajax/json-response-format {:keywords? true})
-                           :on-failure      [:get-contentful-data-failed]
-                           :on-success      [:get-contentful-data-success db-key]}}))))
+    (when-not (db-key db)
+      (let [endpoint (if config/debug? "http://localhost:4000/graphql/"
+                                       "http://45.55.175.107:4000/graphql/")]
+        {:db         db
+         :http-xhrio {:method          :get
+                      :format          (ajax/json-request-format)
+                      :params          {:query query}
+                      :uri             (str endpoint (name space))
+                      :response-format (ajax/json-response-format {:keywords? true})
+                      :on-failure      [:get-contentful-data-failed]
+                      :on-success      [:get-contentful-data-success db-key]}}))))
 (rf/reg-event-db
   :get-contentful-data-failed
   (fn [db _]
-      (js/console.error ":get-contentful-data event failed, is the graph server running ?")
-      db))
+    (js/console.error ":get-contentful-data event failed, is the GraphQL server running ?")
+    db))
 
 (rf/reg-event-db
   :get-contentful-data-success
@@ -38,20 +51,15 @@
       (assoc db db-key data))))
 
 (rf/reg-event-db
- :initialize-db
- (fn  [_ _]
-   db/default-db))
+  :set-active-panel
+  (fn [db [_ active-panel & [post-id]]]
+    (if post-id
+      (assoc db :active-panel active-panel
+                :active-post-id post-id
+                :show-media-post true)
+      (assoc db :active-panel active-panel))))
 
 (rf/reg-event-db
- :set-active-panel
- (fn [db [_ active-panel & [post-id]]]
-   (if post-id
-     (assoc db :active-panel active-panel
-               :active-post-id post-id
-               :show-media-post true)
-     (assoc db :active-panel active-panel))))
-
-(rf/reg-event-db
- :set-show-media-post
- (fn [db [_ state]]
-   (assoc db :show-media-post state)))
+  :set-show-media-post
+  (fn [db [_ state]]
+    (assoc db :show-media-post state)))
