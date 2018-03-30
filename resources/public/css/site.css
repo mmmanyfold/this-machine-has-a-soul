@@ -258,6 +258,18 @@ header a.vote-link {
 }
 #tags span.tag {
   margin: 0 5px;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari 3.1+ */
+  -moz-user-select: none;
+  /* Firefox 2+ */
+  -ms-user-select: none;
+  /* IE 10+ */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  user-select: none;
+  /* Standard syntax */
 }
 #tags a {
   color: #739f3e;
