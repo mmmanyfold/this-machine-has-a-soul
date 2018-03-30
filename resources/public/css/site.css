@@ -90,6 +90,7 @@ header a.vote-link {
 @media screen and (max-width: 830px) {
   .content-panel {
     margin-top: 0;
+    padding-top: 0;
   }
   .content-panel .main {
     width: 100%;
