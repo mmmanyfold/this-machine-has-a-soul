@@ -58,7 +58,7 @@
                    (when-let [top (some-> (js/$ hash) (.offset) .-top)]
                      (reset! active-section hash)
                      (js/setTimeout #(set! js/window.location.hash prev-hash) 500)
-                     (scroll-top (- top 100))))))})
+                     (scroll-top (- top 95))))))})
 
 (defn about-section-nav []
   [:div.sub-navigation
