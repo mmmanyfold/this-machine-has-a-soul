@@ -38,12 +38,5 @@
   (defroute "/404" []
             (rf/dispatch [:set-active-panel :404]))
 
-  ;; TODO: fix this
-  ;(defroute #"/[a-z]+" []
-  ;          ;; section nav links mutate the url so we need this catch all for when a user returns to the site
-  ;          ;; after clicking on an section navigation link such as #contact-section
-  ;          (rf/dispatch [:set-active-panel :latest-panel]))
-
-
   ;; --------------------
   (hook-browser-navigation!))
