@@ -12,7 +12,7 @@
 
 (defn side-panel []
   [rc/v-box
-   :class "side-panel fixed fl w-100 w-25-l w-30-m ph3 ph4-ns pb0-m pr0-m pt3 mt4 mt5-ns"
+   :class "side-panel fixed fl w-100 w-25-l w-30-m ph3 ph4-ns pb0-m pt3 mt4 mt5-ns"
    :children [[rc/v-box
                :class "w-100 tc mt4"
                :align :center
@@ -39,7 +39,7 @@
   [rc/h-box
    :class "content-panel w-100 mr3 mr4-ns mt5-ns pt3-l"
    :children [[:div {:class "push w-0 w-25-l w-30-m"}]
-              [:div {:class "main w-100 w-75-l w-70-m ph3 ph4-ns pl3-l"
+              [:div {:class "main w-100 w-75-l w-70-m ph3 ph4-ns"
                      :style {:margin "1.25em 0"}}
                 [show-panel panel-name]]]])
 

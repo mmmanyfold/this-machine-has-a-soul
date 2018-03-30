@@ -99,6 +99,11 @@ header a.vote-link {
     display: none;
   }
 }
+@media screen and (min-width: 831px) {
+  .content-panel .main {
+    padding-left: 0;
+  }
+}
 @media screen and (min-width: 1199px) {
   .side-panel h1 {
     font-size: 0.95em;
