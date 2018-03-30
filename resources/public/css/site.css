@@ -11,6 +11,12 @@ body {
     text-align: center;
   }
 }
+a,
+a:focus,
+a:hover,
+a:active {
+  outline: 0;
+}
 h1 {
   color: #8e4f78;
   margin-top: 0.5em;
@@ -32,7 +38,6 @@ header .nav-wrapper {
 }
 header .nav-left a.vote-link {
   display: none;
-  outline: none;
 }
 header .nav-right a.vote-link {
   display: block;
