@@ -7,7 +7,7 @@
             cljsjs.moment))
 
 (defn metadata [id postTitle postText postDate tags]
-  [:div.w-50.pa3
+  [:div.w-100.w-50-l.pa3
    [:h2 {:class "mb2 mh1 mt1 f3"}
     [:a {:href (str "/#/post/" id)}
       (str postTitle " →")]]
@@ -78,7 +78,8 @@
                 video-src (embed-video videoUrl)]
                [rc/h-box
                 :class "media-thumb w-100"
-                :children [[:div.video-outer-wrapper.w-50
+                :style {:flex-flow "row wrap"}
+                :children [[:div.video-outer-wrapper.w-100.w-50-l
                             [:div.video-wrapper
                              [:iframe {:src video-src
                                        :frameBorder "0"
