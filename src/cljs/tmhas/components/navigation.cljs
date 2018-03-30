@@ -43,7 +43,7 @@
                                   :body          "Coming Soon"]]]
                    [:div {:class "nav-right flex items-center"}
                     [:div {:class "subtitle f7 tr mr3"} "Participatory Budgeting"
-                     [:br] "Denver, CO"]
+                     [:br] "in Denver, CO"]
                     [rc/popover-anchor-wrapper
                        :showing? showing?b
                        :position :below-center
