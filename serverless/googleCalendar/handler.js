@@ -2,7 +2,6 @@ import { google } from 'googleapis';
 
 // overwrite env var path
 process.env['GOOGLE_APPLICATION_CREDENTIALS'] = process.cwd() + '/creds.json';
-console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 
 const calendar = google.calendar('v3');
 const scopes = ['https://www.googleapis.com/auth/calendar.readonly'];
