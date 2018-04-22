@@ -20,3 +20,8 @@
   :filter-tag
   (fn [db _]
     (:filter-tag db)))
+
+(rf/reg-sub
+  :calendar-events
+  (fn [db _]
+    (:calendar-events db)))

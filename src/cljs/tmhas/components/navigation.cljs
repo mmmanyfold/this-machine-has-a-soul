@@ -31,7 +31,7 @@
                     [nav-link "media" "/" :media-panel]
                     [nav-link "about" "/about" :about-panel]
                     [nav-link "people" "/people" :people-panel]
-                    [nav-link "events" "/events" :events-panel]
+                    [nav-link "events" "/events" :calendar-panel]
                     [rc/popover-anchor-wrapper
                        :showing? showing?a
                        :position :below-center

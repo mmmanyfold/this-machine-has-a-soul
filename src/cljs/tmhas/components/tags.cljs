@@ -94,7 +94,7 @@
           [about-section-nav]
           :people-panel
           [people-section-nav]
-          :events-panel
+          :calendar-panel
           [:div]
           :media-panel
           [:div#tags

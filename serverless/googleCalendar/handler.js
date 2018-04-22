@@ -23,7 +23,7 @@ const fetchEventList = async () => {
             project,
             auth,
             calendarId,
-            timeMin: (new Date()).toISOString(),
+            timeMin: '2018-04-20T14:37:45-06:00',
             showDeleted: false,
             singleEvents: true,
             // maxResults: 25,
@@ -45,6 +45,9 @@ const main = async () => {
 
 export const events = async (event, context, callback) =>
     callback(null, {
+        headers: {
+            "Access-Control-Allow-Origin" : "*" // Required for CORS support to work
+        },
         statusCode: 200,
         body: JSON.stringify(await main()),
     });

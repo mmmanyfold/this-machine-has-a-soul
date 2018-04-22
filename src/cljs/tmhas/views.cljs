@@ -4,7 +4,7 @@
             [tmhas.panels.media :refer [media-panel]]
             [tmhas.panels.about :refer [about-panel]]
             [tmhas.panels.people :refer [people-panel]]
-            [tmhas.panels.events :refer [events-panel]]
+            [tmhas.panels.calendar :refer [calendar-panel]]
             [tmhas.components.tags :refer [tags]]
             [tmhas.components.navigation :refer [navigation]]
             [tmhas.components.footer :refer [footer]]))
@@ -12,9 +12,9 @@
 
 (defn side-panel []
   [rc/v-box
-   :class "side-panel fixed fl w-100 w-25-l w-30-m ph3 ph4-ns pb0-m pt3 mt5"
+   :class "side-panel fixed fl w-100 w-25-l w-30-m ph3 ph4-ns pb0-m pt3-ns mt5"
    :children [[rc/v-box
-               :class "w-100 tc mt4"
+               :class "w-100 tc mt3 mt4-ns"
                :align :center
                :children [[:a {:href "/#"
                                ;; reset tag filter
@@ -30,7 +30,7 @@
         :media-panel [media-panel]
         :about-panel [about-panel]
         :people-panel [people-panel]
-        :events-panel [events-panel]
+        :calendar-panel [calendar-panel]
         :404 [:div "404"]
         [:div]))
 

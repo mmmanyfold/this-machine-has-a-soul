@@ -19,7 +19,7 @@ a:active {
 }
 h1 {
   color: #8e4f78;
-  margin-top: 0.5em;
+  margin-top: 0.1em;
   font-weight: 700;
 }
 .flexrow-wrap {
@@ -49,7 +49,7 @@ header a.vote-link {
   text-decoration: none;
 }
 header a.nav-link {
-  color: black;
+  color: inherit;
 }
 header a.nav-link:hover,
 header a.nav-link.active {
@@ -102,7 +102,7 @@ header a.vote-link {
 }
 @media screen and (min-width: 831px) {
   .content-panel .main {
-    padding-left: 0;
+    padding-left: 1em;
   }
 }
 @media screen and (min-width: 1199px) {
@@ -338,8 +338,98 @@ header a.vote-link {
     margin-bottom: 0.4em;
   }
 }
+.event-wrapper {
+  border-color: #fcb733;
+}
+@media screen and (max-width: 600px) {
+  .event-wrapper {
+    text-align: left;
+  }
+}
+.event-wrapper .event-heading h2 {
+  font-size: 1.6em;
+}
+@media screen and (max-width: 600px) {
+  .event-wrapper .event-heading h2 {
+    font-size: 1.4em;
+  }
+}
+.event-wrapper .event-heading h3 {
+  color: #959991;
+}
+.event-wrapper .event-heading .fa-calendar-o {
+  font-size: 5em;
+}
+.event-wrapper .event-heading .calendar-date {
+  top: 1.73em;
+  line-height: 1.36em;
+}
 .footer {
   margin-top: auto;
   margin-bottom: 2.5em;
   border-color: #fcb733;
+}
+* {
+  min-height: auto;
+  min-width: auto;
+}
+/* loading */
+.loading-component {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 300px !important;
+}
+.loading-component .loading-dots {
+  position: relative;
+  height: 0;
+  width: 0;
+}
+.loading-component .loading-dots span {
+  display: block;
+  height: 20px;
+  width: 20px;
+  background: #739f3e;
+  position: absolute;
+  border-radius: 50%;
+}
+.loading-component .loading-dots span:nth-of-type(1) {
+  left: -40px;
+  animation: loader1Anim 1.5s ease-out;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: forwards;
+}
+.loading-component .loading-dots span:nth-of-type(2) {
+  left: -10px;
+  animation: loader1Anim 1.5s ease;
+  animation-delay: .2s;
+  animation-iteration-count: infinite;
+  animation-direction: forwards;
+}
+.loading-component .loading-dots span:nth-of-type(3) {
+  left: 20px;
+  animation: loader1Anim 1.5s ease;
+  animation-delay: .4s;
+  animation-iteration-count: infinite;
+  animation-direction: forwards;
+}
+@keyframes loader1Anim {
+  from,
+  to {
+    transform: scale3d(1.15, 0.8, 1);
+  }
+  42% {
+    transform: translateY(-45px);
+  }
+  88% {
+    transform: scale3d(1, 1, 1);
+  }
+  95% {
+    transform: translateY(0) scale3d(1.05, 0.85, 1);
+  }
+  98% {
+    transform: scale3d(1.15, 0.8, 1);
+  }
 }
