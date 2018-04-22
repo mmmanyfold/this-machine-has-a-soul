@@ -45,6 +45,9 @@ const main = async () => {
 
 export const events = async (event, context, callback) =>
     callback(null, {
+        headers: {
+            "Access-Control-Allow-Origin" : "*" // Required for CORS support to work
+        },
         statusCode: 200,
         body: JSON.stringify(await main()),
     });
