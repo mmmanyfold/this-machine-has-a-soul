@@ -12,9 +12,9 @@
 
 (defn side-panel []
   [rc/v-box
-   :class "side-panel fixed fl w-100 w-25-l w-30-m ph3 ph4-ns pb0-m pt3 mt5"
+   :class "side-panel fixed fl w-100 w-25-l w-30-m ph3 ph4-ns pb0-m pt3-ns mt5"
    :children [[rc/v-box
-               :class "w-100 tc mt4"
+               :class "w-100 tc mt3 mt4-ns"
                :align :center
                :children [[:a {:href "/#"
                                ;; reset tag filter

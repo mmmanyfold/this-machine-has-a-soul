@@ -11,7 +11,7 @@
                 end]} event
         start-date (:dateTime start)
         end-date (:dateTime end)]
-    [:div.event-wrapper.pl3-l.mt1.mb3
+    [:div.event-wrapper.mt0.mb3.pt4.pb2.bt
      [:div.event-heading.flex.flex-row
       [:div.event-date.relative.tc
        [:i.fa.fa-calendar-o]
@@ -19,7 +19,7 @@
         [:p.f5.mb0 (.format (js/moment start-date) "MMM")]
         [:p.f2 (.format (js/moment start-date) "DD")]]]
       [:div.ml3
-       [:h2.mt0.b summary]
+       [:h2.mt1.b summary]
        [:h3.f4.mt3
         (str (.format (js/moment start-date) "h:mm a")
              " - "

@@ -23,7 +23,7 @@ const fetchEventList = async () => {
             project,
             auth,
             calendarId,
-            timeMin: (new Date()).toISOString(),
+            timeMin: '2018-04-20T14:37:45-06:00',
             showDeleted: false,
             singleEvents: true,
             // maxResults: 25,
