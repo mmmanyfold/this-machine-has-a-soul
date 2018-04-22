@@ -32,6 +32,7 @@
                       :response-format (ajax/json-response-format {:keywords? true})
                       :on-failure      [:get-contentful-data-failed]
                       :on-success      [:get-contentful-data-success db-key]}}))))
+
 (rf/reg-event-db
   :get-contentful-data-failed
   (fn [db _]
@@ -46,6 +47,30 @@
             sorted-posts (sort-by :postDate (comp - compare) posts)]
         (assoc db db-key sorted-posts))
       (assoc db db-key data))))
+
+(rf/reg-event-fx
+  :get-calendar-data
+  (fn [{db :db} _]
+    (when-not (:calendar-events db)
+      (let [endpoint "https://0qxkdmiwa2.execute-api.us-east-1.amazonaws.com/dev/events"]
+        {:db         db
+         :http-xhrio {:method          :get
+                      :format          (ajax/json-request-format)
+                      :uri             endpoint
+                      :response-format (ajax/json-response-format {:keywords? true})
+                      :on-failure      [:get-calendar-data-failed]
+                      :on-success      [:get-calendar-data-success]}}))))
+
+(rf/reg-event-db
+  :get-calendar-data-failed
+  (fn [db _]
+    (js/console.error ":get-calendar-data event failed")
+    db))
+
+(rf/reg-event-db
+  :get-calendar-data-success
+  (fn [db [_ data]]
+    (assoc db :calendar-events data)))
 
 (rf/reg-event-db
   :set-active-panel

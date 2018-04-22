@@ -19,7 +19,7 @@ a:active {
 }
 h1 {
   color: #8e4f78;
-  margin-top: 0.5em;
+  margin-top: 0.1em;
   font-weight: 700;
 }
 .flexrow-wrap {
@@ -338,21 +338,32 @@ header a.vote-link {
     margin-bottom: 0.4em;
   }
 }
-.event-wrapper .event-date .fa-calendar-o {
+@media screen and (max-width: 600px) {
+  .event-wrapper {
+    text-align: left;
+  }
+}
+@media screen and (max-width: 600px) {
+  .event-wrapper .event-heading h2 {
+    font-size: 24px;
+  }
+}
+.event-wrapper .event-heading h3 {
+  color: #959991;
+}
+.event-wrapper .event-heading .fa-calendar-o {
   font-size: 5em;
 }
-.event-wrapper .event-date .calendar-date {
+.event-wrapper .event-heading .calendar-date {
   top: 1.73em;
   line-height: 1.36em;
-}
-.event-wrapper .event-info {
-  flex: 1;
-}
-.event-wrapper .event-info h3 {
-  color: #959991;
 }
 .footer {
   margin-top: auto;
   margin-bottom: 2.5em;
   border-color: #fcb733;
+}
+* {
+  min-height: auto;
+  min-width: auto;
 }

@@ -23,7 +23,7 @@ a, a:focus, a:hover, a:active {
 
 h1 {
   color: @purple;
-  margin-top: 0.5em;
+  margin-top: 0.1em;
   font-weight: 700;
 }
 
@@ -332,7 +332,16 @@ header {
 }
 
 .event-wrapper {
-  .event-date {
+  @media screen and (max-width: 600px) {
+    text-align: left;
+  }
+  .event-heading {
+    h2 {
+      @media screen and (max-width: 600px) {
+        font-size: 24px;
+      }
+    }
+    h3 { color: @gray }
     .fa-calendar-o {
       font-size: 5em;
     }
@@ -341,14 +350,15 @@ header {
       line-height: 1.36em;
     }
   }
-  .event-info {
-    flex: 1;
-    h3 { color: @gray }
-  }
 }
 
 .footer {
   margin-top: auto;
   margin-bottom: 2.5em;
   border-color: @yellow;
+}
+
+* {
+  min-height: auto;
+  min-width: auto;
 }
