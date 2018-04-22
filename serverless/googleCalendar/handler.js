@@ -27,7 +27,7 @@ const fetchEventList = async () => {
             timeMin: (new Date()).toISOString(),
             showDeleted: false,
             singleEvents: true,
-            maxResults: 250,
+            // maxResults: 25,
             orderBy: 'startTime',
         });
     } catch (e) {
