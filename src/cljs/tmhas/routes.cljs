@@ -33,7 +33,7 @@
             (rf/dispatch [:set-active-panel :people-panel]))
 
   (defroute "/events" []
-            (rf/dispatch [:set-active-panel :events-panel]))
+            (rf/dispatch [:set-active-panel :calendar-panel]))
 
   (defroute "/404" []
             (rf/dispatch [:set-active-panel :404]))

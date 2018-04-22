@@ -1,12 +1,9 @@
 (ns tmhas.events
-  (:require-macros [adzerk.env :as env])
   (:require [re-frame.core :as rf]
             [ajax.core :as ajax :refer [GET]]
             [day8.re-frame.http-fx]
             [tmhas.db :as db]
             [tmhas.config :as config]))
-
-(env/def API_KEY "EVENTUALLY")
 
 (rf/reg-event-db
   :initialize-db

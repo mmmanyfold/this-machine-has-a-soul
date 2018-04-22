@@ -49,7 +49,7 @@ header a.vote-link {
   text-decoration: none;
 }
 header a.nav-link {
-  color: black;
+  color: inherit;
 }
 header a.nav-link:hover,
 header a.nav-link.active {
@@ -337,6 +337,19 @@ header a.vote-link {
   .sub-navigation li {
     margin-bottom: 0.4em;
   }
+}
+.event-wrapper .event-date .fa-calendar-o {
+  font-size: 5em;
+}
+.event-wrapper .event-date .calendar-date {
+  top: 1.73em;
+  line-height: 1.36em;
+}
+.event-wrapper .event-info {
+  flex: 1;
+}
+.event-wrapper .event-info h3 {
+  color: #959991;
 }
 .footer {
   margin-top: auto;

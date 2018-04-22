@@ -11,7 +11,7 @@
                               :background-size "cover"}}]]]
          [rc/v-box
           :class "w-100 w-75-ns pl4-ns"
-          :children [[:h2 {:class "mt0 f2 f3-ns"}
+          :children [[:h2 {:class "mt0 f2 f3-ns b"}
                          (:name data)]
                      [:div {:class "markdown"
                             "dangerouslySetInnerHTML"

@@ -4,7 +4,7 @@
             [tmhas.panels.media :refer [media-panel]]
             [tmhas.panels.about :refer [about-panel]]
             [tmhas.panels.people :refer [people-panel]]
-            [tmhas.panels.events :refer [events-panel]]
+            [tmhas.panels.calendar :refer [calendar-panel]]
             [tmhas.components.tags :refer [tags]]
             [tmhas.components.navigation :refer [navigation]]
             [tmhas.components.footer :refer [footer]]))
@@ -30,7 +30,7 @@
         :media-panel [media-panel]
         :about-panel [about-panel]
         :people-panel [people-panel]
-        :events-panel [events-panel]
+        :calendar-panel [calendar-panel]
         :404 [:div "404"]
         [:div]))
 
