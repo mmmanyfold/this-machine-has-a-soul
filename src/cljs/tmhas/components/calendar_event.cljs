@@ -1,6 +1,7 @@
 (ns tmhas.components.calendar-event
   (:require [clojure.string :as string]
-            [cljsjs.moment]))
+            [cljsjs.moment]
+            [tmhas.components.common :refer [showdown]]))
 
 (defn render-event [event]
   (let [{:keys [summary
@@ -27,5 +28,6 @@
         [:a {:href (str "https://www.google.com/maps/search/" location)
              :target "_blank"}
          (first (string/split location #","))]]]]
-     [:div.event-info.mt2
-      [:p description]]]))
+     [:div {:class "event-info mt2"
+            "dangerouslySetInnerHTML"
+             #js{:__html (.makeHtml showdown description)}}]]))
