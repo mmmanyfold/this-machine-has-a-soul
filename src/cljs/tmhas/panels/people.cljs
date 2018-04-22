@@ -1,7 +1,8 @@
 (ns tmhas.panels.people
   (:require [re-com.core :as rc]
             [re-frame.core :as rf]
-            [tmhas.components.person :refer [person]]))
+            [tmhas.components.person :refer [person]]
+            [tmhas.components.loading :refer [loading-component]]))
 
 (def query
   "{
@@ -28,45 +29,45 @@
 	}")
 
 (defn people-panel []
-      (let [db-key :people-panel]                              ;; 0. declare unique db-key
-           (rf/reg-sub db-key #(db-key %))                       ;; 1. register subscriber db-key
-           (rf/dispatch [:get-contentful-data db-key query :people]) ;; 2. retrieve contentful data & pass key for assoc in db
+  (let [db-key :people-panel]                              ;; 0. declare unique db-key
+    (rf/reg-sub db-key #(db-key %))                       ;; 1. register subscriber db-key
+    (rf/dispatch [:get-contentful-data db-key query :people]) ;; 2. retrieve contentful data & pass key for assoc in db
 
-           (let [{:keys [personArtists personProjectBelays
-                         personProjectVoyces personWcors]} @(rf/subscribe [db-key])]
+    (if-let [{:keys [personArtists personProjectBelays
+                     personProjectVoyces personWcors]} @(rf/subscribe [db-key])]
+      [rc/v-box
+       :align :end
+       :class "people-panel"
+       :children [[:h1 {:id "project-voyce-section"
+                        :class "w-100 w-75-ns ml4-ns"}
+                   "Project VOYCE"]
 
-                [rc/v-box
-                 :align :end
-                 :class "people-panel"
-                 :children [[:h1 {:id "project-voyce-section"
-                                  :class "w-100 w-75-ns ml4-ns"}
-                             "Project VOYCE"]
-
-                            (for [datum personProjectVoyces]
-                                 ^{:key (gensym "person-")}
-                                 [person datum])
+                  (for [datum personProjectVoyces]
+                       ^{:key (gensym "person-")}
+                       [person datum])
 
 
-                            [:h1 {:id "project-belay-section"
-                                  :class "w-100 w-75-ns ml4-ns"}
-                             "Project Belay"]
+                  [:h1 {:id "project-belay-section"
+                        :class "w-100 w-75-ns ml4-ns"}
+                   "Project Belay"]
 
-                            (for [datum personProjectBelays]
-                                 ^{:key (gensym "person-")}
-                                 [person datum])
+                  (for [datum personProjectBelays]
+                       ^{:key (gensym "person-")}
+                       [person datum])
 
-                            [:h1 {:id "the-artists-section"
-                                  :class "w-100 w-75-ns ml4-ns"}
-                             "The Artists"]
+                  [:h1 {:id "the-artists-section"
+                        :class "w-100 w-75-ns ml4-ns"}
+                   "The Artists"]
 
-                            (for [datum personArtists]
-                                 ^{:key (gensym "person-")}
-                                 [person datum])
+                  (for [datum personArtists]
+                       ^{:key (gensym "person-")}
+                       [person datum])
 
-                            [:h1 {:id "wcr-section"
-                                  :class "w-100 w-75-ns ml4-ns"}
-                             "Warm Cookies of the Revolution"]
+                  [:h1 {:id "wcr-section"
+                        :class "w-100 w-75-ns ml4-ns"}
+                   "Warm Cookies of the Revolution"]
 
-                            (for [datum personWcors]
-                                 ^{:key (gensym "person-")}
-                                 [person datum])]])))
+                  (for [datum personWcors]
+                       ^{:key (gensym "person-")}
+                       [person datum])]]
+      [loading-component])))
