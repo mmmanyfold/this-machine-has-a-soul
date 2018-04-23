@@ -25,7 +25,7 @@
            (for [event upcoming-events]
              ^{:key (gensym "ue-")}
              [render-event event])]]
-         [:h1 "There are no upcoming events at this time."])
+         [:h1.i "There are no upcoming events at this time."])
        (when (seq past-events)
          [rc/v-box
           :children
