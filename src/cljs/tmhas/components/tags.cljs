@@ -114,7 +114,7 @@
                  ^{:key (gensym "-tag-list")}
                  [:ul.list.pl0
                   (doall
-                    (for [t tag-set]
+                    (for [t (sort tag-set)]
                       ^{:key (gensym "-tag-item")}
                       [:li
                        [:span.tag
