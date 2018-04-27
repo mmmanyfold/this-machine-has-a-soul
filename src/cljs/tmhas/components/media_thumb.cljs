@@ -79,7 +79,7 @@
                [rc/h-box
                 :class "media-thumb w-100"
                 :style {:flex-flow "row wrap"}
-                :children [[:div.video-outer-wrapper.w-100.w-50-l
+                :children [[:div.w-100.w-50-l
                             [:div.video-wrapper
                              [:iframe {:src video-src
                                        :frameBorder "0"
