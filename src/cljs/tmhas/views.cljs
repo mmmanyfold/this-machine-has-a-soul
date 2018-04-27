@@ -5,6 +5,7 @@
             [tmhas.panels.about :refer [about-panel]]
             [tmhas.panels.people :refer [people-panel]]
             [tmhas.panels.calendar :refer [calendar-panel]]
+            [tmhas.panels.submit-ideas :refer [submit-ideas-panel]]
             [tmhas.components.tags :refer [tags]]
             [tmhas.components.navigation :refer [navigation]]
             [tmhas.components.footer :refer [footer]]))
@@ -31,6 +32,7 @@
         :about-panel [about-panel]
         :people-panel [people-panel]
         :calendar-panel [calendar-panel]
+        :submit-ideas-panel [submit-ideas-panel]
         :404 [:div "404"]
         [:div]))
 
