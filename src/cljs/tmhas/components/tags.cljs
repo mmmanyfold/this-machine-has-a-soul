@@ -96,6 +96,8 @@
           [people-section-nav]
           :calendar-panel
           [:div]
+          :submit-ideas-panel
+          [:div]
           :media-panel
           [:div#tags
            [:h5 {:class "fw7 tracked"} "Filter Media:"]
