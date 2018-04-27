@@ -32,9 +32,11 @@ h1 {
 }
 header {
   z-index: 20;
+  /* only if call for ideas is present */
 }
 header .nav-wrapper {
-  border-color: #fcb733;
+  /* only if call for ideas is present */
+  border: none;
 }
 header .nav-left a.vote-link {
   display: none;
@@ -59,6 +61,16 @@ header a.vote-link {
   opacity: 0.5;
   color: white;
   background-color: #739f3e;
+}
+header .call-for-ideas {
+  color: white;
+  text-decoration: none;
+}
+header .call-for-ideas div {
+  background-color: #fcb733;
+}
+header .call-for-ideas div p {
+  margin-bottom: 0.14rem;
 }
 @media screen and (min-width: 1199px) {
   header {
@@ -87,6 +99,10 @@ header a.vote-link {
     font-size: 0.8rem;
   }
 }
+.content-panel {
+  /* only if call for ideas is present */
+  padding-top: 2.3em;
+}
 @media screen and (max-width: 830px) {
   .content-panel {
     margin-top: 0;
@@ -105,6 +121,10 @@ header a.vote-link {
     padding-left: 1em;
   }
 }
+.side-panel {
+  /* only if call for ideas is present */
+  padding-top: 2.3em;
+}
 @media screen and (min-width: 1199px) {
   .side-panel h1 {
     font-size: 0.95em;
@@ -112,6 +132,8 @@ header a.vote-link {
 }
 @media screen and (max-width: 830px) {
   .side-panel {
+    /* only if call for ideas is present */
+    padding-top: 1.5em;
     position: relative;
     width: 100%;
   }
