@@ -38,7 +38,8 @@
     <script type="text/javascript">
       function showMailingPopUp() {
         require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us5.list-manage.com","uuid":"9c30707ed95b6acd1acd82045","lid":"8e05321d1b"}) })
-        document.cookie = "MCPopupClosed=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie = 'MCPopupClosed=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+        document.cookie = 'MCPopupSubscribed=;path=/;expires=Thu, 01 Jan 1970 00:00:00 UTC;';
       };
       window.showMailingPopUp = showMailingPopUp
     </script>
