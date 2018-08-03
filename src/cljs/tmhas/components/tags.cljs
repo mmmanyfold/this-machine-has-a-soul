@@ -70,13 +70,17 @@
 (defn people-section-nav []
   [:div.sub-navigation
    [:ul.list.pl0
+    ;[:li.tl [:a (default-props "#auraria-section") "Auraria PB Initiative"]]
+    ;[:li.divider "/"]
     [:li.tl [:a (default-props "#project-voyce-section") "Project VOYCE"]]
     [:li.divider "/"]
     [:li.tl [:a (default-props "#project-belay-section") "Project Belay"]]
     [:li.divider "/"]
     [:li.tl [:a (default-props "#the-artists-section") "The Artists"]]
+    [:li.divider "/"]
+    [:li.tl [:a (default-props "#wcr-section") "Warm Cookies of the Revolution"]]
     [:li.divider.last "/"]
-    [:li.tl.last [:a (default-props "#wcr-section") "Warm Cookies of the Revolution"]]]])
+    [:li.tl.last [:a (default-props "#evaluators-section") "Evaluators"]]]])
 
 (defn tags
   "multi purpose tag filter component"
