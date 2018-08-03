@@ -97,6 +97,22 @@ header {
   }
 }
 
+.header-image {
+  height: 350px;
+  background-image: url("../img/installation.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  @media screen and (max-width: 593px) {
+    height: 250px;
+  }
+  @media screen and (max-width: 417px) {
+    height: 200px;
+  }
+  @media screen and (max-width: 341px) {
+    height: 150px;
+  }
+}
+
 .content-panel {
   /* only if call for ideas is present */
   padding-top: 2.3em;
@@ -143,7 +159,7 @@ header {
 }
 
 .media-thumb {
-  border: 1px solid @yellow;
+  border: 2px solid @yellow;
   border-radius: 0 3px 3px 0;
   margin-bottom: 1.5em;
   .gallery-icon {
@@ -375,6 +391,7 @@ header {
   margin-top: auto;
   margin-bottom: 2.5em;
   border-color: @yellow;
+  border-width: 3px;
 }
 
 * {
