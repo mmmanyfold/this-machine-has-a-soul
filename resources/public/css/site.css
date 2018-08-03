@@ -100,7 +100,7 @@ header .call-for-ideas div p {
   }
 }
 .header-image {
-  height: 350px;
+  min-height: 350px;
   background-image: url("../img/installation_small.png");
   background-size: 100%;
   background-repeat: no-repeat;
@@ -112,17 +112,17 @@ header .call-for-ideas div p {
 }
 @media screen and (max-width: 593px) {
   .header-image {
-    height: 250px;
+    min-height: 250px;
   }
 }
 @media screen and (max-width: 417px) {
   .header-image {
-    height: 200px;
+    min-height: 200px;
   }
 }
 @media screen and (max-width: 341px) {
   .header-image {
-    height: 150px;
+    min-height: 150px;
   }
 }
 .content-panel {
