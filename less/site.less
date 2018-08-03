@@ -99,9 +99,12 @@ header {
 
 .header-image {
   height: 350px;
-  background-image: url("../img/installation.png");
+  background-image: url("../img/installation_small.png");
   background-size: 100%;
   background-repeat: no-repeat;
+  @media screen and (min-width: 601px) {
+    background-image: url("../img/installation.png");
+  }
   @media screen and (max-width: 593px) {
     height: 250px;
   }
