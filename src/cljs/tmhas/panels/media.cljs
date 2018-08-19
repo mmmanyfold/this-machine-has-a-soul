@@ -66,7 +66,8 @@
              [:br] "(Live Spanish interpretation available as well on Saturday, August 18 from 2-7pm.)"]
             [:p.b "Opening reception on August 16th with music from Molina Speaks, Ill Se7en, and Roots, Rice & Beans!"]]]
           [media-post-panel posts]
-          [:div {:class "flexrow-wrap w-100 mt1"}
+          [:div {:id "media-posts"
+                 :class "flexrow-wrap w-100 mt1"}
            (doall
              (for [post @posts
                    :let [post-id (-> post :sys :id)
