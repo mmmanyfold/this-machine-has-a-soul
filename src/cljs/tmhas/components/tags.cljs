@@ -126,6 +126,14 @@
                        [:span.tag
                         [:a {:class (when (= t @(rf/subscribe [:filter-tag])) "active-tag")
                              :style {:font-size (str (* 7 (get r-freq t)) "em")}
-                             :on-click #(rf/dispatch [:set-filter-tag t])}
+                             :on-click (fn []
+                                         (rf/dispatch [:set-filter-tag t])
+                                         (.animate (js/$ "html, body")
+                                                   (clj->js {:scrollTop (-> (js/$ "#media-posts")
+                                                                            (.offset)
+                                                                            .-top
+                                                                            (- 120))})
+                                                   200
+                                                   "linear"))}
                          (str "#" t)]]]))]))
              [:p "loading.."])])])}))
