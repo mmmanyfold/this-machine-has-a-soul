@@ -4,4 +4,5 @@
   {:name "tmhas"
    :active-panel nil
    :active-post-id nil
-   :filter-tag nil})
+   :filter-tag nil
+   :active-section nil})

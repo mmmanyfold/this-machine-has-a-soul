@@ -1,5 +1,6 @@
 (ns tmhas.components.navigation
-  (:require [re-com.core :as rc]
+  (:require cljsjs.jquery
+            [re-com.core :as rc]
             [re-frame.core :as rf]
             [reagent.core :as reagent]))
 
@@ -9,10 +10,13 @@
         classes (if (= @active? panel-name)
                     (str nav-classes " active")
                     nav-classes)]
-      [rc/hyperlink-href
-       :label label
-       :class classes
-       :href (str "#" to)]))
+      [:a {:href (str "#" to)
+           :class classes
+           :on-click (fn []
+                       (.scrollTop (js/$ "html, body") 0)
+                       (rf/dispatch [:set-filter-tag nil true])
+                       (rf/dispatch [:set-active-section nil true]))}
+       label]))
 
 (defn vote-link [label to]
       [rc/hyperlink-href

@@ -22,6 +22,11 @@
     (:filter-tag db)))
 
 (rf/reg-sub
+  :active-section
+  (fn [db _]
+    (:active-section db)))
+
+(rf/reg-sub
   :calendar-events
   (fn [db _]
     (:calendar-events db)))
