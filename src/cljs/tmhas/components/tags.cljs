@@ -51,12 +51,12 @@
 (defn default-props [href]
   {:href href
    :class "section-anchor"
-   :style {:font-weight (when (= @active-section href) "700")}
+   :style {:font-weight (when (= @(rf/subscribe [:active-section]) href) "700")}
    :on-click (fn [e]
                (let [prev-hash (? js/window.location.hash)]
                  (when-let [hash (-> e .-target .-hash)]
-                   (when-let [top (some-> (js/$ hash) (.offset) .-top)]
-                     (reset! active-section hash)
+                   (when-let [top (some-> (js/$ hash) (.offset) .-top (- 33))]
+                     (rf/dispatch [:set-active-section hash])
                      (js/setTimeout #(set! js/window.location.hash prev-hash) 500)
                      (scroll-top (- top 95))))))})
 

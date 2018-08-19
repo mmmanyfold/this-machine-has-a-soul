@@ -18,6 +18,13 @@
       (assoc db :filter-tag nil)
       (assoc db :filter-tag tag))))
 
+(rf/reg-event-db
+  :set-active-section
+  (fn [db [_ section reset?]]
+    (if (= reset? true)
+      (assoc db :active-section nil)
+      (assoc db :active-section section))))
+
 (rf/reg-event-fx
   :get-contentful-data
   (fn [{db :db} [_ db-key query space]]
