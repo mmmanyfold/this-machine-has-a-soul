@@ -57,6 +57,7 @@
                        :popover  [rc/popover-content-wrapper
                                   :close-button? false
                                   :body          "Coming Soon"]]]]]
-      [:a.call-for-ideas {:href "/#/submit-ideas"}
+      [:a.call-for-ideas {:href "/#/submit-ideas"
+                          :on-click #(.scrollTop (js/$ "html, body") 0)}
        [:div {:class "flex align-center justify-center"}
          [:p.ma1 "COLE: SEND US YOUR PROJECT IDEAS!"]]]]))
