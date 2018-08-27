@@ -78,9 +78,9 @@ header {
     font-size: 1.4rem;
   }
   @media screen and (max-width: 830px) {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 728px) {
     .nav-left {
       width: 100%;
       justify-content: space-between;
@@ -118,7 +118,10 @@ header {
 
 .content-panel {
   /* only if call for ideas is present */
-  padding-top: 2.3em;
+  padding-top: 1.9em;
+  @media screen and (min-width: 1199px) {
+    padding-top: 2.5em;
+  }
   @media screen and (max-width: 830px) {
     margin-top: 0;
     padding-top: 0;
@@ -139,15 +142,16 @@ header {
 
 .side-panel {
   /* only if call for ideas is present */
-  padding-top: 2.3em;
+  padding-top: 1.9em;
   @media screen and (min-width: 1199px) {
     h1 {
       font-size: 0.95em;
     }
+    padding-top: 2.5em;
   }
   @media screen and (max-width: 830px) {
     /* only if call for ideas is present */
-    padding-top: 1.5em;
+    padding-top: 1.8em;
     position: relative;
     width: 100%;
     h1 {
@@ -156,8 +160,18 @@ header {
   }
   @media screen and (min-width: 500px) and (max-width: 830px) {
     img {
-      width: 60%;
+      width: 80%;
     }
+    padding-top: 2.65em;
+  }
+}
+
+.text-box {
+  @media screen and (min-width: 1199px) {
+    font-size: 1.4rem;
+  }
+  @media screen and (max-width: 830px) {
+    font-size: 1.2rem;
   }
 }
 

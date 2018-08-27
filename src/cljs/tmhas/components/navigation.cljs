@@ -60,4 +60,4 @@
       [:a.call-for-ideas {:href "/#/submit-ideas"
                           :on-click #(.scrollTop (js/$ "html, body") 0)}
        [:div {:class "flex align-center justify-center"}
-         [:p.ma1 "COLE: SEND US YOUR PROJECT IDEAS!"]]]]))
+         [:p.ma1 "AURARIA CAMPUS: SEND US YOUR PROJECT IDEAS!"]]]]))
