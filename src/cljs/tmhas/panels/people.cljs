@@ -48,13 +48,13 @@
       [rc/v-box
        :align :end
        :class "people-panel"
-       :children [;[:h1 {:id "auraria-section"
-                  ;      :class "w-100 w-75-ns ml4-ns"
-                  ; "Auraria PB Initiative"
+       :children [[:h1 {:id "auraria-section"
+                        :class "w-100 w-75-ns ml4-ns"}
+                   "Auraria PB Initiative"]
 
-                  ;(for [datum personAurarias]
-                  ;  ^{:key (gensym "person-")}
-                  ;  [person datum]
+                  (for [datum personAurarias]
+                    ^{:key (gensym "person-")}
+                    [person datum])
 
 
                   [:h1 {:id "project-voyce-section"
