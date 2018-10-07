@@ -35,8 +35,8 @@
   (defroute "/events" []
             (rf/dispatch [:set-active-panel :calendar-panel]))
 
-  (defroute "/submit-ideas" []
-            (rf/dispatch [:set-active-panel :submit-ideas-panel]))
+  ;(defroute "/submit-ideas" []
+  ;          (rf/dispatch [:set-active-panel :submit-ideas-panel]))
 
   (defroute "/404" []
             (rf/dispatch [:set-active-panel :404]))

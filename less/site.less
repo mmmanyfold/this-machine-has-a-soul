@@ -304,6 +304,7 @@ header {
 }
 
 #tags {
+  display: none;
   text-align: center;
   li {
     margin-left: -5px;
@@ -319,6 +320,9 @@ header {
   }
   a {
     color: @green;
+  }
+  @media screen and (min-width: 831px) {
+    display: block;
   }
 }
 

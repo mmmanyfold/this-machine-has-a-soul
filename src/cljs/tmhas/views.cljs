@@ -13,9 +13,9 @@
 
 (defn side-panel []
   [rc/v-box
-   :class "side-panel fixed fl w-100 w-25-l w-30-m ph3 ph4-ns pb0-m pt3-ns mt5"
+   :class "side-panel fixed fl w-100 w-25-l w-30-m ph3 ph4-ns pb0-m mt4"
    :children [[rc/v-box
-               :class "w-100 tc mt3 mt4-ns"
+               :class "w-100 tc mt3 mt4-ns pt2"
                :align :center
                :children [[:a {:href "/#"
                                ;; reset tag filter
@@ -39,10 +39,9 @@
 
 (defn- content-panel [panel-name]
   [rc/h-box
-   :class "content-panel w-100 mr3 mr4-ns mt5-ns pt3"
+   :class "content-panel w-100 mr3 mr4-ns mt5-ns"
    :children [[:div {:class "push w-0 w-25-l w-30-m"}]
-              [:div {:class "main w-100 w-75-l w-70-m ph3 ph4-ns"
-                     :style {:margin "1.25em 0"}}
+              [:div {:class "main w-100 w-75-l w-70-m ph3 ph4-ns pt3 pt1-ns mb3"}
                 [show-panel panel-name]]]])
 
 (defn main-panel []

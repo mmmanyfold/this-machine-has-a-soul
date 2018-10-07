@@ -45,7 +45,7 @@
        :children
        [[rc/v-box
          :children
-         [[:div {:class "media-thumb w-100 mt2"
+         [[:div {:class "media-thumb w-100"
                  :style {:text-align "left"}}
            [:div {:class "ph3 ph3-ns pt1 pt2-ns pb1 pb2-ns"}
             [:p {:class "mv2 text-box lh-title"} "Interested in supporting and/or volunteering for the Auraria Participatory Budgeting effort? "

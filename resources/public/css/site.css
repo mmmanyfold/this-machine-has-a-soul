@@ -320,6 +320,7 @@ header .call-for-ideas div p {
   letter-spacing: 1px;
 }
 #tags {
+  display: none;
   text-align: center;
 }
 #tags li {
@@ -342,6 +343,11 @@ header .call-for-ideas div p {
 }
 #tags a {
   color: #739f3e;
+}
+@media screen and (min-width: 831px) {
+  #tags {
+    display: block;
+  }
 }
 .sub-navigation a {
   color: #739f3e;
