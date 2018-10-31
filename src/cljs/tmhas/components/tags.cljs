@@ -63,6 +63,10 @@
 (defn about-section-nav []
   [:div.sub-navigation
    [:ul.list.pl0
+    [:li.tl [:a (default-props "#about-auraria-pb-section") "About Auraria PB"]]
+    [:li.divider "/"]
+    [:li.tl [:a (default-props "#about-cole-has-a-soul-section") "About Cole Has a Soul"]]
+    [:li.divider "/"]
     [:li.tl [:a (default-props "#about-tmhas-section") "About TMHAS"]]
     [:li.divider "/"]
     [:li.tl [:a (default-props "#contact-section") "Contact"]]]])
