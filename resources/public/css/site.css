@@ -313,8 +313,13 @@ header .call-for-ideas div p {
   width: 30%;
   margin: 0 1%;
 }
-#about-auraria-pb img,
-.social-link img {
+@media screen and (max-width: 550px) {
+  .about-section img {
+    width: 80%;
+  }
+}
+.social-link img,
+#about-auraria-pb p:last-child img {
   margin-right: 0.5em;
   width: 1.5em;
 }
@@ -411,7 +416,7 @@ header .call-for-ideas div p {
   #tags li,
   .sub-navigation li {
     display: inline-block;
-    margin: 0 0.5em;
+    margin: 0 0.5em 1.75em 0.5em;
   }
   #tags li,
   .sub-navigation li {
