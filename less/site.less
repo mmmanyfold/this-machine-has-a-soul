@@ -293,12 +293,14 @@ header {
   img {
     width: 30%;
     margin: 0 1%;
+    @media screen and (max-width: 550px) {
+      width: 80%;
+    }
   }
 }
 
-#about-auraria-pb, .social-link {
+.social-link, #about-auraria-pb p:last-child {
   img {
-    //margin-top: 0.5em;
     margin-right: 0.5em;
     width: 1.5em;
   }
@@ -385,7 +387,7 @@ header {
   @media screen and (max-width: 830px) {
     ul, li {
       display: inline-block;
-      margin: 0 0.5em;
+      margin: 0 0.5em 1.75em 0.5em;
     }
     li {
       margin-bottom: 0.4em;
