@@ -24,7 +24,7 @@
                  :let [title (:sectionTitle section)
                        content  (:sectionContent section)]]
             ^{:key (gensym "aboutSection-")}
-             [:div.about-section
+             [:div.about-section {:id (->kebab-case (lower-case title))}
               [:h1 {:id (str (->kebab-case (lower-case title)) "-section")} title]
               [:div {:class "markdown"
                      "dangerouslySetInnerHTML"
