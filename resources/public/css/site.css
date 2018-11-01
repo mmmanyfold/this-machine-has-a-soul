@@ -313,6 +313,11 @@ header .call-for-ideas div p {
   width: 30%;
   margin: 0 1%;
 }
+#about-auraria-pb img,
+.social-link img {
+  margin-right: 0.5em;
+  width: 1.5em;
+}
 .sub-navigation-wrapper {
   width: 100%;
   font-weight: 300;
