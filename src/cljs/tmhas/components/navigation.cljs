@@ -22,7 +22,7 @@
       [rc/hyperlink-href
        :label label
        :class "vote-link ph3 pb1 ba bw1"
-       :href (str "#" to)])
+       :href to])
 
 (defn navigation []
   (let [showing?a (reagent/atom false)
@@ -41,10 +41,10 @@
                        :position :below-center
                        :anchor   [:span {:on-mouse-over #(swap! showing?a not)
                                          :on-mouse-out  #(swap! showing?a not)}
-                                     [vote-link "vote" "/"]]
+                                     [vote-link "vote" "http://www.colehasasoul.com"]]
                        :popover  [rc/popover-content-wrapper
                                   :close-button? false
-                                  :body          "Coming Soon"]]]
+                                  :body          "Vote in Cole Election"]]]
                    [:div {:class "nav-right flex items-center"}
                     [:div {:class "subtitle f7 tr mr3"} "Participatory Budgeting"
                      [:br] "in Denver, CO"]
@@ -53,10 +53,10 @@
                        :position :below-center
                        :anchor   [:span {:on-mouse-over #(swap! showing?b not)
                                          :on-mouse-out  #(swap! showing?b not)}
-                                     [vote-link "vote" "/"]]
+                                     [vote-link "vote" "http://www.colehasasoul.com"]]
                        :popover  [rc/popover-content-wrapper
                                   :close-button? false
-                                  :body          "Coming Soon"]]]]]
+                                  :body          "Vote in Cole Election"]]]]]
       [:a.call-for-ideas {:href "/#/submit-ideas"
                           :on-click #(.scrollTop (js/$ "html, body") 0)}
        [:div {:class "flex align-center justify-center"}
