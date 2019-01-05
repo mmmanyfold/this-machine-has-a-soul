@@ -41,10 +41,10 @@
                        :position :below-center
                        :anchor   [:span {:on-mouse-over #(swap! showing?a not)
                                          :on-mouse-out  #(swap! showing?a not)}
-                                     [vote-link "vote" "http://www.colehasasoul.com"]]
+                                [vote-link "vote" "/"]]
                        :popover  [rc/popover-content-wrapper
                                   :close-button? false
-                                  :body          "Vote in Cole Election"]]]
+                                  :body          "Voting has ended"]]]
                    [:div {:class "nav-right flex items-center"}
                     [:div {:class "subtitle f7 tr mr3"} "Participatory Budgeting"
                      [:br] "in Denver, CO"]

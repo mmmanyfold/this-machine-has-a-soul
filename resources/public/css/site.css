@@ -311,7 +311,7 @@ header .call-for-ideas div p {
 }
 .about-section img {
   width: 30%;
-  margin: 0 1%;
+  margin: 0 1% 0 0;
 }
 @media screen and (max-width: 550px) {
   .about-section img {
