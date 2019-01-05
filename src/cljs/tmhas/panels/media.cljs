@@ -48,10 +48,8 @@
          [[:div {:class "media-thumb w-100"
                  :style {:text-align "left"}}
            [:div {:class "ph3 ph3-ns pt1 pt2-ns pb1 pb2-ns"}
-            [:p {:class "mv2 text-box lh-title"} "Interested in supporting and/or volunteering for the Auraria Participatory Budgeting effort? "
-             [:a {:href "https://docs.google.com/forms/d/e/1FAIpQLSdFoy4vS18AXOoxLl_pdCsZj5TBQLeCq-J3ws5WsrTkJL-KSA/viewform"}
-                 "Get in touch"]
-             "."]]]
+            [:p {:class "mv2 i text-box lh-title"}
+             "This Machine Has a Soul has concluded as of January 2019. This site is now in the process of being converted into a time capsule archive of the project journey and learnings. Stay tuned!"]]]
           [media-post-panel posts]
           [:div {:id "media-posts"
                  :class "flexrow-wrap w-100 mt1"}
