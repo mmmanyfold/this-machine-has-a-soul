@@ -53,10 +53,11 @@
                        :position :below-center
                        :anchor   [:span {:on-mouse-over #(swap! showing?b not)
                                          :on-mouse-out  #(swap! showing?b not)}
-                                     [vote-link "vote" "http://www.colehasasoul.com"]]
+                                  [:a {:class "vote-link ph3 pb1 ba bw1"
+                                       :style {:cursor "not-allowed"}} "vote"]]
                        :popover  [rc/popover-content-wrapper
                                   :close-button? false
-                                  :body          "Vote in Cole Election"]]]]]
+                                  :body          "Voting has ended"]]]]]
       [:a.call-for-ideas {:href "/#/submit-ideas"
                           :on-click #(.scrollTop (js/$ "html, body") 0)}
        [:div {:class "flex align-center justify-center"}
