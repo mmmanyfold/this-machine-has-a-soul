@@ -25,10 +25,6 @@
             [lein-less "1.7.5"]]
 
   :min-lein-version "2.5.3"
-;   :jvm-opts ["--add-modules" "java.xml.bind"]
-;   :jvm-opts ["-XX:+IgnoreUnrecognizedVMOptions" "--add-modules=java.xml.bind"]
-;  :jvm-opts ["-XX:+IgnoreUnrecognizedVMOptions" "--add-modules java.xml.bind"]
-;  :jvm-opts ["--add-modules" "java.xml.bind"]
 
   :source-paths ["src/clj"]
 
