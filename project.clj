@@ -1,6 +1,6 @@
 (defproject tmhas "0.1.0-SNAPSHOT"
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.9.908"]
+  :dependencies [[org.clojure/clojure "1.10.1"]
+                 [org.clojure/clojurescript "1.10.753"]
                  [reagent "0.7.0"]
                  [re-frame "0.10.1"]
                  [re-frisk "0.4.5"]
@@ -10,8 +10,9 @@
                  [compojure "1.5.0"]
                  [yogthos/config "0.8"]
                  [ring "1.4.0"]
-                 [cljs-ajax "0.6.0"]
-                 [day8.re-frame/http-fx "0.1.3"]
+                 [cljs-ajax "0.8.0"]
+                 [day8.re-frame/http-fx "v0.2.0"]
+                 [http-kit "2.4.0-alpha6"]
                  [adzerk/env "0.4.0"]
                  [cljsjs/showdown "1.4.2-0"]
                  [cljsjs/bootstrap "3.3.6-1"]
@@ -24,6 +25,10 @@
             [lein-less "1.7.5"]]
 
   :min-lein-version "2.5.3"
+;   :jvm-opts ["--add-modules" "java.xml.bind"]
+;   :jvm-opts ["-XX:+IgnoreUnrecognizedVMOptions" "--add-modules=java.xml.bind"]
+;  :jvm-opts ["-XX:+IgnoreUnrecognizedVMOptions" "--add-modules java.xml.bind"]
+;  :jvm-opts ["--add-modules" "java.xml.bind"]
 
   :source-paths ["src/clj"]
 

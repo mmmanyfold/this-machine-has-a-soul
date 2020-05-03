@@ -8,9 +8,7 @@
 
 (defn metadata [id postTitle postText postDate tags]
   [:div.w-100.w-50-l.pa3
-   [:h2 {:class "mb2 mh1 mt1 f3"}
-    [:a {:href (str "/#/post/" id)}
-      (str postTitle " →")]]
+   [:h1 {:class "mb2 mh1 mt1 f3"} postTitle]
    [:div {:class "metadata"}
     (when postText
           [:div {:class "mh1 mv0"

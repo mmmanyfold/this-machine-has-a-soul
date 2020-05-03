@@ -23,15 +23,12 @@
                            [:img {:src "/img/TMHAS_Logo_600.jpg"
                                   :class "w-100"}]]
                           [tags]]]]])
-                        ; [filtering component] for media (home) page
-                        ; [sub navigation component] in about + people
 
 (defn- show-panel [panel-name]
   (case panel-name
         :media-panel [media-panel]
         :about-panel [about-panel]
         :people-panel [people-panel]
-        :calendar-panel [calendar-panel]
         :submit-ideas-panel [submit-ideas-panel]
         :404 [:div "404"]
         [:div]))
