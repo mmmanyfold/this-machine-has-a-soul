@@ -1,4 +1,6 @@
 language: clojure
+jdk:
+  - oraclejdk13
 lein: 2.6.1
 sudo: true
 script: "lein cljsbuild once min"
