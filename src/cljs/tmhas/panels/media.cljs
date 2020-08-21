@@ -48,8 +48,10 @@
          [[:div {:class "media-thumb w-100"
                  :style {:text-align "left"}}
            [:div {:class "ph3 ph3-ns pt1 pt2-ns pb1 pb2-ns"}
-            [:p {:class "mv2 i text-box lh-title"}
-             "This Machine Has a Soul has concluded as of January 2019. This site is now in the process of being converted into a time capsule archive of the project journey and learnings. Stay tuned!"]]]
+            [:div {:class "mv2 text-box lh-title"}
+             [:p "This Machine Has a Soul has concluded as of January 2019."]
+             [:p "The overarching goal of the project was to get the City of Denver to adopt Participatory Budgeting, and after 4 years of organizing, we were successful!\u2028 The 2020 budget has $1.7 million for Denver's first PB process!"]
+             [:p "This site is now in the process of being converted into a time capsule archive of the project journey and learnings. Stay tuned!"]]]]
           [media-post-panel posts]
           [:div {:id "media-posts"
                  :class "flexrow-wrap w-100 mt1"}
